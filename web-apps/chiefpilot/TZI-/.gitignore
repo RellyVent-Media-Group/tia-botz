@@ -1,8 +1,40 @@
+# Dependencies
 node_modules/
+
+# Build outputs
 build/
 dist/
+*.cjs
+
+# Coverage
 coverage/
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Logs
 *.log
-.env*
+npm-debug.log*
+
+# Environment
+.env
+.env.*
 !.env.example
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# Kubernetes
+.k8s/
+
+# Temporary files
+tmp/
+temp/

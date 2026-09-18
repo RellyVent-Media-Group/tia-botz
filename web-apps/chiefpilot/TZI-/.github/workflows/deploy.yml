@@ -1,0 +1,91 @@
+name: Deploy ChiefPilot TZI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}-chiefpilot-tzi
+  DOCKER_CONTEXT: ./web-apps/chiefpilot/TZI-
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        working-directory: ${{ env.DOCKER_CONTEXT }}
+        run: npm ci
+
+      - name: Build application
+        working-directory: ${{ env.DOCKER_CONTEXT }}
+        run: npm run build
+
+      - name: Run lint
+        working-directory: ${{ env.DOCKER_CONTEXT }}
+        run: npm run lint
+
+      - name: Log in to Container Registry
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=sha
+
+      - name: Build and push Docker image
+        if: github.event_name != 'pull_request'
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ env.DOCKER_CONTEXT }}
+          file: ${{ env.DOCKER_CONTEXT }}/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  deploy-to-cloud-run:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Deploy to Google Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: chiefpilot-tzi
+          region: us-central1
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:sha-${{ github.sha }}
+          port: 3000
+          env_vars: |
+            NODE_ENV=production
+            GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+            APP_URL=https://chiefpilot-tzi-${{ github.sha }}.a.run.app
+            WORKSPACE_API_URL=http://localhost:3001
+          allow_unauthenticated: true
+        secrets:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
