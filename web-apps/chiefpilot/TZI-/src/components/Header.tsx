@@ -14,7 +14,8 @@ import {
   Tv2,
   Building2,
   Cpu,
-  Copy
+  Copy,
+  Scissors
 } from "lucide-react";
 
 interface HeaderProps {
@@ -32,6 +33,7 @@ export const Header: React.FC<HeaderProps> = ({
     { id: "universe-bible", label: "Universe Bible", icon: BookOpen },
     { id: "character-bible", label: "30 Souls & Archetypes", icon: Users },
     { id: "pilot-production", label: "Pilot & Stop-Motion", icon: Film },
+    { id: "puppet-fabrication", label: "Puppet Fabrication", icon: Scissors },
     { id: "fake-news-desk", label: "Fake News Desk", icon: Tv },
     { id: "shadow-engine", label: "Shadow Engine & Temenos", icon: ShieldAlert },
     { id: "ai-content-pipeline", label: "AI Content Studio", icon: Bot },

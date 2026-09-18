@@ -4,6 +4,7 @@ import { Header } from "./components/Header";
 import { UniverseBibleView } from "./components/UniverseBibleView";
 import { CharacterBibleView } from "./components/CharacterBibleView";
 import { PilotProductionView } from "./components/PilotProductionView";
+import { PuppetFabricationView } from "./components/PuppetFabricationView";
 import { FakeNewsDeskView } from "./components/FakeNewsDeskView";
 import { ShadowEngineView } from "./components/ShadowEngineView";
 import { AIStudioWorkspaceView } from "./components/AIStudioWorkspaceView";
@@ -30,6 +31,7 @@ export default function App() {
         {activeWorkstream === "universe-bible" && <UniverseBibleView />}
         {activeWorkstream === "character-bible" && <CharacterBibleView />}
         {activeWorkstream === "pilot-production" && <PilotProductionView />}
+        {activeWorkstream === "puppet-fabrication" && <PuppetFabricationView />}
         {activeWorkstream === "fake-news-desk" && <FakeNewsDeskView />}
         {activeWorkstream === "shadow-engine" && <ShadowEngineView />}
         {activeWorkstream === "ai-content-pipeline" && <AIStudioWorkspaceView />}
