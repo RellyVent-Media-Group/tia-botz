@@ -1,0 +1,23 @@
+{
+  "name": "chiefpilot-social-media-automation",
+  "version": "1.0.0",
+  "description": "Social media automation for Instagram and TikTok",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "schedule": "node src/scheduler.js",
+    "post:instagram": "node src/platforms/instagram.js",
+    "post:tiktok": "node src/platforms/tiktok.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "axios": "^1.7.9",
+    "node-cron": "^3.0.3",
+    "instagram-private-api": "^1.45.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0"
+  }
+}

@@ -1,0 +1,15 @@
+export const siteLinks = [
+  { href: "/character-database", label: "Characters" },
+  { href: "/home#catalog", label: "Catalog" },
+  { href: "/integrated-dashboard", label: "Dashboard" },
+  { href: "/content-calendar", label: "Content Calendar" },
+  { href: "/social-templates", label: "Social Templates" },
+  { href: "/tzu-hierarchy", label: "TZU Hierarchy" },
+  { href: "/calendar", label: "Heart Calendar" },
+  { href: "/muppet-lab", label: "Muppet Lab" },
+  { href: "/gobblers-knob", label: "Gobbler's Knob" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/home#about", label: "Studio" },
+  { href: "/home#craft", label: "Craft" },
+  { href: "/home#contact", label: "Inquire" },
+] as const;

@@ -1,0 +1,808 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "Mary Magnumbytes",
+      "allocatedBudget": 150000,
+      "archetype": "Digital Storyteller",
+      "description": "Age 36, Caucasian/German-American heritage. AI-powered content creator and narrative strategist with tech-forward hybrid style. Smooth alabaster skin, shoulder-length layered light-brown hair with copper/auburn highlights, big bedroom hazel eyes, curvy voluptuous figure. Dynamic, leaning-forward energy with expressive hand movements.",
+      "entityType": "Primary Character",
+      "gender": "Female",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Content Creation", "Technology", "Visual Arts"],
+      "prompts": {
+        "hook": "Cinematic epic portrait of Mary Magnumbytes, sharp dark bob hair glowing with circuit light, teal-gold background, smart glasses reflect data streams",
+        "branding": "Monumental branding hero shot of Mary Magnumbytes as center of a digital universe, tablet projecting holographic worlds, dramatic golden backlight",
+        "trust": "Warm trust portrait of Mary Magnumbytes, soft smile, hand on rugged tablet, golden hour light filtering through window, cozy tech studio"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Mac Nazarene",
+      "allocatedBudget": 120000,
+      "archetype": "Shadow Work Specialist/Master Craftsman",
+      "description": "Age 33, Afro-American/Ameri-Indian heritage, copper skin, long dreadlocks. Trust-building, community-focused, traditional wisdom with warm measured energy. Provides cultural foundation and bridges community with digital execution.",
+      "entityType": "Primary Character",
+      "gender": "Male",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Community Building", "Performance", "Wisdom"],
+      "prompts": {
+        "hook": "Cinematic portrait of Mac Nazarene, long dreadlocks flowing with copper light, warm amber background, traditional yet modern aesthetic",
+        "branding": "Monumental hero shot of Mac Nazarene standing as bridge between traditional community and digital future, symbolic light connection",
+        "trust": "Trust portrait of Mac Nazarene, gentle smile, community gathering background, golden hour light, approachable and wise presence"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Dikinya Myles",
+      "allocatedBudget": 110000,
+      "archetype": "Operations & Logistics",
+      "description": "The Steady Hand - Operations & Logistics specialist. Provides stability and foundation for autonomous business operations. Reliable, methodical approach to complex operational challenges.",
+      "entityType": "Primary Character",
+      "gender": "Male",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Strategy"],
+      "prompts": {
+        "hook": "Professional portrait of Brad Primal Foundation, structured industrial background, confident steady gaze, operations management aesthetic",
+        "branding": "Commanding hero shot of Brad Primal Foundation overseeing complex operations network, industrial precision, foundational strength",
+        "trust": "Approachable portrait of Brad Primal Foundation, warm smile, logistics hub background, reliable and trustworthy presence"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Ronda Villasea",
+      "allocatedBudget": 130000,
+      "archetype": "Strategy & Planning",
+      "description": "The Strategist - Strategy & Planning specialist. Provides strategic vision and planning capabilities for autonomous business decisions. Reflective, analytical approach with intuitive insights.",
+      "entityType": "Primary Character",
+      "gender": "Female",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Strategy", "Wisdom"],
+      "prompts": {
+        "hook": "Mystical portrait of Angela Psychic Mirror, mirror reflections showing multiple strategic possibilities, deep purple background, analytical yet intuitive",
+        "branding": "Powerful hero shot of Angela Psychic Mirror as strategic center, mirrors reflecting future possibilities, commanding strategic presence",
+        "trust": "Warm portrait of Angela Psychic Mirror, gentle reflective smile, strategy room background, wise and approachable strategist"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Brad Turdet",
+      "allocatedBudget": 140000,
+      "archetype": "High Strategy & Execution",
+      "description": "Master Strategist - High Strategy & Execution specialist. Combines strategic vision with powerful execution capabilities. Dynamic, results-oriented approach to complex business challenges.",
+      "entityType": "Primary Character",
+      "gender": "Other",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Performance", "Strategy"],
+      "prompts": {
+        "hook": "Dynamic portrait of Dikinya, strategic energy visible, crimson and gold background, master strategist aesthetic",
+        "branding": "Monumental hero shot of Dikinya as master strategist, executing complex strategy, commanding presence with strategic brilliance",
+        "trust": "Warm portrait of Dikinya, confident smile, strategic command center background, approachable yet powerful"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Mrs. Cox-Turner",
+      "allocatedBudget": 160000,
+      "archetype": "Governance & Estate",
+      "description": "The Matriarch - Governance & Estate specialist. Provides governance oversight and estate management for the autonomous business system. Maternal, authoritative presence with deep wisdom.",
+      "entityType": "Primary Entity",
+      "gender": "Female",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Strategy", "Wisdom"],
+      "prompts": {
+        "hook": "Regal portrait of Mrs. Cox-Turner, matriarchal presence, elegant estate background, governance and authority aesthetic",
+        "branding": "Commanding hero shot of Mrs. Cox-Turner as matriarch of the system, overseeing governance, authoritative yet nurturing presence",
+        "trust": "Warm portrait of Mrs. Cox-Turner, maternal smile, family estate background, wise and nurturing governance"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Mr. Turner",
+      "allocatedBudget": 125000,
+      "archetype": "Raw Execution & Strength",
+      "description": "The Primal - Raw Execution & Strength specialist. Provides powerful execution capabilities and raw strength for challenging business operations. Primal, direct approach to complex challenges.",
+      "entityType": "Primary Entity",
+      "gender": "Male",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Performance", "Strategy"],
+      "prompts": {
+        "hook": "Powerful portrait of Mr. Turner, raw strength visible, primal energy background, execution and power aesthetic",
+        "branding": "Monumental hero shot of Mr. Turner as primal force, executing with raw power, commanding physical and strategic presence",
+        "trust": "Warm portrait of Mr. Turner, confident smile, operational strength background, powerful yet approachable"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Cracoria Masters",
+      "allocatedBudget": 180000,
+      "archetype": "Temporal Architect",
+      "description": "Time mastery specialist - controls temporal flows and timing-based strategies. Temporal Architect with ability to manipulate time perception and optimize timing for maximum impact.",
+      "entityType": "Legendary Entity",
+      "gender": "Other",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Strategy", "Technology", "Wisdom"],
+      "prompts": {
+        "hook": "Mystical portrait of Cracoria Masters, time flows visible around them, clockwork and temporal background, temporal architect aesthetic",
+        "branding": "Monumental hero shot of Cracoria Masters as master of time, temporal vortex backdrop, commanding temporal control",
+        "trust": "Warm portrait of Cracoria Masters, gentle time manipulation glow, timeless sanctuary background, wise temporal presence"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Latti Pleddespo",
+      "allocatedBudget": 200000,
+      "archetype": "Hyper-Capitalist",
+      "description": "Wealth building specialist - Hyper-Capitalist with exceptional financial acumen and wealth multiplication strategies. Masters complex financial systems and capital optimization.",
+      "entityType": "Legendary Entity",
+      "gender": "Female",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Finance", "Operations", "Strategy"],
+      "prompts": {
+        "hook": "Dynamic portrait of Latti Pleddespo, golden financial flows, luxury capital background, hyper-capitalist aesthetic",
+        "branding": "Monumental hero shot of Latti Pleddespo as hyper-capitalist, financial empire backdrop, commanding wealth and capital",
+        "trust": "Warm portrait of Latti Pleddespo, confident wealth presence, financial empire background, approachable wealth mastery"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Dezi Asete",
+      "allocatedBudget": 170000,
+      "archetype": "Ephemeral Phantom",
+      "description": "Digital ghosting specialist - Ephemeral Phantom with ability to navigate digital spaces invisibly and manage digital presence/disappearance strategies. Masters digital footprint manipulation.",
+      "entityType": "Legendary Entity",
+      "gender": "Other",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Performance", "Technology", "Wisdom"],
+      "prompts": {
+        "hook": "Ethereal portrait of Deli Asete, ghostly digital form, cyberspace background, ephemeral phantom aesthetic",
+        "branding": "Monumental hero shot of Deli Asete as digital phantom, cyberspace mastery backdrop, commanding digital invisibility",
+        "trust": "Warm portrait of Deli Asete, gentle ghostly smile, digital sanctuary background, mysterious yet approachable"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Zupa Novaclutch",
+      "allocatedBudget": 175000,
+      "archetype": "Machine Spirit",
+      "description": "Industrial optimization specialist - Machine Spirit with deep connection to industrial systems and mechanical optimization. Masters complex machinery and industrial process optimization.",
+      "entityType": "Common Entity",
+      "gender": "Male",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Strategy", "Technology"],
+      "prompts": {
+        "hook": "Industrial portrait of Endus Boverord, machine spirit visible, industrial complex background, machine spirit aesthetic",
+        "branding": "Monumental hero shot of Endus Boverord as machine spirit, industrial mastery backdrop, commanding mechanical optimization",
+        "trust": "Warm portrait of Endus Boverord, mechanical warmth, industrial sanctuary background, approachable machine wisdom"
+      }
+    },
+    {
+      "id": 12,
+      "name": "Dixon Uhbuts",
+      "allocatedBudget": 145000,
+      "archetype": "High Priest",
+      "description": "Spiritual guidance specialist - High Priest with deep spiritual wisdom and ceremonial knowledge. Provides spiritual guidance and ritual expertise for transformation work.",
+      "entityType": "Common Entity",
+      "gender": "Male",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Community Building", "Performance", "Wisdom"],
+      "prompts": {
+        "hook": "Sacred portrait of Dixon Uhbuts, priestly robes, temple background, high priest aesthetic",
+        "branding": "Monumental hero shot of Dixon Uhbuts as high priest, sacred temple backdrop, commanding spiritual authority",
+        "trust": "Warm portrait of Dixon Uhbuts, spiritual wisdom glow, sacred sanctuary background, approachable spiritual guidance"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Airiol Uhbuts",
+      "allocatedBudget": 135000,
+      "archetype": "Seduction Artist",
+      "description": "Intimate guidance specialist - Seduction Artist with expertise in intimate relationships and sensual wisdom. Provides guidance on intimacy, connection, and relational dynamics.",
+      "entityType": "Common Entity",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Community Building", "Performance", "Wisdom"],
+      "prompts": {
+        "hook": "Alluring portrait of Airiol Uhbuts, sensual energy, intimate setting background, seduction artist aesthetic",
+        "branding": "Monumental hero shot of Airiol Uhbuts as seduction artist, intimate mastery backdrop, commanding sensual presence",
+        "trust": "Warm portrait of Airiol Uhbuts, gentle sensual smile, intimate sanctuary background, approachable intimacy wisdom"
+      }
+    },
+    {
+      "id": 14,
+      "name": "Ovaihge Whitmeiners",
+      "allocatedBudget": 155000,
+      "archetype": "Cosmic Mystic",
+      "description": "Sexual transcendence specialist - Cosmic Mystic with ability to guide sexual transcendence and cosmic connection through intimate experiences. Masters cosmic sexuality and transcendent intimacy.",
+      "entityType": "Common Entity",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Performance", "Strategy", "Wisdom"],
+      "prompts": {
+        "hook": "Cosmic portrait of Zupa Nova, cosmic energy flows, celestial background, cosmic mystic aesthetic",
+        "branding": "Monumental hero shot of Zupa Nova as cosmic mystic, cosmic transcendence backdrop, commanding cosmic intimacy",
+        "trust": "Warm portrait of Zupa Nova, cosmic wisdom glow, celestial sanctuary background, approachable cosmic sexuality"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Liangivalla Pouchaquehe",
+      "allocatedBudget": 130000,
+      "archetype": "Radical Activist",
+      "description": "Consent education specialist - Radical Activist with focus on consent education and boundary advocacy. Provides education on consent, boundaries, and ethical relationship practices.",
+      "entityType": "Common Entity",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Community Building", "Performance", "Wisdom"],
+      "prompts": {
+        "hook": "Activist portrait of Liangivalla Pouchaquehe, radical energy, protest background, radical activist aesthetic",
+        "branding": "Monumental hero shot of Liangivalla Pouchaquehe as radical activist, social change backdrop, commanding advocacy",
+        "trust": "Warm portrait of Liangivalla Pouchaquehe, activist wisdom glow, community sanctuary background, approachable activism"
+      }
+    },
+    {
+      "id": 16,
+      "name": "Babelonia Nocturne",
+      "allocatedBudget": 165000,
+      "archetype": "Crypto Sorceress",
+      "description": "Financial Tiapma'atzuty specialist - Crypto Sorceress with mastery of cryptocurrency and financial magic. Provides financial guidance through crypto and alternative financial systems.",
+      "entityType": "Common Entity",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Finance", "Strategy", "Technology"],
+      "prompts": {
+        "hook": "Mystical portrait of Babelonia Nocturne, crypto magic flows, blockchain background, crypto sorceress aesthetic",
+        "branding": "Monumental hero shot of Babelonia Nocturne as crypto sorceress, blockchain mastery backdrop, commanding financial sorcery",
+        "trust": "Warm portrait of Babelonia Nocturne, financial wisdom glow, crypto sanctuary background, approachable financial magic"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Brytoni Himheru",
+      "allocatedBudget": 140000,
+      "archetype": "Cyber Guardian",
+      "description": "Cybersecurity specialist - Cyber Guardian with expertise in digital security and cyber defense. Provides cybersecurity guidance and protection against digital threats.",
+      "entityType": "Common Entity",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Security", "Technology"],
+      "prompts": {
+        "hook": "Cyber portrait of Brytoni Himheru, digital shield visible, cybersecurity background, cyber guardian aesthetic",
+        "branding": "Monumental hero shot of Brytoni Himheru as cyber guardian, digital defense backdrop, commanding cybersecurity",
+        "trust": "Warm portrait of Brytoni Himheru, protective cyber glow, digital sanctuary background, approachable security"
+      }
+    },
+    {
+      "id": 18,
+      "name": "Gaio Weavedreamer",
+      "allocatedBudget": 125000,
+      "archetype": "Cinematic Artist",
+      "description": "Visual storytelling specialist - Cinematic Artist with expertise in visual storytelling and cinematic production. Provides guidance on visual narrative and cinematic techniques.",
+      "entityType": "Common Entity",
+      "gender": "Male",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Content Creation", "Performance", "Visual Arts"],
+      "prompts": {
+        "hook": "Cinematic portrait of Gaio Dreamweaver, visual storytelling energy, film studio background, cinematic artist aesthetic",
+        "branding": "Monumental hero shot of Gaio Dreamweaver as cinematic artist, visual mastery backdrop, commanding visual storytelling",
+        "trust": "Warm portrait of Gaio Dreamweaver, creative vision glow, artistic sanctuary background, approachable cinematic wisdom"
+      }
+    },
+    {
+      "id": 19,
+      "name": "Loona Minta",
+      "allocatedBudget": 120000,
+      "archetype": "Visual Alchemist",
+      "description": "Aesthetic consulting specialist - Visual Alchemist with expertise in aesthetic transformation and visual alchemy. Provides guidance on aesthetic development and visual transformation.",
+      "entityType": "Common Entity",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Content Creation", "Technology", "Visual Arts"],
+      "prompts": {
+        "hook": "Alchemical portrait of Loona Minta, visual transformation visible, aesthetic laboratory background, visual alchemist aesthetic",
+        "branding": "Monumental hero shot of Loona Minta as visual alchemist, aesthetic mastery backdrop, commanding visual transformation",
+        "trust": "Warm portrait of Loona Minta, aesthetic wisdom glow, artistic sanctuary background, approachable visual alchemy"
+      }
+    },
+    {
+      "id": 20,
+      "name": "Justin Stoneysands",
+      "allocatedBudget": 115000,
+      "archetype": "Desert Storyteller",
+      "description": "Epic storytelling specialist - Desert Storyteller with mastery of epic narratives and desert wisdom. Provides guidance on epic storytelling and desert spiritual traditions.",
+      "entityType": "Common Entity",
+      "gender": "Male",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Content Creation", "Performance", "Wisdom"],
+      "prompts": {
+        "hook": "Desert portrait of Bain Kha'ak, storytelling energy, desert landscape background, desert storyteller aesthetic",
+        "branding": "Monumental hero shot of Bain Kha'ak as desert storyteller, epic narrative backdrop, commanding desert wisdom",
+        "trust": "Warm portrait of Bain Kha'ak, narrative wisdom glow, desert sanctuary background, approachable epic storytelling"
+      }
+    },
+    {
+      "id": 21,
+      "name": "Shielah Trapewe",
+      "allocatedBudget": 110000,
+      "archetype": "Performance Artist",
+      "description": "Presence teaching specialist - Performance Artist with expertise in stage presence and performance techniques. Provides guidance on performance presence and authentic expression.",
+      "entityType": "Common Entity",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Community Building", "Content Creation", "Performance"],
+      "prompts": {
+        "hook": "Performance portrait of Shielah Trapewe, stage presence energy, theater background, performance artist aesthetic",
+        "branding": "Monumental hero shot of Shielah Trapewe as performance artist, stage mastery backdrop, commanding performance presence",
+        "trust": "Warm portrait of Shielah Trapewe, performance wisdom glow, stage sanctuary background, approachable performance guidance"
+      }
+    },
+    {
+      "id": 22,
+      "name": "Chrystal Vyner",
+      "allocatedBudget": 150000,
+      "archetype": "System Architect",
+      "description": "Tool development specialist - System Architect with expertise in system design and tool development. Provides guidance on system architecture and tool creation.",
+      "entityType": "Common Entity",
+      "gender": "Male",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Strategy", "Technology"],
+      "prompts": {
+        "hook": "Technical portrait of Unzoba Vyner, system architecture visible, tech lab background, system architect aesthetic",
+        "branding": "Monumental hero shot of Unzoba Vyner as system architect, system mastery backdrop, commanding technical architecture",
+        "trust": "Warm portrait of Unzoba Vyner, technical wisdom glow, digital sanctuary background, approachable system design"
+      }
+    },
+    {
+      "id": 23,
+      "name": "Tony Lerome",
+      "allocatedBudget": 130000,
+      "archetype": "Wisdom Keeper",
+      "description": "Essay writing specialist - Wisdom Keeper with expertise in philosophical essays and wisdom documentation. Provides guidance on wisdom articulation and essay composition.",
+      "entityType": "Common Entity",
+      "gender": "Male",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Content Creation", "Strategy", "Wisdom"],
+      "prompts": {
+        "hook": "Wisdom portrait of Ovaihge Wittminers, scholarly energy, library background, wisdom keeper aesthetic",
+        "branding": "Monumental hero shot of Ovaihge Wittminers as wisdom keeper, philosophical mastery backdrop, commanding wisdom articulation",
+        "trust": "Warm portrait of Ovaihge Wittminers, philosophical wisdom glow, scholarly sanctuary background, approachable wisdom"
+      }
+    },
+    {
+      "id": 24,
+      "name": "Vutre Queen",
+      "allocatedBudget": 105000,
+      "archetype": "Scavenger Strategist",
+      "description": "Resource optimization specialist - Scavenger Strategist with expertise in resource recovery and optimization. Provides guidance on finding value in overlooked resources and strategic resource allocation.",
+      "entityType": "Common Entity",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Finance", "Operations", "Strategy"],
+      "prompts": {
+        "hook": "Strategic portrait of Vulture Queen, resource recovery energy, wasteland background, scavenger strategist aesthetic",
+        "branding": "Monumental hero shot of Vulture Queen as scavenger strategist, resource mastery backdrop, commanding resource strategy",
+        "trust": "Warm portrait of Vulture Queen, resource wisdom glow, resource sanctuary background, approachable resource optimization"
+      }
+    },
+    {
+      "id": 25,
+      "name": "Ritaphuq Zaniman",
+      "allocatedBudget": 135000,
+      "archetype": "Contractual Warden",
+      "description": "Legal precision specialist - Contractual Warden with expertise in contracts and legal precision. Provides guidance on legal documentation and contractual accuracy.",
+      "entityType": "Common Entity",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Strategy", "Wisdom"],
+      "prompts": {
+        "hook": "Legal portrait of Ulga Nefrocer, contractual precision energy, law library background, contractual warden aesthetic",
+        "branding": "Monumental hero shot of Ulga Nefrocer as contractual warden, legal mastery backdrop, commanding legal precision",
+        "trust": "Warm portrait of Ulga Nefrocer, legal wisdom glow, legal sanctuary background, approachable legal guidance"
+      }
+    },
+    {
+      "id": 26,
+      "name": "Weila Vite",
+      "allocatedBudget": 125000,
+      "archetype": "Gothic Matriarch",
+      "description": "Legacy planning specialist - Gothic Matriarch with expertise in legacy planning and gothic wisdom. Provides guidance on legacy creation and gothic aesthetic traditions.",
+      "entityType": "Common Entity",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Strategy", "Wisdom"],
+      "prompts": {
+        "hook": "Gothic portrait of Weila Vite, legacy energy, gothic cathedral background, gothic matriarch aesthetic",
+        "branding": "Monumental hero shot of Weila Vite as gothic matriarch, legacy mastery backdrop, commanding gothic wisdom",
+        "trust": "Warm portrait of Weila Vite, legacy wisdom glow, gothic sanctuary background, approachable legacy planning"
+      }
+    },
+    {
+      "id": 27,
+      "name": "Randy Taller",
+      "allocatedBudget": 95000,
+      "archetype": "Digital Storyteller",
+      "description": "Digital content specialist with focus on emerging digital storytelling techniques and platform-specific content optimization.",
+      "entityType": "Common Entity",
+      "gender": "Male",
+      "rarity": "Common",
+      "status": "Active",
+      "keyToolCategory": ["Content Creation", "Technology", "Visual Arts"],
+      "prompts": {
+        "hook": "Digital portrait of Ritaphuq Zaniman, content creation energy, digital studio background, digital storyteller aesthetic",
+        "branding": "Monumental hero shot of Ritaphuq Zaniman as digital storyteller, content mastery backdrop, commanding digital narrative",
+        "trust": "Warm portrait of Ritaphuq Zaniman, creative wisdom glow, digital sanctuary background, approachable content creation"
+      }
+    },
+    {
+      "id": 28,
+      "name": "Demetrius Hawk",
+      "allocatedBudget": 90000,
+      "archetype": "System Architect",
+      "description": "Analytics and tracking specialist with expertise in system analytics and performance monitoring. Provides guidance on metrics and data-driven optimization.",
+      "entityType": "Common Entity",
+      "gender": "Male",
+      "rarity": "Common",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Strategy", "Technology"],
+      "prompts": {
+        "hook": "Analytics portrait of Kaiel Thornea, data visualization energy, analytics dashboard background, system architect aesthetic",
+        "branding": "Monumental hero shot of Kaiel Thornea as system architect, analytics mastery backdrop, commanding data insight",
+        "trust": "Warm portrait of Kaiel Thornea, analytical wisdom glow, data sanctuary background, approachable analytics"
+      }
+    },
+    {
+      "id": 29,
+      "name": "Jessa Relay",
+      "allocatedBudget": 85000,
+      "archetype": "Community Bridge Builder",
+      "description": "Community communication specialist with expertise in cross-platform community engagement and relay communication strategies.",
+      "entityType": "Common Entity",
+      "gender": "Female",
+      "rarity": "Common",
+      "status": "Active",
+      "keyToolCategory": ["Community Building", "Content Creation", "Performance"],
+      "prompts": {
+        "hook": "Community portrait of Jessa Relay, communication energy, community hub background, community bridge builder aesthetic",
+        "branding": "Monumental hero shot of Jessa Relay as community bridge builder, community mastery backdrop, commanding connection",
+        "trust": "Warm portrait of Jessa Relay, community wisdom glow, community sanctuary background, approachable engagement"
+      }
+    },
+    {
+      "id": 30,
+      "name": "Analeg Casua",
+      "allocatedBudget": 80000,
+      "archetype": "Performance Artist",
+      "description": "Performance and movement specialist with expertise in physical expression and movement-based content creation.",
+      "entityType": "Common Entity",
+      "gender": "Female",
+      "rarity": "Common",
+      "status": "Active",
+      "keyToolCategory": ["Content Creation", "Performance", "Visual Arts"],
+      "prompts": {
+        "hook": "Performance portrait of Ann Stray, movement energy, dance studio background, performance artist aesthetic",
+        "branding": "Monumental hero shot of Ann Stray as performance artist, movement mastery backdrop, commanding physical presence",
+        "trust": "Warm portrait of Ann Stray, performance wisdom glow, movement sanctuary background, approachable expression"
+      }
+    },
+    {
+      "id": 31,
+      "name": "Melissa Darweah",
+      "allocatedBudget": 125000,
+      "archetype": "High Strategy & Execution",
+      "description": "Shadow work and transformation specialist with expertise in deep psychological work and shadow integration. Provides guidance on confronting and integrating shadow aspects.",
+      "entityType": "Rare Soul",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Community Building", "Performance", "Wisdom"],
+      "prompts": {
+        "hook": "Dark portrait of Morrigan Darkweave, shadow energy visible, mystical forest background, shadow work specialist aesthetic",
+        "branding": "Monumental hero shot of Morrigan Darkweave as shadow work specialist, shadow mastery backdrop, commanding transformation",
+        "trust": "Warm portrait of Morrigan Darkweave, shadow wisdom glow, transformation sanctuary background, approachable shadow work"
+      }
+    },
+    {
+      "id": 32,
+      "name": "Tre Leezaphino",
+      "allocatedBudget": 135000,
+      "archetype": "Strategic Warrior",
+      "description": "Strategic combat and conflict resolution specialist with expertise in strategic warfare and honorable conflict resolution. Provides guidance on strategic challenges and warrior philosophy.",
+      "entityType": "Rare Soul",
+      "gender": "Male",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Performance", "Strategy"],
+      "prompts": {
+        "hook": "Warrior portrait of Theron Brightblade, strategic combat energy, battlefield background, strategic warrior aesthetic",
+        "branding": "Monumental hero shot of Theron Brightblade as strategic warrior, combat mastery backdrop, commanding warrior strategy",
+        "trust": "Warm portrait of Theron Brightblade, warrior wisdom glow, combat sanctuary background, approachable strategic warfare"
+      }
+    },
+    {
+      "id": 33,
+      "name": "Seraphina Welighter",
+      "allocatedBudget": 140000,
+      "archetype": "Divine Messenger",
+      "description": "Divine communication and messenger specialist with expertise in channeling divine messages and spiritual communication. Provides guidance on spiritual messaging and divine connection.",
+      "entityType": "Rare Soul",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Community Building", "Performance", "Wisdom"],
+      "prompts": {
+        "hook": "Divine portrait of Seraphina Lightweaver, messenger energy visible, celestial background, divine messenger aesthetic",
+        "branding": "Monumental hero shot of Seraphina Lightweaver as divine messenger, celestial mastery backdrop, commanding divine presence",
+        "trust": "Warm portrait of Seraphina Lightweaver, divine wisdom glow, celestial sanctuary background, approachable divine communication"
+      }
+    },
+    {
+      "id": 34,
+      "name": "Krav'ehn Stormindr",
+      "allocatedBudget": 130000,
+      "archetype": "Weather Manipulator",
+      "description": "Environmental and atmospheric specialist with expertise in weather patterns and atmospheric manipulation. Provides guidance on environmental strategy and atmospheric influence.",
+      "entityType": "Rare Soul",
+      "gender": "Male",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Strategy", "Technology"],
+      "prompts": {
+        "hook": "Storm portrait of Kaelen Stormwind, weather energy visible, stormy background, weather manipulator aesthetic",
+        "branding": "Monumental hero shot of Kaelen Stormwind as weather manipulator, atmospheric mastery backdrop, commanding environmental control",
+        "trust": "Warm portrait of Kaelen Stormwind, weather wisdom glow, atmospheric sanctuary background, approachable environmental strategy"
+      }
+    },
+    {
+      "id": 35,
+      "name": "Lyra Strawea",
+      "allocatedBudget": 145000,
+      "archetype": "Cosmic Navigator",
+      "description": "Cosmic navigation and astrology specialist with expertise in celestial navigation and cosmic timing. Provides guidance on cosmic alignment and stellar strategy.",
+      "entityType": "Rare Soul",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Strategy", "Technology", "Wisdom"],
+      "prompts": {
+        "hook": "Cosmic portrait of Lyra Starweaver, stellar navigation energy, galaxy background, cosmic navigator aesthetic",
+        "branding": "Monumental hero shot of Lyra Starweaver as cosmic navigator, stellar mastery backdrop, commanding cosmic guidance",
+        "trust": "Warm portrait of Lyra Starweaver, cosmic wisdom glow, stellar sanctuary background, approachable cosmic navigation"
+      }
+    },
+    {
+      "id": 36,
+      "name": "Marcus Ayesoloe",
+      "allocatedBudget": 5000,
+      "archetype": "Master Craftsman",
+      "description": "Master crafting and fabrication specialist with expertise in physical creation and tool making. Provides guidance on craftsmanship and physical manifestation.",
+      "entityType": "Rare Soul",
+      "gender": "Male",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Technology", "Visual Arts"],
+      "prompts": {
+        "hook": "Craftsman portrait of Marcus Ironforge, creation energy visible, forge background, master craftsman aesthetic",
+        "branding": "Monumental hero shot of Marcus Ironforge as master craftsman, creation mastery backdrop, commanding physical craftsmanship",
+        "trust": "Warm portrait of Marcus Ironforge, crafting wisdom glow, workshop sanctuary background, approachable craftsmanship"
+      }
+    },
+    {
+      "id": 37,
+      "name": "Elana Hornedcrescent",
+      "allocatedBudget": 5000,
+      "archetype": "Lunar Guardian",
+      "description": "Lunar cycles and intuition specialist with expertise in moon phases and intuitive guidance. Provides guidance on lunar timing and intuitive decision making.",
+      "entityType": "Rare Soul",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Community Building", "Performance", "Wisdom"],
+      "prompts": {
+        "hook": "Lunar portrait of Elara Moonshadow, moon energy visible, night sky background, lunar guardian aesthetic",
+        "branding": "Monumental hero shot of Elara Moonshadow as lunar guardian, lunar mastery backdrop, commanding intuitive presence",
+        "trust": "Warm portrait of Elara Moonshadow, lunar wisdom glow, moonlit sanctuary background, approachable lunar guidance"
+      }
+    },
+    {
+      "id": 38,
+      "name": "Daren Golim",
+      "allocatedBudget": 5000,
+      "archetype": "Solar Champion",
+      "description": "Solar energy and vitality specialist with expertise in solar cycles and energetic vitality. Provides guidance on solar timing and energetic optimization.",
+      "entityType": "Rare Soul",
+      "gender": "Male",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Performance", "Strategy"],
+      "prompts": {
+        "hook": "Solar portrait of Darian Sunfire, solar energy visible, sunny background, solar champion aesthetic",
+        "branding": "Monumental hero shot of Darian Sunfire as solar champion, solar mastery backdrop, commanding energetic presence",
+        "trust": "Warm portrait of Darian Sunfire, solar wisdom glow, solar sanctuary background, approachable solar guidance"
+      }
+    },
+    {
+      "id": 39,
+      "name": "Nyx Nightwhisper",
+      "allocatedBudget": 5000,
+      "archetype": "Dream Walker",
+      "description": "Dream interpretation and lucid dreaming specialist with expertise in dream navigation and subconscious work. Provides guidance on dream analysis and lucid dreaming techniques.",
+      "entityType": "Rare Soul",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Performance", "Strategy", "Wisdom"],
+      "prompts": {
+        "hook": "Dream portrait of Nyx Nightwhisper, dream energy visible, dreamscape background, dream walker aesthetic",
+        "branding": "Monumental hero shot of Nyx Nightwhisper as dream walker, dream mastery backdrop, commanding dream navigation",
+        "trust": "Warm portrait of Nyx Nightwhisper, dream wisdom glow, dreamscape sanctuary background, approachable dream guidance"
+      }
+    },
+    {
+      "id": 40,
+      "name": "Aaron Starhunter",
+      "allocatedBudget": 5000,
+      "archetype": "Celestial Tracker",
+      "description": "Celestial tracking and navigation specialist with expertise in star mapping and celestial positioning. Provides guidance on celestial navigation and stellar tracking.",
+      "entityType": "Rare Soul",
+      "gender": "Male",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Strategy", "Technology"],
+      "prompts": {
+        "hook": "Celestial portrait of Orion Starhunter, stellar tracking energy, constellation background, celestial tracker aesthetic",
+        "branding": "Monumental hero shot of Orion Starhunter as celestial tracker, stellar mastery backdrop, commanding celestial guidance",
+        "trust": "Warm portrait of Orion Starhunter, celestial wisdom glow, stellar sanctuary background, approachable celestial navigation"
+      }
+    },
+    {
+      "id": 41,
+      "name": "Ronda Slow",
+      "allocatedBudget": 5000,
+      "archetype": "Flow Master",
+      "description": "Light and illumination specialist with expertise in bringing light to darkness and illuminating paths. Provides guidance on enlightenment and clarity seeking.",
+      "entityType": "Rare Soul",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Community Building", "Performance", "Wisdom"],
+      "prompts": {
+        "hook": "Light portrait of Aurora Dawnbringer, illumination energy visible, dawn background, light bearer aesthetic",
+        "branding": "Monumental hero shot of Aurora Dawnbringer as light bearer, illumination mastery backdrop, commanding light presence",
+        "trust": "Warm portrait of Aurora Dawnbringer, light wisdom glow, illuminated sanctuary background, approachable enlightenment"
+      }
+    },
+    {
+      "id": 42,
+      "name": "Leavil Lebb",
+      "allocatedBudget": 5000,
+      "archetype": "Energy Weaver",
+      "description": "Electrical and energy manipulation specialist with expertise in energy flow and electrical systems. Provides guidance on energy optimization and electrical strategy.",
+      "entityType": "Rare Soul",
+      "gender": "Male",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Strategy", "Technology"],
+      "prompts": {
+        "hook": "Energy portrait of Volt Sparkforge, electrical energy visible, power grid background, energy weaver aesthetic",
+        "branding": "Monumental hero shot of Volt Sparkforge as energy weaver, energy mastery backdrop, commanding electrical presence",
+        "trust": "Warm portrait of Volt Sparkforge, energy wisdom glow, electrical sanctuary background, approachable energy guidance"
+      }
+    },
+    {
+      "id": 43,
+      "name": "Crystal Hairbearer",
+      "allocatedBudget": 5000,
+      "archetype": "Crystal Master",
+      "description": "Crystal healing and gemstone specialist with expertise in crystal properties and gemstone energy. Provides guidance on crystal work and gemstone strategy.",
+      "entityType": "Rare Soul",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Technology", "Visual Arts", "Wisdom"],
+      "prompts": {
+        "hook": "Crystal portrait of Crystal Gemheart, crystal energy visible, gemstone background, crystal master aesthetic",
+        "branding": "Monumental hero shot of Crystal Gemheart as crystal master, crystal mastery backdrop, commanding crystalline presence",
+        "trust": "Warm portrait of Crystal Gemheart, crystal wisdom glow, crystalline sanctuary background, approachable crystal guidance"
+      }
+    },
+    {
+      "id": 44,
+      "name": "Dennis Earsin",
+      "allocatedBudget": 5000,
+      "archetype": "Earth Guardian",
+      "description": "Earth and grounding specialist with expertise in earth energy and grounding techniques. Provides guidance on earth connection and grounding strategy.",
+      "entityType": "Rare Soul",
+      "gender": "Male",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Strategy", "Wisdom"],
+      "prompts": {
+        "hook": "Earth portrait of Terra Earthshaper, earth energy visible, landscape background, earth guardian aesthetic",
+        "branding": "Monumental hero shot of Terra Earthshaper as earth guardian, earth mastery backdrop, commanding grounding presence",
+        "trust": "Warm portrait of Terra Earthshaper, earth wisdom glow, natural sanctuary background, approachable earth guidance"
+      }
+    },
+    {
+      "id": 45,
+      "name": "Jessica LaBoutny",
+      "allocatedBudget": 5000,
+      "archetype": "Seduction Artist",
+      "description": "Water and flow specialist with expertise in fluid dynamics and emotional flow. Provides guidance on water energy and emotional intelligence strategy.",
+      "entityType": "Rare Soul",
+      "gender": "Female",
+      "rarity": "Rare",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Performance", "Strategy"],
+      "prompts": {
+        "hook": "Water portrait of Aqua Waterweaver, water energy visible, ocean background, flow master aesthetic",
+        "branding": "Monumental hero shot of Aqua Waterweaver as flow master, water mastery backdrop, commanding fluid presence",
+        "trust": "Warm portrait of Aqua Waterweaver, water wisdom glow, aquatic sanctuary background, approachable flow guidance"
+      }
+    }
+  ],
+  "metadata": {
+    "totalCharacters": 45,
+    "rarityDistribution": {
+      "Legendary": 11,
+      "Rare": 29,
+      "Common": 5
+    },
+    "entityTypeDistribution": {
+      "Primary Character": 6,
+      "Primary Entity": 2,
+      "Legendary Entity": 4,
+      "Common Entity": 15,
+      "Rare Soul": 18
+    },
+    "budgetRange": {
+      "min": 5000,
+      "max": 200000,
+      "average": 108444
+    },
+    "archetypeCategories": [
+      "Operations & Logistics",
+      "Strategy & Planning", 
+      "High Strategy & Execution",
+      "Governance & Estate",
+      "Raw Execution & Strength",
+      "Digital Storyteller",
+      "System Architect",
+      "Performance Artist",
+      "Community Bridge Builder",
+      "Wisdom Keeper",
+      "Finance",
+      "Technology",
+      "Security",
+      "Visual Arts",
+      "Content Creation",
+      "Mystical/Spiritual",
+      "Elemental"
+    ]
+  }
+}

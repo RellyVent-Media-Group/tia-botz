@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Gnostic Auto-Didactico free local character kit</title>
+  <desc id="desc">A portfolio-style poster sheet with character cards and a text banner showing the local workaround.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b0d11"/>
+      <stop offset="55%" stop-color="#131a22"/>
+      <stop offset="100%" stop-color="#17130c"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f6d075"/>
+      <stop offset="100%" stop-color="#ad7f2d"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6fe8d5"/>
+      <stop offset="100%" stop-color="#1a7d7d"/>
+    </linearGradient>
+    <style>
+      .label { font: 700 18px 'Arial', sans-serif; letter-spacing: 3px; fill: #dfe8f5; }
+      .title { font: 800 44px 'Arial Black', 'Arial', sans-serif; fill: #f2f4f7; }
+      .small { font: 700 12px 'Arial', sans-serif; letter-spacing: 2px; fill: #a9b7c8; }
+      .name { font: 700 22px 'Arial', sans-serif; fill: #f4f1e8; }
+      .role { font: 700 11px 'Arial', sans-serif; letter-spacing: 2px; fill: #7ee6d2; }
+      .desc { font: 400 13px 'Arial', sans-serif; fill: #d3d9df; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect x="60" y="70" width="1480" height="860" rx="20" fill="#0f1317" stroke="rgba(255,255,255,0.12)"/>
+
+  <text x="120" y="120" class="label">GNOSTIC AUTO-DIDACTICO</text>
+  <text x="120" y="175" class="title">FREE LOCAL CHARACTER KIT</text>
+  <text x="120" y="210" class="small">NO PAID GENERATION REQUIRED • LOCAL CONCEPT PACK • PORTFOLIO READY</text>
+
+  <rect x="120" y="250" width="1360" height="140" rx="18" fill="#141d23" stroke="#f5d48a"/>
+  <rect x="150" y="282" width="100" height="72" rx="12" fill="url(#gold)" opacity="0.92"/>
+  <text x="280" y="312" class="label" style="fill:#ead49d;">WORKAROUND</text>
+  <text x="280" y="346" class="desc">Use this local SVG as a production-safe asset sheet while premium image services remain unavailable or over budget.</text>
+
+  <g transform="translate(120,420)">
+    <rect x="0" y="0" width="300" height="240" rx="18" fill="#111820" stroke="#1d2e37"/>
+    <rect x="16" y="16" width="268" height="124" rx="12" fill="url(#gold)" opacity="0.16"/>
+    <rect x="32" y="36" width="90" height="70" rx="12" fill="#1b2d2d"/>
+    <circle cx="76" cy="71" r="25" fill="#7ee6d2" opacity="0.8"/>
+    <path d="M52 90 L76 54 L100 90 Z" fill="#f4d791" opacity="0.95"/>
+    <text x="32" y="156" class="name">Mary</text>
+    <text x="32" y="176" class="role">DIGITAL FORENSIC ANALYST</text>
+    <text x="32" y="204" class="desc">Teal glass, decisive posture,</text>
+    <text x="32" y="223" class="desc">high-trust forensic clarity.</text>
+
+    <rect x="330" y="0" width="300" height="240" rx="18" fill="#111820" stroke="#1d2e37"/>
+    <rect x="346" y="16" width="268" height="124" rx="12" fill="url(#teal)" opacity="0.14"/>
+    <rect x="362" y="36" width="90" height="70" rx="12" fill="#19272f"/>
+    <rect x="382" y="56" width="50" height="50" rx="8" fill="#d9a85a"/>
+    <path d="M404 86 L424 54 L446 86 Z" fill="#7ee6d2"/>
+    <text x="362" y="156" class="name">Mac</text>
+    <text x="362" y="176" class="role">COMMUNITY BRIDGE BUILDER</text>
+    <text x="362" y="204" class="desc">Warm coffee light, moral</text>
+    <text x="362" y="223" class="desc">grounding and trust-first posture.</text>
+
+    <rect x="660" y="0" width="300" height="240" rx="18" fill="#111820" stroke="#1d2e37"/>
+    <rect x="676" y="16" width="268" height="124" rx="12" fill="#1a2020"/>
+    <rect x="695" y="35" width="46" height="68" rx="8" fill="#f2d079"/>
+    <rect x="750" y="35" width="46" height="68" rx="8" fill="#76e4d8"/>
+    <rect x="805" y="35" width="46" height="68" rx="8" fill="#c3d2df"/>
+    <text x="692" y="156" class="name">Delta</text>
+    <text x="692" y="176" class="role">FORGE-BORN BUILDER</text>
+    <text x="692" y="204" class="desc">Workshop sparks, heavy</text>
+    <text x="692" y="223" class="desc">mechanical focus and calm power.</text>
+
+    <rect x="990" y="0" width="300" height="240" rx="18" fill="#111820" stroke="#1d2e37"/>
+    <rect x="1006" y="16" width="268" height="124" rx="12" fill="#1b2428"/>
+    <circle cx="1088" cy="70" r="32" fill="#7d8ec2" opacity="0.85"/>
+    <circle cx="1145" cy="75" r="22" fill="#f5d48a" opacity="0.85"/>
+    <path d="M1088 109 L1145 109" stroke="#f5d48a" stroke-width="4"/>
+    <text x="1006" y="156" class="name">Jessica</text>
+    <text x="1006" y="176" class="role">ALCHEMICAL STRATEGIST</text>
+    <text x="1006" y="204" class="desc">Guarded elegance, precise</text>
+    <text x="1006" y="223" class="desc">intellect and softly loaded tension.</text>
+  </g>
+
+  <g transform="translate(120,700)">
+    <rect x="0" y="0" width="250" height="180" rx="18" fill="#111820" stroke="#1d2e37"/>
+    <text x="26" y="36" class="label">CHARACTERS</text>
+    <text x="26" y="74" class="name">Jypsee72</text>
+    <text x="26" y="100" class="role">FRONTIER EXPLORER</text>
+    <text x="26" y="130" class="desc">Road energy, curiosity,</text>
+    <text x="26" y="152" class="desc">and free-spirited motion.</text>
+
+    <rect x="280" y="0" width="250" height="180" rx="18" fill="#111820" stroke="#1d2e37"/>
+    <text x="306" y="36" class="label">CHARACTERS</text>
+    <text x="306" y="74" class="name">Mrs. Cox-Turner</text>
+    <text x="306" y="100" class="role">LIBERATED SAGE</text>
+    <text x="306" y="130" class="desc">Silver-streaked wisdom,</text>
+    <text x="306" y="152" class="desc">lived grace and wit.</text>
+
+    <rect x="560" y="0" width="250" height="180" rx="18" fill="#111820" stroke="#1d2e37"/>
+    <text x="586" y="36" class="label">CHARACTERS</text>
+    <text x="586" y="74" class="name">Dikinya</text>
+    <text x="586" y="100" class="role">STRATEGIC SOVEREIGN</text>
+    <text x="586" y="130" class="desc">Glass-tower authority,</text>
+    <text x="586" y="152" class="desc">clean menace and control.</text>
+
+    <rect x="840" y="0" width="250" height="180" rx="18" fill="#111820" stroke="#1d2e37"/>
+    <text x="866" y="36" class="label">CHARACTERS</text>
+    <text x="866" y="74" class="name">Babelonia</text>
+    <text x="866" y="100" class="role">GENTLE AWAKENER</text>
+    <text x="866" y="130" class="desc">Warm human softness,</text>
+    <text x="866" y="152" class="desc">nurture and trust.</text>
+
+    <rect x="1120" y="0" width="250" height="180" rx="18" fill="#111820" stroke="#1d2e37"/>
+    <text x="1146" y="36" class="label">CHARACTERS</text>
+    <text x="1146" y="74" class="name">The Conductor</text>
+    <text x="1146" y="100" class="role">ORCHESTRATION PERSONA</text>
+    <text x="1146" y="130" class="desc">Seven-screen control and</text>
+    <text x="1146" y="152" class="desc">silent, elegant menace.</text>
+  </g>
+</svg>

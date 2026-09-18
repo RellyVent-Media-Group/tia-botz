@@ -1,0 +1,24 @@
+{
+  "name": "chiefpilot-notion-sync",
+  "version": "1.0.0",
+  "description": "Notion integration for character database, content calendar, and task tracking",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "sync:characters": "node src/sync/characters.js",
+    "sync:calendar": "node src/sync/calendar.js",
+    "sync:tasks": "node src/sync/tasks.js",
+    "sync:all": "node src/sync/all.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "dotenv": "^16.4.5",
+    "axios": "^1.7.9",
+    "node-cron": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0"
+  }
+}

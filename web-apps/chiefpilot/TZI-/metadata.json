@@ -1,0 +1,6 @@
+{
+  "name": "ChiefPilot Universe Studio & Shadow Lore Operating System",
+  "description": "Comprehensive creative production suite for Gilded Mirrors Universe Bible, 30 Souls & 28 Archetypes, Shadow Engine & Polarity Map, Stop-Motion Puppet Workshop, Fake News Broadcast Desk, and AI Content Pipeline.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

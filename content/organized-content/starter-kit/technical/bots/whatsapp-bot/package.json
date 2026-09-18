@@ -1,0 +1,21 @@
+{
+  "name": "chiefpilot-whatsapp-bot",
+  "version": "1.0.0",
+  "description": "WhatsApp Business API integration for ChiefPilot",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node src/test.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.5",
+    "dotenv": "^16.4.5",
+    "axios": "^1.7.9",
+    "pino": "^9.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0"
+  }
+}

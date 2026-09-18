@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #0a0502;
+    --text-primary: #e0d8d0;
+    --text-muted: #96897e;
+    --accent-amber: #f27d26;
+    --accent-glow: rgba(242, 125, 38, 0.25);
+    --panel-bg: rgba(20, 12, 8, 0.78);
+    --panel-border: rgba(242, 125, 38, 0.18);
+  }
+
+  body {
+    background-color: #0a0502;
+    color: #e0d8d0;
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    background-image: 
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(242, 125, 38, 0.08), transparent 70%),
+      radial-gradient(circle at 90% 80%, rgba(242, 125, 38, 0.04), transparent 50%),
+      radial-gradient(circle at 10% 40%, rgba(217, 107, 28, 0.03), transparent 60%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, .font-cinzel {
+    font-family: "Cinzel", Georgia, serif;
+  }
+
+  .font-mono, code, pre, .telemetry {
+    font-family: "JetBrains Mono", monospace;
+  }
+}
+
+/* Custom Immersive UI Utility Classes */
+.glass-panel {
+  background: rgba(18, 11, 7, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(242, 125, 38, 0.16);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(242, 125, 38, 0.05);
+}
+
+.glass-panel-interactive {
+  background: rgba(20, 12, 8, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(242, 125, 38, 0.16);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-interactive:hover {
+  background: rgba(28, 17, 11, 0.85);
+  border-color: rgba(242, 125, 38, 0.45);
+  box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(242, 125, 38, 0.15);
+}
+
+.glow-border {
+  border: 1px solid rgba(242, 125, 38, 0.35);
+  box-shadow: 0 0 15px rgba(242, 125, 38, 0.18), inset 0 0 15px rgba(242, 125, 38, 0.05);
+}
+
+.glow-pill {
+  background: rgba(242, 125, 38, 0.12);
+  border: 1px solid rgba(242, 125, 38, 0.28);
+  color: #ffaa5e;
+  text-shadow: 0 0 10px rgba(242, 125, 38, 0.4);
+}
+
+.glow-btn-primary {
+  background: linear-gradient(135deg, #f27d26 0%, #e0600a 100%);
+  color: #0a0502;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(242, 125, 38, 0.35);
+  transition: all 0.2s ease;
+}
+
+.glow-btn-primary:hover {
+  background: linear-gradient(135deg, #ff9245 0%, #f27d26 100%);
+  box-shadow: 0 6px 28px rgba(242, 125, 38, 0.55);
+  transform: translateY(-1px);
+}
+
+/* Custom Atmospheric Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0704;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2b170e;
+  border-radius: 4px;
+  border: 1px solid rgba(242, 125, 38, 0.15);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f27d26;
+}
+
+/* Subtle CRT Scanline effect for production screens */
+.crt-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+

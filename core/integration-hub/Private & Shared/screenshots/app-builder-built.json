@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Gilded Mirrors Originals",
+      "hasCanvas": false,
+      "bodyTextLen": 4554,
+      "bodyTextHash": "fc3c27df571e75dfd0e37b54a296a8c8cb8d03125d6e35bcab5498fdc89e7298",
+      "bodyTextPrefix": "Skip to catalog Gilded Mirrors Catalog Studio Craft Inquire Book",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Gilded Mirrors Originals",
+      "hasCanvas": false,
+      "bodyTextLen": 4546,
+      "bodyTextHash": "f1648593ba8a3cdb853b69f049f41e734de18f3d495a15823ae2e68704981daf",
+      "bodyTextPrefix": "Skip to catalog Gilded Mirrors Menu Catalog Studio Craft Inquire",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

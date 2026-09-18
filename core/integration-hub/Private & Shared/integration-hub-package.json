@@ -1,0 +1,33 @@
+{
+  "name": "character-integration-hub",
+  "version": "1.0.0",
+  "description": "Universal integration hub for character database supporting Shortcuts, Automator, iHosts, Unified Remote, Requestly, Network Toolbox, and Notion",
+  "main": "universal-integration-hub.mjs",
+  "bin": {
+    "character-hub": "./universal-integration-hub.mjs"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node universal-integration-hub.mjs",
+    "dev": "node --watch universal-integration-hub.mjs",
+    "test": "node test-integration.mjs",
+    "stop": "pkill -f 'universal-integration-hub.mjs'"
+  },
+  "keywords": [
+    "integration",
+    "character-database",
+    "shortcuts",
+    "automator",
+    "notion",
+    "webhooks",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
