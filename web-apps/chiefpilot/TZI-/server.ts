@@ -1,16 +1,12 @@
 import express from "express";
 import path from "path";
-import { fileURLToPath } from "url";
 import { GoogleGenAI, Modality, ThinkingLevel } from "@google/genai";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json({ limit: "10mb" }));
 
@@ -255,7 +251,7 @@ Generate the next 3-4 dynamic dialogue beats between Persona and Shadow followed
 });
 
 // Setup Vite middleware in dev or static serving in prod
-async function startServer() {
+async function configureApp() {
   if (process.env.NODE_ENV !== "production") {
     const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
@@ -270,12 +266,31 @@ async function startServer() {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
+  return app;
+}
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`ChiefPilot Universe Server running on http://0.0.0.0:${PORT}`);
+// Configure the app and export
+const appPromise = configureApp();
+
+// Export for ES modules
+export default appPromise;
+
+// Export for CommonJS (Vercel)
+// @ts-ignore - module.exports is available in CJS context
+if (typeof module !== 'undefined' && module.exports) {
+  appPromise.then((app) => {
+    module.exports = app;
   });
 }
 
-startServer().catch((err) => {
+// Start server for local development
+appPromise.then((configuredApp) => {
+  if (process.argv[1]?.includes('server.ts') || process.env.NODE_ENV !== 'production') {
+    configuredApp.listen(PORT, "0.0.0.0", () => {
+      console.log(`ChiefPilot Universe Server running on http://0.0.0.0:${PORT}`);
+    });
+  }
+}).catch((err) => {
   console.error("Failed to start server:", err);
+  process.exit(1);
 });

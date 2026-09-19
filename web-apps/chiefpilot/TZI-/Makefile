@@ -1,6 +1,6 @@
 # ChiefPilot TZI - Development & Deployment Makefile
 
-.PHONY: help install dev build start stop restart test lint docker-build docker-run docker-stop docker-clean deploy clean
+.PHONY: help install dev build start stop restart test lint docker-build docker-run docker-stop docker-clean deploy deploy-vercel deploy-vercel-dev clean
 
 # Color codes for output
 GREEN := \033[0;32m
@@ -115,6 +115,20 @@ deploy:
 	make build
 	docker build -t chiefpilot-tzi:production .
 	@echo "$(GREEN)Ready to deploy! Push to your registry.$(NC)"
+
+# Vercel deployment
+deploy-vercel:
+	@echo "$(YELLOW)Deploying to Vercel production...$(NC)"
+	npm run build
+	@echo "$(BLUE)Running vercel --prod$(NC)"
+	npx vercel --prod
+	@echo "$(GREEN)Deployed to Vercel!$(NC)"
+
+deploy-vercel-dev:
+	@echo "$(YELLOW)Deploying to Vercel (development)...$(NC)"
+	npm run build
+	@echo "$(BLUE)Running vercel$(NC)"
+	npx vercel
 
 # Clean all build artifacts
 clean:
