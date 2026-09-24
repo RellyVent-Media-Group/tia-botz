@@ -1,0 +1,47 @@
+# Docker ignore file for Social Media Automation
+
+# Git
+.git
+.gitignore
+
+# Node modules
+node_modules
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+.docker
+
+# Test results
+.coverage
+.coverage.*
+htmlcov/
+.nyc_output/
+
+# Dependency directories
+bower_components/
+jspm_packages/
+
+# Test and documentation files
+*.md
+
+# Local configuration files
+.env.example

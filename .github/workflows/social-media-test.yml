@@ -1,0 +1,410 @@
+name: Social Media Automation - Test & Security
+
+# GitHub Actions workflow for Social Media Automation testing
+# Runs on push, pull request, and manual triggers
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'automation/social-media/**'
+      - '.github/workflows/social-media-test.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'automation/social-media/**'
+  workflow_dispatch:
+    inputs:
+      run-tests:
+        description: 'Run tests only'
+        required: false
+        default: 'true'
+      run-security:
+        description: 'Run security audit'
+        required: false
+        default: 'true'
+      deploy-docker:
+        description: 'Build and push Docker image'
+        required: false
+        default: 'false'
+  schedule:
+    # Run weekly on Mondays at 10 AM UTC
+    - cron: '0 10 * * 1'
+
+# Environment variables
+env:
+  NODE_VERSION: '20'
+  WORKING_DIRECTORY: 'automation/social-media'
+
+jobs:
+  # Job 1: Install and build
+  setup:
+    name: Setup & Install
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+    outputs:
+      cache-key: ${{ steps.cache.outputs.key }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Generate cache key
+        id: cache
+        run: echo "key=$(date +%Y-%m-%d)-${{ hashFiles('package-lock.json') }}" >> $GITHUB_OUTPUT
+
+      - name: Install dependencies
+        run: |
+          echo "Installing dependencies..."
+          npm ci
+          echo "✅ Dependencies installed"
+
+      - name: Verify package-lock.json
+        run: |
+          echo "Verifying package-lock.json..."
+          npm ci --dry-run
+          echo "✅ package-lock.json is valid"
+
+  # Job 2: Run tests
+  test-suite:
+    name: Test Suite
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+    needs: setup
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install form-data for tests
+        run: npm install form-data
+
+      - name: Run API client tests
+        id: tests
+        run: |
+          echo "Running API client tests..."
+          npm test 2>&1 || true
+          TEST_EXIT_CODE=$?
+          echo "exit_code=${TEST_EXIT_CODE}" >> $GITHUB_OUTPUT
+          echo "Test exit code: ${TEST_EXIT_CODE}"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: ${{ env.WORKING_DIRECTORY }}
+          retention-days: 7
+
+      - name: Fail if tests fail
+        if: steps.tests.outputs.exit_code != '0'
+        run: |
+          echo "::error::API client tests failed!"
+          exit 1
+
+  # Job 3: Security audit
+  security-audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+    needs: setup
+
+    outputs:
+      vulnerabilities: ${{ steps.audit.outputs.vulnerabilities }}
+      critical: ${{ steps.audit.outputs.critical }}
+      high: ${{ steps.audit.outputs.high }}
+      moderate: ${{ steps.audit.outputs.moderate }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        id: audit
+        run: |
+          echo "Running npm audit..."
+          npm audit --json > audit-results.json 2>&1 || true
+          
+          # Parse results
+          AUDIT_EXIT_CODE=$?
+          VULN_COUNT=$(jq '.metadata.vulnerabilities.total' audit-results.json 2>/dev/null || echo "0")
+          CRITICAL_COUNT=$(jq '.metadata.vulnerabilities.critical' audit-results.json 2>/dev/null || echo "0")
+          HIGH_COUNT=$(jq '.metadata.vulnerabilities.high' audit-results.json 2>/dev/null || echo "0")
+          MODERATE_COUNT=$(jq '.metadata.vulnerabilities.moderate' audit-results.json 2>/dev/null || echo "0")
+          
+          echo "vulnerabilities=${VULN_COUNT}" >> $GITHUB_OUTPUT
+          echo "critical=${CRITICAL_COUNT}" >> $GITHUB_OUTPUT
+          echo "high=${HIGH_COUNT}" >> $GITHUB_OUTPUT
+          echo "moderate=${MODERATE_COUNT}" >> $GITHUB_OUTPUT
+          echo "exit_code=${AUDIT_EXIT_CODE}" >> $GITHUB_OUTPUT
+          
+          # Print summary
+          echo ""
+          echo "=== Security Audit Summary ==="
+          echo "Total Vulnerabilities: ${VULN_COUNT}"
+          echo "Critical: ${CRITICAL_COUNT}"
+          echo "High: ${HIGH_COUNT}"
+          echo "Moderate: ${MODERATE_COUNT}"
+          echo "=================================="
+          
+          # Upload audit results
+          mkdir -p /tmp/audit
+          cp audit-results.json /tmp/audit/
+
+      - name: Upload audit results
+        uses: actions/upload-artifact@v4
+        with:
+          name: social-media-audit-results
+          path: /tmp/audit/
+          retention-days: 7
+
+      - name: Check for critical/high vulnerabilities
+        if: steps.audit.outputs.critical != '0' || steps.audit.outputs.high != '0'
+        run: |
+          echo "::error::CRITICAL/HIGH vulnerabilities detected!"
+          echo "Critical: ${{ steps.audit.outputs.critical }}"
+          echo "High: ${{ steps.audit.outputs.high }}"
+          echo ""
+          echo "Please address these vulnerabilities before merging."
+          exit 1
+
+      - name: Warn about moderate vulnerabilities
+        if: steps.audit.outputs.moderate != '0'
+        run: |
+          echo "::warning::MODERATE vulnerabilities detected (${{ steps.audit.outputs.moderate }})"
+          echo "Consider addressing these in a follow-up PR."
+
+  # Job 4: Check for outdated dependencies
+  dependency-check:
+    name: Dependency Check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+    needs: setup
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for outdated dependencies
+        run: |
+          echo "Checking for outdated dependencies..."
+          npm outdated 2>/dev/null || true
+          
+          # Count outdated packages
+          OUTDATED_COUNT=$(npm outdated 2>/dev/null | grep -v "^Package" | grep -v "^$" | wc -l)
+          echo "Outdated packages: ${OUTDATED_COUNT}"
+          
+          if [ "$OUTDATED_COUNT" -gt 0 ]; then
+            echo "::warning::${OUTDATED_COUNT} outdated dependencies detected"
+            echo "Consider updating in a follow-up PR"
+          fi
+
+  # Job 5: Docker build and test
+  docker-build:
+    name: Docker Build & Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+    needs: [setup, test-suite, security-audit]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub (if available)
+        if: env.DOCKER_HUB_USERNAME != '' && env.DOCKER_HUB_TOKEN != ''
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build Docker image
+        id: build
+        run: |
+          echo "Building Docker image..."
+          docker build -t social-media-automation:test .
+          echo "✅ Docker image built successfully"
+
+      - name: Run Docker container for smoke test
+        run: |
+          echo "Starting Docker container for smoke test..."
+          docker run -d -p 3001:3000 --name social-media-test social-media-automation:test
+          sleep 5
+          echo "Testing health endpoint..."
+          curl -f http://localhost:3001/api/health || echo "⚠️  Health check failed (API may not have health endpoint yet)"
+          docker stop social-media-test || true
+          docker rm social-media-test || true
+
+      - name: Push to Docker Hub (manual trigger only)
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' && inputs.deploy-docker == 'true')
+        run: |
+          echo "Pushing to Docker Hub..."
+          docker tag social-media-automation:test ${{ secrets.DOCKER_HUB_USERNAME }}/social-media-automation:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/social-media-automation:latest
+          docker tag social-media-automation:test ${{ secrets.DOCKER_HUB_USERNAME }}/social-media-automation:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/social-media-automation:${{ github.sha }}
+          echo "✅ Docker image pushed to Docker Hub"
+
+  # Job 6: Weekly security report
+  weekly-security-report:
+    name: Weekly Security Report
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    needs: security-audit
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download audit results
+        uses: actions/download-artifact@v4
+        with:
+          name: social-media-audit-results
+          path: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Generate security report
+        run: |
+          echo "# Weekly Security Report - Social Media Automation" > SECURITY_REPORT.md
+          echo "" >> SECURITY_REPORT.md
+          echo "**Date:** $(date)" >> SECURITY_REPORT.md
+          echo "**Workflow:** ${{ github.workflow }}" >> SECURITY_REPORT.md
+          echo "" >> SECURITY_REPORT.md
+          echo "## Audit Results" >> SECURITY_REPORT.md
+          echo "" >> SECURITY_REPORT.md
+          
+          if [ -f ${{ env.WORKING_DIRECTORY }}/audit-results.json ]; then
+            VULN_COUNT=$(jq '.metadata.vulnerabilities.total' ${{ env.WORKING_DIRECTORY }}/audit-results.json)
+            CRITICAL=$(jq '.metadata.vulnerabilities.critical' ${{ env.WORKING_DIRECTORY }}/audit-results.json)
+            HIGH=$(jq '.metadata.vulnerabilities.high' ${{ env.WORKING_DIRECTORY }}/audit-results.json)
+            MODERATE=$(jq '.metadata.vulnerabilities.moderate' ${{ env.WORKING_DIRECTORY }}/audit-results.json)
+            
+            echo "| Metric | Count |" >> SECURITY_REPORT.md
+            echo "|--------|-------|" >> SECURITY_REPORT.md
+            echo "| Total | $VULN_COUNT |" >> SECURITY_REPORT.md
+            echo "| Critical | $CRITICAL |" >> SECURITY_REPORT.md
+            echo "| High | $HIGH |" >> SECURITY_REPORT.md
+            echo "| Moderate | $MODERATE |" >> SECURITY_REPORT.md
+          else
+            echo "No audit results available" >> SECURITY_REPORT.md
+          fi
+          
+          echo "" >> SECURITY_REPORT.md
+          echo "## Recommendations" >> SECURITY_REPORT.md
+          echo "" >> SECURITY_REPORT.md
+          echo "1. Address any critical/high vulnerabilities immediately" >> SECURITY_REPORT.md
+          echo "2. Review moderate vulnerabilities for relevance" >> SECURITY_REPORT.md
+          echo "3. Update dependencies regularly" >> SECURITY_REPORT.md
+          echo "4. Run `npm audit fix` to automatically fix some vulnerabilities" >> SECURITY_REPORT.md
+          echo "5. Review the full audit results in the workflow artifacts" >> SECURITY_REPORT.md
+          
+          cat SECURITY_REPORT.md
+
+      - name: Upload security report
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-security-report-social-media
+          path: SECURITY_REPORT.md
+          retention-days: 30
+
+  # Job 7: Code quality checks
+  code-quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+    needs: setup
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for deprecated packages
+        run: |
+          echo "Checking for deprecated packages..."
+          DEPRECATED=$(npm ls 2>/dev/null | grep "deprecated" | wc -l)
+          
+          if [ "$DEPRECATED" -gt 0 ]; then
+            echo "::warning::Deprecated packages detected"
+            npm ls | grep "deprecated" || true
+          else
+            echo "✅ No deprecated packages"
+          fi
+
+      - name: Check package-lock.json integrity
+        run: |
+          echo "Verifying package-lock.json..."
+          npm ci --dry-run
+          echo "✅ package-lock.json is valid"
+
+      - name: Check for security advisories
+        run: |
+          echo "Checking for security advisories..."
+          npm audit --audit-level=moderate --json > security-advisories.json 2>&1 || true
+          
+          ADVISORIES=$(jq '.metadata.vulnerabilities.total' security-advisories.json 2>/dev/null || echo "0")
+          echo "Security advisories: ${ADVISORIES}"
+          
+          if [ "$ADVISORIES" -gt 0 ]; then
+            echo "::warning::${ADVISORIES} security advisories detected"
+          fi

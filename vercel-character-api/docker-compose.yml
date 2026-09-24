@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  character-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DISCORD_WEBHOOK=${DISCORD_WEBHOOK:-https://discord.com/api/webhooks/1499281114533990503/hsljOI0_tI4TF6jSMMmskZe2jZ69DT_48GjrK6-ugo5iD77onwMdrLwcdgx5Fo7jETyO}
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/character-health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Test runner service - runs Discord integration tests against the API
+  test-runner:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - CHARACTER_API_URL=http://character-api:8000
+      - NODE_ENV=test
+    depends_on:
+      character-api:
+        condition: service_healthy
+    command: ["sh", "-c", "sleep 5 && node tests/discord-integration.test.js"]
+    profiles:
+      - test

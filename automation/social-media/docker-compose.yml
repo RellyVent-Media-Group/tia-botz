@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  social-media-automation:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - DISCORD_WEBHOOK=${DISCORD_WEBHOOK:-https://discord.com/api/webhooks/1499281114533990503/hsljOI0_tI4TF6jSMMmskZe2jZ69DT_48GjrK6-ugo5iD77onwMdrLwcdgx5Fo7jETyO}
+      - INSTAGRAM_USERNAME=${INSTAGRAM_USERNAME:-}
+      - INSTAGRAM_PASSWORD=${INSTAGRAM_PASSWORD:-}
+      - TIKTOK_API_KEY=${TIKTOK_API_KEY:-}
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) }).on('error', () => process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Test runner service
+  test-runner:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=test
+    depends_on:
+      social-media-automation:
+        condition: service_healthy
+    command: ["sh", "-c", "sleep 5 && npm test"]
+    profiles:
+      - test
+
+  # Security audit service
+  security-audit:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=development
+    command: ["sh", "-c", "npm audit --json > audit-results.json 2>&1 || true"]
+    profiles:
+      - security
