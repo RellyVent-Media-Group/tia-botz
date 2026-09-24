@@ -10,7 +10,7 @@
     "test": "node src/test.js"
   },
   "dependencies": {
-    "node-telegram-bot-api": "^0.66.0",
+    "node-telegram-bot-api": "^2.1.0",
     "dotenv": "^16.4.5",
     "axios": "^1.7.9"
   },
