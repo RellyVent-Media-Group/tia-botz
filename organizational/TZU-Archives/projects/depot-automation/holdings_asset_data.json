@@ -1,0 +1,81 @@
+{
+  "assets": {
+    "real_estate_20260922_114214": {
+      "asset_id": "real_estate_20260922_114214",
+      "asset_type": "real_estate",
+      "name": "Zu Hall",
+      "description": "Primary property for operations",
+      "current_value": 500000.0,
+      "purchase_value": 500000.0,
+      "purchase_date": "2026-09-22",
+      "status": "active",
+      "location": "Main Campus",
+      "manager": "Holdings Depot",
+      "performance_metrics": {},
+      "metadata": {},
+      "last_updated": "2026-09-22T11:42:14.172657"
+    },
+    "technology_20260922_114214": {
+      "asset_id": "technology_20260922_114214",
+      "asset_type": "technology",
+      "name": "Production Equipment",
+      "description": "Media production and content creation equipment",
+      "current_value": 75000.0,
+      "purchase_value": 75000.0,
+      "purchase_date": "2026-09-22",
+      "status": "active",
+      "location": "Studio Complex",
+      "manager": "Consort Depot",
+      "performance_metrics": {},
+      "metadata": {},
+      "last_updated": "2026-09-22T11:42:14.172686"
+    },
+    "cash_20260922_114214": {
+      "asset_id": "cash_20260922_114214",
+      "asset_type": "cash",
+      "name": "Operating Reserve",
+      "description": "Cash reserves for operations",
+      "current_value": 100000.0,
+      "purchase_value": 100000.0,
+      "purchase_date": "2026-09-22",
+      "status": "active",
+      "location": "Financial Institution",
+      "manager": "CashingHouse Depot",
+      "performance_metrics": {},
+      "metadata": {},
+      "last_updated": "2026-09-22T11:42:14.172706"
+    },
+    "investment_20260922_114214": {
+      "asset_id": "investment_20260922_114214",
+      "asset_type": "investment",
+      "name": "Growth Stock Portfolio",
+      "description": "Diversified stock portfolio for growth",
+      "current_value": 28750.0,
+      "purchase_value": 25000.0,
+      "purchase_date": "2026-09-22",
+      "status": "active",
+      "location": "Brokerage Account",
+      "manager": "Holdings Depot",
+      "performance_metrics": {
+        "roi": 15.0
+      },
+      "metadata": {},
+      "last_updated": "2026-09-22T11:42:14.173733"
+    }
+  },
+  "investments": {
+    "INV_20260922_114214": {
+      "investment_id": "INV_20260922_114214",
+      "asset_id": "investment_20260922_114214",
+      "investment_type": "stock_purchase",
+      "amount": 10000.0,
+      "current_value": 11500.0,
+      "roi": 15.0,
+      "risk_level": "medium",
+      "start_date": "2024-09-01",
+      "end_date": "",
+      "status": "active",
+      "auto_rebalance": false
+    }
+  }
+}

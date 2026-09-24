@@ -1,0 +1,43 @@
+{
+  "aggregation_result": {
+    "total_revenue": 12950.0,
+    "total_transactions": 51285,
+    "platform_breakdown": [
+      {
+        "platform": "gumroad",
+        "revenue": 5000.0,
+        "transactions": 120,
+        "percentage": 38.61003861003861
+      },
+      {
+        "platform": "fiverr",
+        "revenue": 3500.0,
+        "transactions": 45,
+        "percentage": 27.027027027027028
+      },
+      {
+        "platform": "crakrevenue",
+        "revenue": 2800.0,
+        "transactions": 890,
+        "percentage": 21.62162162162162
+      },
+      {
+        "platform": "admob",
+        "revenue": 1200.0,
+        "transactions": 50000,
+        "percentage": 9.266409266409266
+      },
+      {
+        "platform": "linktree",
+        "revenue": 450.0,
+        "transactions": 230,
+        "percentage": 3.474903474903475
+      }
+    ],
+    "currency": "USD",
+    "aggregation_date": "2026-09-22T15:35:53.201466",
+    "interval": "daily"
+  },
+  "anomalies": [],
+  "generated_at": "2026-09-22T15:35:53.202118"
+}

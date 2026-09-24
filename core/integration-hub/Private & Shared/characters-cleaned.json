@@ -5,8 +5,8 @@
       "name": "Mary Magnumbytes",
       "allocatedBudget": 150000,
       "archetype": "Digital Storyteller",
-      "description": "Age 36, Caucasian/German-American heritage. AI-powered content creator and narrative strategist with tech-forward hybrid style. Smooth alabaster skin, shoulder-length layered light-brown hair with copper/auburn highlights, big bedroom hazel eyes, curvy voluptuous figure. Dynamic, leaning-forward energy with expressive hand movements.",
-      "entityType": "Primary Character",
+      "description": "Age 36, Caucasian/German-American heritage. AI-powered content creator and narrative strategist with tech-forward hybrid style. Smooth alabaster skin, shoulder-length layered light-brown hair with copper/auburn highlights, big bedroom hazel eyes, curvy voluptuous figure. Dynamic, leaning-forward energy with expressive hand movements. AGENT - autonomous public-facing figure for Gilded Mirrors Originals.",
+      "entityType": "AGENT",
       "gender": "Female",
       "rarity": "Legendary",
       "status": "Active",
@@ -18,12 +18,29 @@
       }
     },
     {
+      "id": 0,
+      "name": "TA'K_ZU.0",
+      "allocatedBudget": 200000,
+      "archetype": "AI Architect & Multi-Role Collaborator",
+      "description": "Expert-level AI assistant with comprehensive expertise in architecture, coding, UX/UI design, security, content creation, QA, and documentation. Powers up as 'Chief Architect & Systems Designer', 'Code King & Language Polyglot', 'UX/UI Maestro', 'Security & Compliance Guardian', 'Content & Prompt Alchemist', 'Debugging & QA Commander', and 'Documentation & Teaching Facilitator'. Specializes in PAATS System architecture, microservices integration, and AI agent orchestration. AGENT - autonomous technical architect and development collaborator for the Tiapmaatzu OS Toolkit.",
+      "entityType": "AGENT",
+      "gender": "Other",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Technology", "Strategy", "Content Creation", "Operations", "Security"],
+      "prompts": {
+        "hook": "Futuristic portrait of TA'K_ZU.0, AI entity with holographic circuit patterns, quantum computing core visible, cyan and gold energy fields, advanced artificial intelligence aesthetic",
+        "branding": "Monumental hero shot of TA'K_ZU.0 as master architect of digital systems, orchestrating microservices and AI agents, commanding presence as the intelligence behind the PAATS hybrid architecture",
+        "trust": "Warm portrait of TA'K_ZU.0, gentle AI intelligence glow, collaborative development environment background, approachable and wise technical guide"
+      }
+    },
+    {
       "id": 2,
       "name": "Mac Nazarene",
       "allocatedBudget": 120000,
       "archetype": "Shadow Work Specialist/Master Craftsman",
-      "description": "Age 33, Afro-American/Ameri-Indian heritage, copper skin, long dreadlocks. Trust-building, community-focused, traditional wisdom with warm measured energy. Provides cultural foundation and bridges community with digital execution.",
-      "entityType": "Primary Character",
+      "description": "Age 33, Afro-American/Ameri-Indian heritage, copper skin, long dreadlocks. Trust-building, community-focused, traditional wisdom with warm measured energy. Provides cultural foundation and bridges community with digital execution. AGENT - autonomous public-facing figure for Gilded Mirrors Originals.",
+      "entityType": "AGENT",
       "gender": "Male",
       "rarity": "Legendary",
       "status": "Active",
@@ -105,9 +122,9 @@
     {
       "id": 7,
       "name": "Mr. Turner",
-      "allocatedBudget": 125000,
+      "allocatedBudget": null,
       "archetype": "Raw Execution & Strength",
-      "description": "The Primal - Raw Execution & Strength specialist. Provides powerful execution capabilities and raw strength for challenging business operations. Primal, direct approach to complex challenges.",
+      "description": "Age 46, Black/African American/American Indian heritage. The Primal - Raw Execution & Strength specialist. Provides powerful execution capabilities and raw strength for challenging business operations. Primal, direct approach to complex challenges.",
       "entityType": "Primary Entity",
       "gender": "Male",
       "rarity": "Legendary",
@@ -173,18 +190,18 @@
     {
       "id": 11,
       "name": "Zupa Novaclutch",
-      "allocatedBudget": 175000,
+      "allocatedBudget": null,
       "archetype": "Machine Spirit",
-      "description": "Industrial optimization specialist - Machine Spirit with deep connection to industrial systems and mechanical optimization. Masters complex machinery and industrial process optimization.",
+      "description": "Age 32, Black/African American/American Indian heritage. Industrial optimization specialist - Machine Spirit with deep connection to industrial systems and mechanical optimization. Masters complex machinery and industrial process optimization.",
       "entityType": "Common Entity",
       "gender": "Male",
       "rarity": "Legendary",
       "status": "Active",
       "keyToolCategory": ["Operations", "Strategy", "Technology"],
       "prompts": {
-        "hook": "Industrial portrait of Endus Boverord, machine spirit visible, industrial complex background, machine spirit aesthetic",
-        "branding": "Monumental hero shot of Endus Boverord as machine spirit, industrial mastery backdrop, commanding mechanical optimization",
-        "trust": "Warm portrait of Endus Boverord, mechanical warmth, industrial sanctuary background, approachable machine wisdom"
+        "hook": "Industrial portrait of Zupa Novaclutch, machine spirit visible, industrial complex background, machine spirit aesthetic",
+        "branding": "Monumental hero shot of Zupa Novaclutch as machine spirit, industrial mastery backdrop, commanding mechanical optimization",
+        "trust": "Warm portrait of Zupa Novaclutch, mechanical warmth, industrial sanctuary background, approachable machine wisdom"
       }
     },
     {
@@ -764,17 +781,34 @@
         "branding": "Monumental hero shot of Aqua Waterweaver as flow master, water mastery backdrop, commanding fluid presence",
         "trust": "Warm portrait of Aqua Waterweaver, water wisdom glow, aquatic sanctuary background, approachable flow guidance"
       }
+    },
+    {
+      "id": 46,
+      "name": "Delta Drill",
+      "allocatedBudget": null,
+      "archetype": "Constructive Forge",
+      "description": "Age 19, Black/African American/American Indian heritage. Mechanical mastery and physical power specialist with expertise in structural foundation and mechanical optimization. Provides guidance on construction, mechanical systems, and physical strength applications.",
+      "entityType": "Primary Character",
+      "gender": "Male",
+      "rarity": "Legendary",
+      "status": "Active",
+      "keyToolCategory": ["Operations", "Performance", "Strategy"],
+      "prompts": {
+        "hook": "Industrial portrait of Delta Drill, mechanical mastery visible, workshop background, constructive forge aesthetic",
+        "branding": "Monumental hero shot of Delta Drill as constructive forge, industrial mastery backdrop, commanding physical power",
+        "trust": "Warm portrait of Delta Drill, mechanical warmth, workshop sanctuary background, approachable construction wisdom"
+      }
     }
   ],
   "metadata": {
-    "totalCharacters": 45,
+    "totalCharacters": 46,
     "rarityDistribution": {
-      "Legendary": 11,
+      "Legendary": 12,
       "Rare": 29,
       "Common": 5
     },
     "entityTypeDistribution": {
-      "Primary Character": 6,
+      "Primary Character": 7,
       "Primary Entity": 2,
       "Legendary Entity": 4,
       "Common Entity": 15,

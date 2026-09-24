@@ -1,0 +1,74 @@
+{
+  "heart_calendar": {
+    "data_directory": "./heart-calendar",
+    "events_file": "events.json",
+    "days_per_month": 28.0,
+    "gregorian_start_month": 3,
+    "gregorian_start_day": 21
+  },
+  "daily_automation": {
+    "data_directory": "./daily-automation",
+    "checklists_file": "checklists.json",
+    "templates_file": "checklist_templates.json",
+    "time_periods": ["morning", "mid_day", "evening"],
+    "auto_complete_from_calendar": true
+  },
+  "stakeholder_tracking": {
+    "data_directory": "./stakeholder-tracking",
+    "stakeholders_file": "stakeholders.json",
+    "sentiment_history_file": "sentiment_history.json",
+    "sentiment_threshold": -0.3,
+    "high_influence_levels": ["high", "critical"],
+    "trend_analysis_days": 30
+  },
+  "depot_automation": {
+    "consort": {
+      "data_directory": "./depot-automation",
+      "content_pipeline_file": "content_pipeline.json",
+      "content_calendar_file": "content_calendar.json",
+      "platforms": ["tiktok", "instagram", "youtube", "twitter"],
+      "content_types": ["character_reveal", "poster_showcase", "avatar_spotlight", "story_preview"],
+      "characters": ["Mac", "Mary"]
+    },
+    "scribe": {
+      "data_directory": "./depot-automation",
+      "documents_file": "documents.json",
+      "contracts_file": "contracts.json",
+      "document_versions_file": "document_versions.json",
+      "document_types": ["contract", "agreement", "proposal", "report", "documentation", "template"],
+      "contract_types": ["service", "partnership", "employment", "license", "nda"]
+    },
+    "cashinghouse": {
+      "data_directory": "./depot-automation",
+      "transactions_file": "transactions.json",
+      "revenue_metrics_file": "revenue_metrics.json",
+      "platform_configs_file": "platform_configs.json",
+      "platforms": ["gumroad", "fiverr", "crakrevenue", "admob", "linktree"]
+    },
+    "holdings": {
+      "data_directory": "./depot-automation",
+      "assets_file": "assets.json",
+      "portfolio_allocations_file": "portfolio_allocations.json",
+      "asset_performance_file": "asset_performance.json",
+      "asset_types": ["cryptocurrency", "stocks", "real_estate", "digital_assets", "cash", "intellectual_property"],
+      "risk_levels": ["low", "medium", "high", "speculative"]
+    }
+  },
+  "reporting": {
+    "default_report_days": 30,
+    "weekly_summary_days": 7,
+    "monthly_report_days": 30,
+    "quarterly_report_days": 90
+  },
+  "integrations": {
+    "notion": {
+      "enabled": false,
+      "api_key": "",
+      "database_ids": {}
+    },
+    "calendar": {
+      "enabled": false,
+      "api_endpoint": ""
+    }
+  }
+}

@@ -6,6 +6,7 @@ Automates asset management, portfolio tracking, and investment automation
 
 import json
 import datetime
+import statistics
 from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict
 from enum import Enum
@@ -440,6 +441,141 @@ class AssetManager:
             report.append("")
         
         return "\n".join(report)
+    
+    def get_portfolio_performance_analytics(self, days: int = 30) -> Dict:
+        """Analyze portfolio performance over specified period"""
+        cutoff_date = datetime.datetime.now() - datetime.timedelta(days=days)
+        
+        active_assets = [a for a in self.assets.values() if a.status == AssetStatus.ACTIVE]
+        recent_updates = [a for a in active_assets 
+                         if datetime.datetime.fromisoformat(a.last_updated) >= cutoff_date]
+        
+        if not recent_updates:
+            return {"period_days": days, "analyzed_assets": 0, "analytics": {}}
+        
+        asset_type_analytics = {}
+        for asset_type in AssetType:
+            type_assets = [a for a in recent_updates if a.asset_type == asset_type]
+            if type_assets:
+                values = [a.current_value for a in type_assets]
+                rois = [a.performance_metrics.get('roi', 0) for a in type_assets]
+                
+                asset_type_analytics[asset_type.value] = {
+                    "asset_count": len(type_assets),
+                    "total_value": sum(values),
+                    "avg_value": statistics.mean(values),
+                    "total_roi": sum(rois),
+                    "avg_roi": statistics.mean(rois) if rois else 0,
+                    "value_change_pct": ((sum(values) - sum(a.purchase_value for a in type_assets)) / 
+                                      sum(a.purchase_value for a in type_assets) * 100) if type_assets else 0
+                }
+        
+        return {
+            "period_days": days,
+            "analyzed_assets": len(recent_updates),
+            "total_portfolio_value": sum(a.current_value for a in recent_updates),
+            "asset_type_analytics": asset_type_analytics
+        }
+    
+    def get_automation_triggers(self) -> List[Dict]:
+        """Generate automation triggers based on asset management data"""
+        triggers = []
+        
+        # Low performance alert
+        portfolio = self.get_total_portfolio_value()
+        investment_summary = self.get_investment_summary()
+        
+        if investment_summary['average_roi'] < 5:
+            triggers.append({
+                "type": "low_investment_performance",
+                "severity": "warning",
+                "message": f"Average investment ROI {investment_summary['average_roi']:.2f}% is below target",
+                "action": "Review investment strategy and consider rebalancing"
+            })
+        
+        # Portfolio allocation alerts
+        rebalancing = self.rebalance_portfolio()
+        if len(rebalancing['rebalancing_actions']) > 2:
+            triggers.append({
+                "type": "portfolio_rebalancing_needed",
+                "severity": "warning",
+                "message": f"{len(rebalancing['rebalancing_actions'])} portfolio rebalancing actions needed",
+                "action": "Execute portfolio rebalancing recommendations"
+            })
+        
+        # Asset performance alerts
+        active_assets = [a for a in self.assets.values() if a.status == AssetStatus.ACTIVE]
+        for asset in active_assets:
+            roi = asset.performance_metrics.get('roi', 0)
+            if roi < -10:  # More than 10% loss
+                triggers.append({
+                    "type": "underperforming_asset",
+                    "severity": "warning",
+                    "message": f"{asset.name} has declined {roi:.1f}% since purchase",
+                    "action": f"Review {asset.name} performance and consider divestment"
+                })
+            elif roi > 25:  # More than 25% gain
+                triggers.append({
+                    "type": "high_performing_asset",
+                    "severity": "info",
+                    "message": f"{asset.name} has gained {roi:.1f}% - consider profit taking",
+                    "action": f"Evaluate {asset.name} for partial profit realization"
+                })
+        
+        # Cash reserve alert
+        cash_assets = self.get_assets_by_type(AssetType.CASH)
+        if cash_assets:
+            total_cash = sum(a.current_value for a in cash_assets)
+            cash_ratio = total_cash / portfolio['total_value'] if portfolio['total_value'] > 0 else 0
+            if cash_ratio < 0.10:  # Less than 10% cash
+                triggers.append({
+                    "type": "low_cash_reserve",
+                    "severity": "warning",
+                    "message": f"Cash reserves {cash_ratio*100:.1f}% are below minimum target",
+                    "action": "Increase cash reserves for operational flexibility"
+                })
+        
+        return triggers
+    
+    def generate_enhanced_report(self) -> str:
+        """Generate enhanced asset management report with analytics and triggers"""
+        report = []
+        report.append("=" * 80)
+        report.append("HOLDINGS DEPOT ENHANCED ASSET MANAGEMENT REPORT")
+        report.append(f"Generated: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        report.append("=" * 80)
+        report.append("")
+        
+        # Standard report
+        report.append(self.generate_asset_report())
+        report.append("")
+        
+        # Performance analytics
+        analytics = self.get_portfolio_performance_analytics(30)
+        report.append("30-DAY PORTFOLIO PERFORMANCE ANALYTICS:")
+        report.append(f"  Analyzed Assets: {analytics['analyzed_assets']}")
+        report.append(f"  Total Portfolio Value: ${analytics['total_portfolio_value']:,.2f}")
+        for asset_type, data in analytics.get("asset_type_analytics", {}).items():
+            report.append(f"  {asset_type.replace('_', ' ').title()}:")
+            report.append(f"    Assets: {data['asset_count']}")
+            report.append(f"    Total Value: ${data['total_value']:,.2f}")
+            report.append(f"    Avg Value: ${data['avg_value']:,.2f}")
+            report.append(f"    Avg ROI: {data['avg_roi']:.2f}%")
+            report.append(f"    Value Change: {data['value_change_pct']:.2f}%")
+        report.append("")
+        
+        # Automation triggers
+        triggers = self.get_automation_triggers()
+        if triggers:
+            report.append("AUTOMATION TRIGGERS:")
+            for trigger in triggers:
+                severity_icon = "⚠️" if trigger['severity'] == 'warning' else "ℹ️"
+                report.append(f"  {severity_icon} {trigger['type'].replace('_', ' ').title()}")
+                report.append(f"    {trigger['message']}")
+                report.append(f"    Action: {trigger['action']}")
+            report.append("")
+        
+        return "\n".join(report)
 
 
 def main():
@@ -471,8 +607,8 @@ def main():
     # Update investment value
     manager.update_investment_value(inv_id, 11500.00)
     
-    # Generate report
-    print(manager.generate_asset_report())
+    # Generate enhanced report
+    print(manager.generate_enhanced_report())
 
 
 if __name__ == "__main__":

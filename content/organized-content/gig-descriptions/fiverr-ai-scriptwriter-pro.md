@@ -25,10 +25,22 @@ I architect voices using custom AI personas. Not "generic assistant" tones. Not 
 
 | Persona | Best For |
 |---------|----------|
-| Autonomous Advisor | Tech explainers, educational content, autonomy concepts |
+| Sovereign Advisor | Tech explainers, educational content, autonomy concepts |
 | Technical Explainer | Coding tutorials, workflow demos, product how-tos |
+| Rebel Provocateur | Disruptive content, counter-culture, challenging assumptions |
+| Empathetic Mentor | Coaching, personal development, emotional connection |
+| Storyteller Bard | Narrative content, brand stories, emotional arcs |
+| Data-Driven Analyst | Analytics, technical breakdowns, evidence-based content |
+| No-Nonsense Coach | Direct advice, productivity, accountability |
+| Cosmic Visionary | Futurism, big-picture thinking, philosophical content |
+| Corporate Diplomat | B2B content, professional communication, leadership |
+| Playful Maverick | Entertaining content, humor, viral potential |
+| Deep Researcher | Deep-dive content, investigative journalism, expertise |
+| Legacy Builder | Long-form content, thought leadership, evergreen material |
 | Aggressive Marketer | Ads, launches, sales content, high-energy calls |
 | Cyberpunk Narrator | Lore, world-building, atmospheric intros, dystopian themes |
+
+*Custom persona creation available as an add-on (+$100) or included in Premium and Empire Builder tiers.*
 
 **WHAT YOU GET IN EACH PACKAGE**
 
@@ -49,6 +61,20 @@ I architect voices using custom AI personas. Not "generic assistant" tones. Not 
 - Custom persona creation (private prompt)
 - 10+ social media snippets ("Raid Kit")
 - 10-day delivery
+
+**Empire Builder ($1,200+ – Custom Quote)**
+- Unlimited scripts and revisions for a 30-day period or project-based scope
+- Dedicated persona consultant
+- 2-3 fully custom personas
+- Full content ecosystem strategy
+- YouTube, podcast, LinkedIn, TikTok, and similar platforms
+- Advanced Raid Kit
+- Thumbnail/title suggestions
+- SEO content-cluster planning
+- Priority delivery: 48-72 hours per batch
+- Weekly strategy calls
+- Monthly performance review and optimization
+- Base pricing: $1,200/month retainer or $900 per major campaign
 
 **WHY US**
 

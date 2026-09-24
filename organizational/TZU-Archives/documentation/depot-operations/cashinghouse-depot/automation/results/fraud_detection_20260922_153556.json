@@ -1,0 +1,19 @@
+{
+  "total_transactions": 5,
+  "alerts_detected": 2,
+  "alerts": [
+    {
+      "type": "geographic_risk",
+      "severity": "medium",
+      "transaction_id": "TXN004",
+      "message": "Transaction from suspicious country: XX"
+    },
+    {
+      "type": "high_daily_amount",
+      "severity": "high",
+      "user_id": "USR002",
+      "message": "User USR002 daily total $8500.00 exceeds threshold $5000.00"
+    }
+  ],
+  "analysis_date": "2026-09-22T15:35:56.104442"
+}

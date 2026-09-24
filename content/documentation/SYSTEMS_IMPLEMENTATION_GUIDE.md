@@ -1,7 +1,7 @@
 # ChiefPilot Systems Implementation Guide
 
-**Version:** 1.0
-**Last Updated:** 2026-09-11
+**Version:** 1.1
+**Last Updated:** 2026-09-22
 **Status:** Complete
 
 ---
@@ -77,7 +77,7 @@ npm install
 cp .env.example .env
 # Edit .env with your values:
 # - TELEGRAM_BOT_TOKEN=your_token_here
-# - CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Private & Shared/Character Database
+# - CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database
 ```
 
 #### 4. Start the Bot
@@ -166,7 +166,7 @@ cp .env.example .env
 # Edit .env with your values:
 # - WHATSAPP_BUSINESS_PHONE=your_phone_number
 # - WHATSAPP_API_KEY=your_api_key
-# - CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Private & Shared/Character Database
+# - CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database
 ```
 
 #### 4. Start the Bot
@@ -263,8 +263,8 @@ cp .env.example .env
 # - INSTAGRAM_PASSWORD=your_password
 # - TIKTOK_USERNAME=your_username
 # - TIKTOK_PASSWORD=your_password
-# - CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Private & Shared/Character Database
-# - VISUAL_ASSETS_PATH=/Users/jypsee72/Desktop/T.Zi.zu/visual-assets
+# - CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database
+# - VISUAL_ASSETS_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/content/visual-assets
 ```
 
 #### 5. Start Automation
@@ -398,7 +398,7 @@ cp .env.example .env
 # - NOTION_CHARACTER_DATABASE_ID=your_database_id
 # - NOTION_CONTENT_CALENDAR_ID=your_database_id
 # - NOTION_TASK_DATABASE_ID=your_database_id
-# - CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Private & Shared/Character Database
+# - CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database
 ```
 
 #### 6. Start Sync
@@ -514,6 +514,52 @@ AUTO_SYNC_ENABLED=true
 - Implement exponential backoff for retries
 - Cache responses where appropriate
 - Monitor usage to avoid quotas
+
+### Additional Security Best Practices
+- **File Permissions:** Set restrictive permissions on `.env` files (chmod 600)
+- **WhatsApp Auth Data:** The `auth_info_baileys/` directory contains sensitive authentication data. Back up this directory securely and never commit it to version control
+- **Database Security:** The shared SQLite database (`chiefpilot.db`) should be backed up regularly and access should be restricted
+- **Input Validation:** Validate all user inputs before processing, especially in bot commands
+- **Secrets Management:** For production deployments, use a proper secrets manager (AWS Secrets Manager, HashiCorp Vault, etc.) instead of `.env` files
+- **Audit Logging:** Enable audit logging for sensitive operations (character data access, budget modifications, publishing actions)
+- **Network Security:** Use VPNs or private networks when possible for bot infrastructure
+- **Dependency Updates:** Regularly update dependencies to patch security vulnerabilities
+
+---
+
+## Node.js Version Compatibility
+
+### Recommended Version
+- **Node.js v22.23.1** - Recommended for all bot and automation systems
+- **NVM users:** Run `nvm use 22.23.1` or add `.nvmrc` file with `22.23.1`
+
+### Known Issues
+- **Node.js v26.5.0** - Has system library compatibility issues with some packages. Not recommended.
+- **Older versions (< v18)** - May have compatibility issues with newer package features
+
+### Version Management
+```bash
+# Check current version
+node --version
+
+# Install nvm if not available
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# Install and use Node.js 22.23.1
+nvm install 22.23.1
+nvm use 22.23.1
+
+# Set as default
+nvm alias default 22.23.1
+```
+
+### Package Compatibility
+All systems use packages compatible with Node.js 22.23.1:
+- `node-telegram-bot-api` - Compatible
+- `@whiskeysockets/baileys` - Compatible
+- `instagram-private-api` - Compatible
+- `@notionhq/client` - Compatible
+- `better-sqlite3` - Compatible (requires build tools)
 
 ---
 

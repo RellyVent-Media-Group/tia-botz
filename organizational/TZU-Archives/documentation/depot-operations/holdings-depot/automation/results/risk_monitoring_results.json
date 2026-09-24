@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-09-22T15:30:56.547896",
+  "total_assets_monitored": 3,
+  "risk_profiles": {
+    "AAPL": {
+      "volatility": 0.0263673679998231,
+      "beta": 2.0294117647058822,
+      "max_drawdown": 0.019736842105263157,
+      "concentration_risk": 0.25,
+      "liquidity_score": 1.0,
+      "overall_risk_score": 0.2647987552915878
+    },
+    "BTC": {
+      "volatility": 0.07849780100044053,
+      "beta": 0.8970588235294119,
+      "max_drawdown": 0.08333333333333333,
+      "concentration_risk": 0.4,
+      "liquidity_score": 1.0,
+      "overall_risk_score": 0.20992188931974004
+    },
+    "EMERGING": {
+      "volatility": 0.12841524905740825,
+      "beta": 1.323529411764706,
+      "max_drawdown": 0.12037037037037036,
+      "concentration_risk": 0.15,
+      "liquidity_score": 1.0,
+      "overall_risk_score": 0.22495158996776718
+    }
+  },
+  "alerts": [
+    {
+      "asset_symbol": "AAPL",
+      "risk_type": "market",
+      "risk_level": "LOW",
+      "current_value": 2.0294117647058822,
+      "threshold_value": 2.0,
+      "message": "Beta exceeds threshold: 2.03",
+      "timestamp": "2026-09-22T15:30:56.548195",
+      "recommended_action": "Review market exposure and correlation"
+    },
+    {
+      "asset_symbol": "BTC",
+      "risk_type": "concentration",
+      "risk_level": "HIGH",
+      "current_value": 0.4,
+      "threshold_value": 0.25,
+      "message": "Concentration risk exceeds threshold: 40.00%",
+      "timestamp": "2026-09-22T15:30:56.548410",
+      "recommended_action": "Consider diversifying or reducing position size"
+    }
+  ],
+  "summary": {
+    "average_risk_score": 0.23322407819303168,
+    "total_alerts": 2,
+    "alert_breakdown": {
+      "LOW": 1,
+      "MEDIUM": 0,
+      "HIGH": 1,
+      "CRITICAL": 0
+    },
+    "highest_risk_asset": "AAPL"
+  }
+}

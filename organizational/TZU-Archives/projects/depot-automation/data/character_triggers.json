@@ -1,0 +1,273 @@
+{
+  "triggers": {
+    "TRIGGER_20260922_131917_1": {
+      "trigger_id": "TRIGGER_20260922_131917_1",
+      "character_id": 1,
+      "character_name": "Mary Magnumbytes",
+      "trigger_type": "content_generation",
+      "condition": {
+        "schedule": "weekly",
+        "day": "monday"
+      },
+      "action": "generate_content_idea",
+      "parameters": {
+        "content_type": "social"
+      },
+      "created_at": "2026-09-22T13:19:17.832876",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_131917_6": {
+      "trigger_id": "TRIGGER_20260922_131917_6",
+      "character_id": 6,
+      "character_name": "Mrs. Cox-Turner",
+      "trigger_type": "budget_utilization",
+      "condition": {
+        "threshold": 0.8,
+        "type": "high_utilization"
+      },
+      "action": "send_budget_alert",
+      "parameters": {
+        "recipient": "admin@tiapmaatzu.com"
+      },
+      "created_at": "2026-09-22T13:19:17.829026",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_131917_8": {
+      "trigger_id": "TRIGGER_20260922_131917_8",
+      "character_id": 8,
+      "character_name": "Cracoria Masters",
+      "trigger_type": "budget_utilization",
+      "condition": {
+        "threshold": 0.8,
+        "type": "high_utilization"
+      },
+      "action": "send_budget_alert",
+      "parameters": {
+        "recipient": "admin@tiapmaatzu.com"
+      },
+      "created_at": "2026-09-22T13:19:17.829612",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_131917_9": {
+      "trigger_id": "TRIGGER_20260922_131917_9",
+      "character_id": 9,
+      "character_name": "Latti Pleddespo",
+      "trigger_type": "budget_utilization",
+      "condition": {
+        "threshold": 0.8,
+        "type": "high_utilization"
+      },
+      "action": "send_budget_alert",
+      "parameters": {
+        "recipient": "admin@tiapmaatzu.com"
+      },
+      "created_at": "2026-09-22T13:19:17.830004",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_131917_10": {
+      "trigger_id": "TRIGGER_20260922_131917_10",
+      "character_id": 10,
+      "character_name": "Dezi Asete",
+      "trigger_type": "budget_utilization",
+      "condition": {
+        "threshold": 0.8,
+        "type": "high_utilization"
+      },
+      "action": "send_budget_alert",
+      "parameters": {
+        "recipient": "admin@tiapmaatzu.com"
+      },
+      "created_at": "2026-09-22T13:19:17.830395",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_131917_11": {
+      "trigger_id": "TRIGGER_20260922_131917_11",
+      "character_id": 11,
+      "character_name": "Zupa Novaclutch",
+      "trigger_type": "budget_utilization",
+      "condition": {
+        "threshold": 0.8,
+        "type": "high_utilization"
+      },
+      "action": "send_budget_alert",
+      "parameters": {
+        "recipient": "admin@tiapmaatzu.com"
+      },
+      "created_at": "2026-09-22T13:19:17.830804",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_131917_14": {
+      "trigger_id": "TRIGGER_20260922_131917_14",
+      "character_id": 14,
+      "character_name": "Ovaihge Whitmeiners",
+      "trigger_type": "budget_utilization",
+      "condition": {
+        "threshold": 0.8,
+        "type": "high_utilization"
+      },
+      "action": "send_budget_alert",
+      "parameters": {
+        "recipient": "admin@tiapmaatzu.com"
+      },
+      "created_at": "2026-09-22T13:19:17.831215",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_131917_16": {
+      "trigger_id": "TRIGGER_20260922_131917_16",
+      "character_id": 16,
+      "character_name": "Babelonia Nocturne",
+      "trigger_type": "budget_utilization",
+      "condition": {
+        "threshold": 0.8,
+        "type": "high_utilization"
+      },
+      "action": "send_budget_alert",
+      "parameters": {
+        "recipient": "admin@tiapmaatzu.com"
+      },
+      "created_at": "2026-09-22T13:19:17.831653",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_131917_22": {
+      "trigger_id": "TRIGGER_20260922_131917_22",
+      "character_id": 22,
+      "character_name": "Chrystal Vyner",
+      "trigger_type": "budget_utilization",
+      "condition": {
+        "threshold": 0.8,
+        "type": "high_utilization"
+      },
+      "action": "send_budget_alert",
+      "parameters": {
+        "recipient": "admin@tiapmaatzu.com"
+      },
+      "created_at": "2026-09-22T13:19:17.832203",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_131917_18": {
+      "trigger_id": "TRIGGER_20260922_131917_18",
+      "character_id": 18,
+      "character_name": "Gaio Weavedreamer",
+      "trigger_type": "content_generation",
+      "condition": {
+        "schedule": "weekly",
+        "day": "monday"
+      },
+      "action": "generate_content_idea",
+      "parameters": {
+        "content_type": "social"
+      },
+      "created_at": "2026-09-22T13:19:17.833447",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_131917_19": {
+      "trigger_id": "TRIGGER_20260922_131917_19",
+      "character_id": 19,
+      "character_name": "Loona Minta",
+      "trigger_type": "content_generation",
+      "condition": {
+        "schedule": "weekly",
+        "day": "monday"
+      },
+      "action": "generate_content_idea",
+      "parameters": {
+        "content_type": "social"
+      },
+      "created_at": "2026-09-22T13:19:17.834022",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_131917_20": {
+      "trigger_id": "TRIGGER_20260922_131917_20",
+      "character_id": 20,
+      "character_name": "Justin Stoneysands",
+      "trigger_type": "content_generation",
+      "condition": {
+        "schedule": "weekly",
+        "day": "monday"
+      },
+      "action": "generate_content_idea",
+      "parameters": {
+        "content_type": "social"
+      },
+      "created_at": "2026-09-22T13:19:17.834602",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_131917_21": {
+      "trigger_id": "TRIGGER_20260922_131917_21",
+      "character_id": 21,
+      "character_name": "Shielah Trapewe",
+      "trigger_type": "content_generation",
+      "condition": {
+        "schedule": "weekly",
+        "day": "monday"
+      },
+      "action": "generate_content_idea",
+      "parameters": {
+        "content_type": "social"
+      },
+      "created_at": "2026-09-22T13:19:17.835440",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_132004_1": {
+      "trigger_id": "TRIGGER_20260922_132004_1",
+      "character_id": 1,
+      "character_name": "Mary Magnumbytes",
+      "trigger_type": "content_generation",
+      "condition": {
+        "schedule": "daily"
+      },
+      "action": "generate_content_idea",
+      "parameters": {
+        "content_type": "social"
+      },
+      "created_at": "2026-09-22T13:20:04.588202",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    },
+    "TRIGGER_20260922_132307_1": {
+      "trigger_id": "TRIGGER_20260922_132307_1",
+      "character_id": 1,
+      "character_name": "Mary Magnumbytes",
+      "trigger_type": "content_generation",
+      "condition": {
+        "schedule": "daily"
+      },
+      "action": "generate_content_idea",
+      "parameters": {
+        "content_type": "social"
+      },
+      "created_at": "2026-09-22T13:23:07.512154",
+      "last_triggered": "",
+      "trigger_count": 0,
+      "enabled": true
+    }
+  },
+  "last_updated": "2026-09-22T13:23:07.512162"
+}

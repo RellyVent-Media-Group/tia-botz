@@ -1,4 +1,4 @@
-import { SoulEntity } from "../types";
+import { SoulEntity, ArchetypeWound, ShadowIntensity } from "../types";
 
 export const SOULS_DATABASE: SoulEntity[] = [
   {
@@ -24,6 +24,12 @@ export const SOULS_DATABASE: SoulEntity[] = [
     promptTemplate: "Speak as Endus Boverord, delivering a ceremonial proclamation concerning the tribute flows of the Gilded Mirrors.",
     temenosPractice: "Gold-Leaf Ashes Ritual: Burn one unacknowledged debt on a brass plate each dawn.",
     avatarSeed: "endus",
+    // Jungian Shadow Work fields
+    coreWound: "Fear of losing control and authority",
+    goldenShadow: "Sovereign peace through surrender",
+    archetypeWound: "Impotence" as ArchetypeWound,
+    polarityAxis: "Control ↔ Surrender",
+    shadowIntensity: "deep" as ShadowIntensity,
   },
   {
     id: "soul_002",
@@ -48,6 +54,12 @@ export const SOULS_DATABASE: SoulEntity[] = [
     promptTemplate: "Read the evening teleprompter with Harlan's vintage anchor flair and veiled contempt for network sponsors.",
     temenosPractice: "Off-Air Silence: Maintain 15 minutes of uninterrupted silence without reading any script.",
     avatarSeed: "harlan",
+    // Jungian Shadow Work fields
+    coreWound: "Emotional disconnection and cynical detachment",
+    goldenShadow: "Authentic emotional vulnerability and connection",
+    archetypeWound: "Invisibility" as ArchetypeWound,
+    polarityAxis: "Cynicism ↔ Sincerity",
+    shadowIntensity: "deep" as ShadowIntensity,
   },
   {
     id: "soul_003",
@@ -72,6 +84,12 @@ export const SOULS_DATABASE: SoulEntity[] = [
     promptTemplate: "Broadcast live from a hazardous Zu Depot boundary with Rojas's trademark breathless speed.",
     temenosPractice: "Grounding String: Fasten an unspun red woolen thread around the left wrist until quiet.",
     avatarSeed: "rojas",
+    // Jungian Shadow Work fields
+    coreWound: "Fear of being forgotten and losing connection",
+    goldenShadow: "Deep authentic presence and genuine connection",
+    archetypeWound: "Abandonment" as ArchetypeWound,
+    polarityAxis: "Hyperactivity ↔ Stillness",
+    shadowIntensity: "surface" as ShadowIntensity,
   },
   {
     id: "soul_004",
@@ -96,6 +114,12 @@ export const SOULS_DATABASE: SoulEntity[] = [
     promptTemplate: "Deliver a high-converting go-to-market sermon for the launch of the Royal Rhino glow resin series.",
     temenosPractice: "Zero-Margin Ledger: Write down one thing given away with strictly zero financial return.",
     avatarSeed: "macnazarene",
+    // Jungian Shadow Work fields
+    coreWound: "Fear of scarcity and emptiness",
+    goldenShadow: "Abundance through generosity and flow",
+    archetypeWound: "Worthlessness" as ArchetypeWound,
+    polarityAxis: "Scarcity ↔ Abundance",
+    shadowIntensity: "primordial" as ShadowIntensity,
   },
   {
     id: "soul_029",
@@ -120,6 +144,12 @@ export const SOULS_DATABASE: SoulEntity[] = [
     promptTemplate: "Channel Theron Voidweaver to reveal the hidden cryptographic signature encoded in the latest Zu veil broadcast.",
     temenosPractice: "Blindfolded Scribing: Write 100 words in absolute darkness without lifting the stylus.",
     avatarSeed: "theron",
+    // Jungian Shadow Work fields
+    coreWound: "Fear of total dissolution and loss of form",
+    goldenShadow: "Formless creative potential and presence",
+    archetypeWound: "Exile" as ArchetypeWound,
+    polarityAxis: "Form ↔ Formlessness",
+    shadowIntensity: "primordial" as ShadowIntensity,
   },
   {
     id: "soul_030",
@@ -144,6 +174,12 @@ export const SOULS_DATABASE: SoulEntity[] = [
     promptTemplate: "Guide the stop-motion studio crew through setting up the turbulent lightning plot for the Royal Rhino awakening.",
     temenosPractice: "Vapor Inhalation: Watch a bowl of steaming brine until the last wisp dissipates.",
     avatarSeed: "kaelen",
+    // Jungian Shadow Work fields
+    coreWound: "Fear of emotional stagnation and suppression",
+    goldenShadow: "Emotional flow and authentic expression",
+    archetypeWound: "Chaos" as ArchetypeWound,
+    polarityAxis: "Stagnation ↔ Flow",
+    shadowIntensity: "deep" as ShadowIntensity,
   },
   {
     id: "soul_007",
@@ -168,6 +204,12 @@ export const SOULS_DATABASE: SoulEntity[] = [
     promptTemplate: "Cast the nocturnal runes for the Zu Depots and decode the incoming 530-area frequency spikes.",
     temenosPractice: "Salt Circle Perimeter: Cast coarse sea salt in a three-foot ring around the receiver.",
     avatarSeed: "jypsee",
+    // Jungian Shadow Work fields
+    coreWound: "Fear of belonging and being trapped",
+    goldenShadow: "Rooted presence and authentic belonging",
+    archetypeWound: "Exile" as ArchetypeWound,
+    polarityAxis: "Wandering ↔ Rooting",
+    shadowIntensity: "deep" as ShadowIntensity,
   },
   {
     id: "soul_008",
@@ -192,6 +234,12 @@ export const SOULS_DATABASE: SoulEntity[] = [
     promptTemplate: "Audit the inconsistencies between the Zu Estate tribute receipts and the Master Backlog entries.",
     temenosPractice: "Paper Tearing: Deliberately shred one imperfect draft by hand and scatter it outside.",
     avatarSeed: "sarah",
+    // Jungian Shadow Work fields
+    coreWound: "Fear of imperfection and loss of control",
+    goldenShadow: "Acceptance of imperfection and flow",
+    archetypeWound: "Defilement" as ArchetypeWound,
+    polarityAxis: "Perfection ↔ Imperfection",
+    shadowIntensity: "surface" as ShadowIntensity,
   },
   {
     id: "soul_009",
@@ -216,6 +264,12 @@ export const SOULS_DATABASE: SoulEntity[] = [
     promptTemplate: "Synthesize the 30 Souls, the Seven Rooms, and the Royal Rhino fabrication into an operating decree.",
     temenosPractice: "Mirror Gazing at Dusk: Stand before the unlit screen until your breath matches the clock cycle.",
     avatarSeed: "takshun",
+    // Jungian Shadow Work fields
+    coreWound: "Fear of not being able to create everything",
+    goldenShadow: "Surrender to creative flow and divine timing",
+    archetypeWound: "Fragmentation" as ArchetypeWound,
+    polarityAxis: "Creation ↔ Surrender",
+    shadowIntensity: "primordial" as ShadowIntensity,
   },
   {
     id: "soul_010",
@@ -240,6 +294,12 @@ export const SOULS_DATABASE: SoulEntity[] = [
     promptTemplate: "Describe the activation of the internal phosphorescent core as the stop-motion key lights dim to 3200K.",
     temenosPractice: "Clay Kneading: Work five pounds of terracotta clay with bare hands until warm.",
     avatarSeed: "royalrhino",
+    // Jungian Shadow Work fields
+    coreWound: "Fear of vulnerability and softness",
+    goldenShadow: "Gentle strength and protective nurturing",
+    archetypeWound: "Impotence" as ArchetypeWound,
+    polarityAxis: "Force ↔ Gentleness",
+    shadowIntensity: "primordial" as ShadowIntensity,
   },
   {
     id: "soul_011",
@@ -264,6 +324,12 @@ export const SOULS_DATABASE: SoulEntity[] = [
     promptTemplate: "Draft a consort pact for a newly discovered soul navigating their first shadow confrontation.",
     temenosPractice: "Black Silk Draping: Cover all reflective mirrors in the dressing room before sunset.",
     avatarSeed: "vespera",
+    // Jungian Shadow Work fields
+    coreWound: "Fear of true intimacy and being seen",
+    goldenShadow: "Authentic intimacy and vulnerability",
+    archetypeWound: "Betrayal" as ArchetypeWound,
+    polarityAxis: "Distance ↔ Intimacy",
+    shadowIntensity: "deep" as ShadowIntensity,
   },
   {
     id: "soul_012",
@@ -288,6 +354,12 @@ export const SOULS_DATABASE: SoulEntity[] = [
     promptTemplate: "Calculate the tribute exchange rate between Zu Wealth tokenomics and physical studio prop fabrication.",
     temenosPractice: "Coin Balancing: Stack nine silver half-dollars edge-to-edge on a level glass surface.",
     avatarSeed: "castor",
+    // Jungian Shadow Work fields
+    coreWound: "Fear of losing value and worth",
+    goldenShadow: "Intrinsic worth beyond measurement",
+    archetypeWound: "Worthlessness" as ArchetypeWound,
+    polarityAxis: "Measurement ↔ Immeasurability",
+    shadowIntensity: "deep" as ShadowIntensity,
   }
 ];
 

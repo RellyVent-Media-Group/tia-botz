@@ -1,0 +1,23 @@
+{
+  "dry_run": true,
+  "max_single_transaction": 10000.00,
+  "max_daily_transactions_per_user": 10,
+  "max_daily_amount_per_user": 5000.00,
+  "suspicious_countries": ["XX", "YY"],
+  "velocity_check_window_minutes": 30,
+  "alert_thresholds": {
+    "high_severity": ["high_amount", "high_daily_amount"],
+    "medium_severity": ["geographic_risk", "high_velocity"],
+    "low_severity": ["pattern_anomaly"]
+  },
+  "auto_block": {
+    "enabled": false,
+    "block_on_high_severity": true,
+    "block_on_repeated_offenses": true
+  },
+  "notification": {
+    "alert_on_detection": true,
+    "notify_stakeholders": true,
+    "escalation_threshold": 3
+  }
+}

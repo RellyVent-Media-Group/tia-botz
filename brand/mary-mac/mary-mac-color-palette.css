@@ -1,0 +1,28 @@
+/*
+  Mary & Mac — Color Palette (CSS Reference)
+  Derived from the visual-signature descriptions in the Master Prompt Pack
+  and both character portfolios. No palette existed in the source files
+  prior to this pass -- these values were proposed and confirmed via chat,
+  not extracted from a pre-existing spec.
+
+  Structure matches the GKNN brand palette documentation for consistency
+  across the two properties' reference materials.
+*/
+
+:root {
+  /* Mary Magnumbytes -- cool/digital */
+  --mary-steel-blue: #3B5A73;      /* practical layered clothing, grounded tech tone */
+  --mary-signal-cyan: #6FD8E8;     /* circuit-like reflections, screen/data glow */
+  --mary-slate-charcoal: #23303A;  /* industrial loft backdrop */
+  --mary-cool-white: #E7EEF2;      /* modern work-light highlights */
+
+  /* Mac Nazarene -- warm/human */
+  --mac-jersey-brown: #6B4A34;      /* sports jerseys */
+  --mac-warm-amber: #E8A855;       /* warm natural light */
+  --mac-sneaker-brown: #4A3626;     /* basketball sneakers */
+  --mac-parchment: #EFE3D0;        /* notebook paper, cafe/library warmth */
+
+  /* Shared / Duo */
+  --duo-concrete-grey: #8B9298;    /* concrete, glass reflections -- shared urban tech hub */
+  --duo-streetlight-gold: #F0B860; /* warm light, streetlight -- where their visual worlds meet */
+}

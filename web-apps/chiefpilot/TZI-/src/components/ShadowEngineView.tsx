@@ -1,28 +1,47 @@
-import React, { useState } from "react";
-import { SoulEntity } from "../types";
+import React, { useState, useEffect } from "react";
+import { SoulEntity, AudioPromptData } from "../types";
 import { SOULS_DATABASE } from "../data/soulsData";
 import { SHADOW_INTEGRATION_GUIDE } from "../data/shadowEngineData";
-import { 
-  ShieldAlert, 
-  Sparkles, 
-  Flame, 
-  Compass, 
-  Send, 
-  Loader2, 
-  BookOpen, 
-  Activity, 
-  Scale, 
-  RefreshCw 
+import {
+  ShieldAlert,
+  Sparkles,
+  Flame,
+  Compass,
+  Send,
+  Loader2,
+  BookOpen,
+  Activity,
+  Scale,
+  RefreshCw,
+  Volume2,
+  VolumeX,
+  Copy,
+  Check
 } from "lucide-react";
 
 export const ShadowEngineView: React.FC = () => {
   const [selectedSoul, setSelectedSoul] = useState<SoulEntity>(SOULS_DATABASE[0]);
-  const [activeDialogueView, setActiveDialogueView] = useState<"dialogue-chamber" | "polarity-map" | "guide">("dialogue-chamber");
+  const [activeDialogueView, setActiveDialogueView] = useState<"dialogue-chamber" | "polarity-map" | "guide" | "active-imagination">("dialogue-chamber");
 
   // Dialogue Chamber State
   const [dialogueTopic, setDialogueTopic] = useState("The Secret Debt of Creative Autonomy");
   const [dialogueHistory, setDialogueHistory] = useState<string>("");
   const [isGeneratingDialogue, setIsGeneratingDialogue] = useState(false);
+
+  // Active Imagination Audio Prompt State
+  const [isGeneratingAudioPrompt, setIsGeneratingAudioPrompt] = useState(false);
+  const [audioPromptData, setAudioPromptData] = useState<AudioPromptData | null>(null);
+  const [isPlayingTTS, setIsPlayingTTS] = useState(false);
+  const [copiedScript, setCopiedScript] = useState(false);
+
+  // Cleanup speech synthesis on unmount
+  useEffect(() => {
+    return () => {
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
 
   const handleGenerateShadowDialogue = async () => {
     try {
@@ -53,6 +72,61 @@ export const ShadowEngineView: React.FC = () => {
     }
   };
 
+  const handleGenerateAudioPrompt = async () => {
+    setIsGeneratingAudioPrompt(true);
+    try {
+      const res = await fetch("/api/generate-audio-prompt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          soulName: selectedSoul.name,
+          coreWound: selectedSoul.coreWound || "Unconscious fear",
+          archetypeWound: selectedSoul.archetypeWound || "Primordial Exile",
+          goldenShadow: selectedSoul.goldenShadow || "Hidden wisdom",
+          intensity: selectedSoul.shadowIntensity || "deep",
+          polarity: selectedSoul.polarityAxis || "Control ↔ Surrender",
+        }),
+      });
+
+      const data = await res.json();
+      setAudioPromptData(data);
+    } catch (err: any) {
+      console.error("Error generating audio prompt:", err);
+    } finally {
+      setIsGeneratingAudioPrompt(false);
+    }
+  };
+
+  const handleToggleSpeechSynthesis = () => {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window) || !audioPromptData?.script) return;
+    if (isPlayingTTS) {
+      window.speechSynthesis.cancel();
+      setIsPlayingTTS(false);
+    } else {
+      window.speechSynthesis.cancel();
+      const spokenText = audioPromptData.script
+        .replace(/\[\s*pause[^\]]*\]/gi, '... ')
+        .replace(/\[[^\]]*\]/g, '')
+        .replace(/[*#_]/g, '');
+      const utterance = new SpeechSynthesisUtterance(spokenText);
+      utterance.rate = 0.88;
+      utterance.pitch = 0.95;
+      utterance.onend = () => setIsPlayingTTS(false);
+      utterance.onerror = () => setIsPlayingTTS(false);
+      window.speechSynthesis.speak(utterance);
+      setIsPlayingTTS(true);
+    }
+  };
+
+  const handleCopyScript = () => {
+    if (!audioPromptData) return;
+    navigator.clipboard.writeText(
+      `AUDIO PROMPT: ${audioPromptData.title}\nSOUNDSCAPE: ${audioPromptData.soundscape}\nPACING: ${audioPromptData.pacingGuidance}\n\n${audioPromptData.script}`
+    );
+    setCopiedScript(true);
+    setTimeout(() => setCopiedScript(false), 2000);
+  };
+
   return (
     <div className="space-y-8 pb-12">
       {/* Top Banner */}
@@ -77,6 +151,7 @@ export const ShadowEngineView: React.FC = () => {
       <div className="flex items-center gap-2 bg-[#140b07]/90 p-2.5 rounded-xl border border-[#f27d26]/20 shadow-xl backdrop-blur-xl">
         {[
           { id: "dialogue-chamber", label: "Temenos Dialogue Chamber", icon: Flame },
+          { id: "active-imagination", label: "Active Imagination", icon: Volume2 },
           { id: "polarity-map", label: "Soul Polarity Radar & Spectrum", icon: Activity },
           { id: "guide", label: "Shadow Integration Guide", icon: BookOpen },
         ].map((tab) => {
@@ -205,7 +280,149 @@ export const ShadowEngineView: React.FC = () => {
         </div>
       )}
 
-      {/* Tab 2: Soul Polarity Radar & Spectrum */}
+      {/* Tab 2: Active Imagination Audio Prompt Generator */}
+      {activeDialogueView === "active-imagination" && (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Left Soul Selector */}
+          <div className="lg:col-span-4 space-y-3">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-xs font-mono text-[#96897e] uppercase font-semibold">Select Soul for Active Imagination</span>
+              <span className="text-[11px] font-mono text-[#ffaa5e]">{SOULS_DATABASE.length} Souls</span>
+            </div>
+
+            <div className="space-y-2 max-h-[560px] overflow-y-auto pr-1">
+              {SOULS_DATABASE.map((soul) => {
+                const isSelected = soul.id === selectedSoul.id;
+                return (
+                  <button
+                    key={soul.id}
+                    onClick={() => {
+                      setSelectedSoul(soul);
+                      setAudioPromptData(null);
+                    }}
+                    className={`w-full text-left p-3.5 rounded-xl border transition-all flex items-center justify-between cursor-pointer ${
+                      isSelected
+                        ? "bg-[#24130b] border-[#f27d26] text-[#fcf8f5] shadow-[0_0_15px_rgba(242,125,38,0.2)]"
+                        : "bg-[#140b07]/90 border-[#f27d26]/15 text-[#b8aba0] hover:text-[#fcf8f5] hover:bg-[#1a0f0a]"
+                    }`}
+                  >
+                    <div>
+                      <div className="text-sm font-bold text-[#fcf8f5] font-cinzel">{soul.name}</div>
+                      <div className="text-xs text-[#96897e] font-mono">{soul.archetype}</div>
+                      {soul.coreWound && (
+                        <div className="text-[10px] text-[#c8bbb0] font-mono mt-1 truncate">
+                          Wound: {soul.coreWound}
+                        </div>
+                      )}
+                    </div>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#0c0603] text-[#ffaa5e] border border-[#f27d26]/20">
+                      {soul.shadowIntensity || "deep"}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Audio Prompt Generator */}
+          <div className="lg:col-span-8 bg-[#140b07]/90 border border-[#f27d26]/20 rounded-2xl p-6 space-y-6 shadow-2xl backdrop-blur-xl">
+            {/* Header */}
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#f27d26]/15 pb-4">
+              <div>
+                <span className="text-xs font-mono text-[#ffaa5e] font-semibold uppercase">Active Imagination Generator</span>
+                <h3 className="text-xl font-bold text-[#fcf8f5] mt-0.5 font-cinzel">{selectedSoul.name}</h3>
+                <div className="text-xs text-[#96897e] font-mono">
+                  Polarity: {selectedSoul.polarityAxis || "Control ↔ Surrender"} | Intensity: {selectedSoul.shadowIntensity || "deep"}
+                </div>
+              </div>
+              <button
+                onClick={handleGenerateAudioPrompt}
+                disabled={isGeneratingAudioPrompt}
+                className="px-4 py-2.5 rounded-xl glow-btn-primary text-xs font-mono font-bold transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+              >
+                {isGeneratingAudioPrompt ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                <span>Generate Audio Prompt</span>
+              </button>
+            </div>
+
+            {/* Soul Shadow Data Display */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-[#0c0603] border border-[#f27d26]/20 rounded-xl p-4 space-y-2">
+                <div className="text-xs font-mono text-[#ffaa5e] font-semibold uppercase">Core Wound</div>
+                <div className="text-xs text-[#d5c8be] font-mono leading-relaxed">
+                  {selectedSoul.coreWound || "Not defined"}
+                </div>
+              </div>
+              <div className="bg-[#0c0603] border border-[#f27d26]/20 rounded-xl p-4 space-y-2">
+                <div className="text-xs font-mono text-[#ffaa5e] font-semibold uppercase">Golden Shadow</div>
+                <div className="text-xs text-[#d5c8be] font-mono leading-relaxed">
+                  {selectedSoul.goldenShadow || "Not defined"}
+                </div>
+              </div>
+            </div>
+
+            {/* Generated Audio Prompt Output */}
+            {audioPromptData ? (
+              <div className="space-y-4">
+                <div className="bg-[#0c0603] border border-[#f27d26]/30 rounded-xl p-5 space-y-4 shadow-inner">
+                  {/* Title */}
+                  <div>
+                    <div className="text-xs font-mono text-[#ffaa5e] font-semibold uppercase mb-1">Title</div>
+                    <div className="text-sm text-[#fcf8f5] font-cinzel">{audioPromptData.title}</div>
+                  </div>
+
+                  {/* Soundscape */}
+                  <div>
+                    <div className="text-xs font-mono text-[#ffaa5e] font-semibold uppercase mb-1">Soundscape</div>
+                    <div className="text-xs text-[#d5c8be] font-mono">{audioPromptData.soundscape}</div>
+                  </div>
+
+                  {/* Pacing Guidance */}
+                  <div>
+                    <div className="text-xs font-mono text-[#ffaa5e] font-semibold uppercase mb-1">Pacing Guidance</div>
+                    <div className="text-xs text-[#d5c8be] font-mono">{audioPromptData.pacingGuidance}</div>
+                  </div>
+
+                  {/* Script */}
+                  <div>
+                    <div className="text-xs font-mono text-[#ffaa5e] font-semibold uppercase mb-2">Guided Meditation Script</div>
+                    <div className="bg-[#140b07] border border-[#f27d26]/15 rounded-lg p-4 text-xs text-[#d5c8be] font-mono leading-relaxed whitespace-pre-wrap max-h-[280px] overflow-y-auto">
+                      {audioPromptData.script}
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    <button
+                      onClick={handleToggleSpeechSynthesis}
+                      className="px-4 py-2 rounded-lg bg-[#f27d26] text-[#0a0502] text-xs font-mono font-bold flex items-center gap-2 transition-all hover:bg-[#e65c00] cursor-pointer"
+                    >
+                      {isPlayingTTS ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                      <span>{isPlayingTTS ? "Stop Playback" : "Play Script"}</span>
+                    </button>
+                    <button
+                      onClick={handleCopyScript}
+                      className="px-4 py-2 rounded-lg bg-[#24130b] border border-[#f27d26]/30 text-[#fcf8f5] text-xs font-mono font-bold flex items-center gap-2 transition-all hover:bg-[#1a0f0a] cursor-pointer"
+                    >
+                      {copiedScript ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                      <span>{copiedScript ? "Copied!" : "Copy Script"}</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="bg-[#0c0603] border border-[#f27d26]/20 rounded-xl p-8 text-center space-y-3">
+                <Volume2 className="w-12 h-12 text-[#3d2417] mx-auto" />
+                <p className="text-xs text-[#6d5f54] font-mono">
+                  Generate a Jungian Active Imagination guided meditation script with soundscape recommendations and pacing guidance.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Tab 3: Soul Polarity Radar & Spectrum */}
       {activeDialogueView === "polarity-map" && (
         <div className="bg-[#140b07]/90 border border-[#f27d26]/20 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl backdrop-blur-xl">
           <div className="border-b border-[#f27d26]/15 pb-4 flex flex-wrap items-center justify-between gap-4">
@@ -250,7 +467,7 @@ export const ShadowEngineView: React.FC = () => {
         </div>
       )}
 
-      {/* Tab 3: Shadow Integration Guide */}
+      {/* Tab 4: Shadow Integration Guide */}
       {activeDialogueView === "guide" && (
         <div className="bg-[#140b07]/90 border border-[#f27d26]/20 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl backdrop-blur-xl">
           <div className="border-b border-[#f27d26]/15 pb-4">

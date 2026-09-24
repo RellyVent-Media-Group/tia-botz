@@ -204,6 +204,13 @@ npm start
 
 **Index:** `SOP-INDEX.md`
 
+### Reference Documentation
+- **Portfolio-Construction-Catalog.md** - Complete guide for building visual assets across all Souls, Entities & AGENTS
+- **Notion-Database-Schemas.md** - Complete schemas for Content Calendar, Task List, and Character Sheets databases
+- **Lockbox-Quest-Gamification.md** - Gamified financial management system for micro-entrepreneurs with AGENT integration
+- **PAATS-System-Architecture.md** - Hybrid microservices and AI agents architectural blueprint for the PAATS system
+- **PAATS-System-Specification.md** - Complete technical specification for PAATS system implementation
+
 ---
 
 ## Character Database

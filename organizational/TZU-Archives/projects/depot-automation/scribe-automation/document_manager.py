@@ -7,6 +7,7 @@ Automates document management, contract automation, and infrastructure monitorin
 import json
 import datetime
 import os
+import statistics
 from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict
 from enum import Enum
@@ -508,6 +509,123 @@ Total Value: $[Value]
 ## References
 [Additional references]
 """
+    
+    def get_document_analytics(self, days: int = 30) -> Dict:
+        """Analyze document activity over specified period"""
+        cutoff_date = datetime.datetime.now() - datetime.timedelta(days=days)
+        
+        recent_docs = [d for d in self.documents.values() 
+                      if datetime.datetime.fromisoformat(d.updated_at) >= cutoff_date]
+        
+        if not recent_docs:
+            return {"period_days": days, "analyzed_documents": 0, "analytics": {}}
+        
+        document_type_analytics = {}
+        for doc_type in DocumentType:
+            type_docs = [d for d in recent_docs if d.document_type == doc_type]
+            if type_docs:
+                document_type_analytics[doc_type.value] = {
+                    "document_count": len(type_docs),
+                    "avg_version": statistics.mean([float(d.version.split('.')[1]) for d in type_docs]),
+                    "status_distribution": {}
+                }
+                
+                for status in DocumentStatus:
+                    status_count = len([d for d in type_docs if d.status == status])
+                    if status_count > 0:
+                        document_type_analytics[doc_type.value]["status_distribution"][status.value] = status_count
+        
+        return {
+            "period_days": days,
+            "analyzed_documents": len(recent_docs),
+            "total_documents": len(self.documents),
+            "document_type_analytics": document_type_analytics
+        }
+    
+    def get_automation_triggers(self) -> List[Dict]:
+        """Generate automation triggers based on document management data"""
+        triggers = []
+        
+        # Document review backlog alert
+        pending_review = self.get_documents_by_status(DocumentStatus.REVIEW)
+        if len(pending_review) > 5:
+            triggers.append({
+                "type": "document_review_backlog",
+                "severity": "warning",
+                "message": f"{len(pending_review)} documents awaiting review",
+                "action": "Assign reviewers to pending documents"
+            })
+        
+        # Contract expiration alerts
+        expiring_soon = self.get_expiring_contracts(30)
+        if len(expiring_soon) > 0:
+            triggers.append({
+                "type": "contract_expiration_alert",
+                "severity": "warning",
+                "message": f"{len(expiring_soon)} contracts expiring within 30 days",
+                "action": "Review contract renewal terms and negotiate extensions"
+            })
+        
+        # Document update frequency alert
+        analytics = self.get_document_analytics(30)
+        if analytics['analyzed_documents'] < 3:
+            triggers.append({
+                "type": "low_document_activity",
+                "severity": "info",
+                "message": f"Only {analytics['analyzed_documents']} documents updated in 30 days",
+                "action": "Review documentation schedule and update key documents"
+            })
+        
+        # Draft document alert
+        draft_docs = self.get_documents_by_status(DocumentStatus.DRAFT)
+        if len(draft_docs) > 10:
+            triggers.append({
+                "type": "draft_document_backlog",
+                "severity": "info",
+                "message": f"{len(draft_docs)} documents in draft status",
+                "action": "Complete or archive draft documents"
+            })
+        
+        return triggers
+    
+    def generate_enhanced_report(self) -> str:
+        """Generate enhanced document report with analytics and triggers"""
+        report = []
+        report.append("=" * 80)
+        report.append("SCRIBE DEPOT ENHANCED DOCUMENT MANAGEMENT REPORT")
+        report.append(f"Generated: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        report.append("=" * 80)
+        report.append("")
+        
+        # Standard report
+        report.append(self.generate_document_report())
+        report.append("")
+        
+        # Document analytics
+        analytics = self.get_document_analytics(30)
+        report.append("30-DAY DOCUMENT ACTIVITY ANALYTICS:")
+        report.append(f"  Analyzed Documents: {analytics['analyzed_documents']}")
+        report.append(f"  Total Documents: {analytics['total_documents']}")
+        for doc_type, data in analytics.get("document_type_analytics", {}).items():
+            report.append(f"  {doc_type.capitalize()}:")
+            report.append(f"    Documents: {data['document_count']}")
+            report.append(f"    Avg Version: {data['avg_version']:.1f}")
+            for status, count in data.get("status_distribution", {}).items():
+                report.append(f"    {status.capitalize()}: {count}")
+        report.append("")
+        
+        # Automation triggers
+        triggers = self.get_automation_triggers()
+        if triggers:
+            report.append("AUTOMATION TRIGGERS:")
+            for trigger in triggers:
+                severity_icon = "⚠️" if trigger['severity'] == 'warning' else "ℹ️"
+                report.append(f"  {severity_icon} {trigger['type'].replace('_', ' ').title()}")
+                report.append(f"    {trigger['message']}")
+                report.append(f"    Action: {trigger['action']}")
+            report.append("")
+        
+        return "\n".join(report)
 
 
 def main():
@@ -538,8 +656,8 @@ def main():
         auto_renewal=True
     )
     
-    # Generate report
-    print(manager.generate_document_report())
+    # Generate enhanced report
+    print(manager.generate_enhanced_report())
 
 
 if __name__ == "__main__":

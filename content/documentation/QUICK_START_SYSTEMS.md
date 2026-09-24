@@ -24,7 +24,7 @@ cp .env.example .env
 ### Configure `.env`
 ```
 TELEGRAM_BOT_TOKEN=your_bot_token_from_botfather
-CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Private & Shared/Character Database
+CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database
 ```
 
 ### Start
@@ -48,7 +48,7 @@ cp .env.example .env
 
 ### Configure `.env`
 ```
-CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Private & Shared/Character Database
+CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database
 ```
 
 ### Start
@@ -73,8 +73,8 @@ cp .env.example .env
 
 ### Configure `.env`
 ```
-CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Private & Shared/Character Database
-VISUAL_ASSETS_PATH=/Users/jypsee72/Desktop/T.Zi.zu/visual-assets
+CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database
+VISUAL_ASSETS_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/content/visual-assets
 POST_FREQUENCY_INSTAGRAM=3
 POST_FREQUENCY_TIKTOK=2
 ```
@@ -113,7 +113,7 @@ NOTION_API_KEY=your_integration_token
 NOTION_CHARACTER_DATABASE_ID=your_character_db_id
 NOTION_CONTENT_CALENDAR_ID=your_calendar_db_id
 NOTION_TASK_DATABASE_ID=your_task_db_id
-CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Private & Shared/Character Database
+CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database
 ```
 
 ### Start

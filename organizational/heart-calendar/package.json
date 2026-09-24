@@ -1,0 +1,26 @@
+{
+  "name": "heart-calendar-system",
+  "version": "2.0.0",
+  "description": "Zori Calendar and Sentenniel Calendar system for the Tiapmaatzu OS Toolkit",
+  "main": "dist/heart-calendar.js",
+  "types": "dist/heart-calendar.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "ts-node integration-test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "calendar",
+    "zori",
+    "sentenniel",
+    "heart-calendar",
+    "13-month-calendar"
+  ],
+  "author": "Tiapmaatzu OS Toolkit",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}

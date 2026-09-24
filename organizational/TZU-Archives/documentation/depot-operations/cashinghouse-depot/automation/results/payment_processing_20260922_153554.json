@@ -1,0 +1,40 @@
+{
+  "total_payments": 4,
+  "successful": 4,
+  "failed": 0,
+  "total_amount_processed": 489.98,
+  "processing_details": [
+    {
+      "payment_id": "PAY001",
+      "status": "success",
+      "amount": 49.99,
+      "gateway": "stripe",
+      "processed_at": "2026-09-22T15:35:54.615789",
+      "dry_run": true
+    },
+    {
+      "payment_id": "PAY002",
+      "status": "success",
+      "amount": 125.0,
+      "gateway": "paypal",
+      "processed_at": "2026-09-22T15:35:54.615899",
+      "dry_run": true
+    },
+    {
+      "payment_id": "PAY003",
+      "status": "success",
+      "amount": 299.99,
+      "gateway": "stripe",
+      "processed_at": "2026-09-22T15:35:54.615974",
+      "dry_run": true
+    },
+    {
+      "payment_id": "PAY004",
+      "status": "success",
+      "amount": 15.0,
+      "gateway": "braintree",
+      "processed_at": "2026-09-22T15:35:54.616171",
+      "dry_run": true
+    }
+  ]
+}

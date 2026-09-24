@@ -1,11 +1,11 @@
 #!/bin/bash
-# Tiapma'atzu OS Toolkit - Setup Script
+# Tiapmaatzu OS Toolkit - Setup Script
 # This script helps install dependencies and configure the environment
 
 set -e
 
 echo "========================================"
-echo "Tiapma'atzu OS Toolkit - Setup"
+echo "Tiapmaatzu OS Toolkit - Setup"
 echo "========================================"
 echo ""
 

@@ -1,0 +1,22 @@
+{
+  "dry_run": true,
+  "platforms": [
+    "gumroad",
+    "fiverr",
+    "crakrevenue",
+    "admob",
+    "linktree"
+  ],
+  "currency": "USD",
+  "aggregation_interval": "daily",
+  "anomaly_thresholds": {
+    "min_daily_revenue": 1000.0,
+    "max_single_platform_percentage": 70.0,
+    "min_transaction_count": 10
+  },
+  "reporting": {
+    "generate_daily_report": true,
+    "alert_on_anomaly": true,
+    "archive_results": true
+  }
+}

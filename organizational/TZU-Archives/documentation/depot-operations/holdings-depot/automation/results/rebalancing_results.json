@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-09-22T15:30:53.077933",
+  "total_actions": 2,
+  "actions": [
+    {
+      "symbol": "AAPL",
+      "action": "sell",
+      "amount": 12500.0,
+      "reason": "Deviation of 8.33% from target 25%"
+    },
+    {
+      "symbol": "GLD",
+      "action": "buy",
+      "amount": 12500.0,
+      "reason": "Deviation of -8.33% from target 15%"
+    }
+  ],
+  "dry_run": true
+}

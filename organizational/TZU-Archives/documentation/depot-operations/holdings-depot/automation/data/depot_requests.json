@@ -1,0 +1,40 @@
+{
+  "requests": [
+    {
+      "depot_id": "TZI.CNS.DEP.CONSORT",
+      "name": "Consort Depot",
+      "current_allocation": 150000,
+      "requested_amount": 200000,
+      "priority": "HIGH",
+      "justification": "Content production equipment upgrade",
+      "category": "growth_investment"
+    },
+    {
+      "depot_id": "TZI.SCR.DEP.SCRIBE",
+      "name": "Scribe Depot",
+      "current_allocation": 100000,
+      "requested_amount": 50000,
+      "priority": "MEDIUM",
+      "justification": "Documentation system maintenance",
+      "category": "operational"
+    },
+    {
+      "depot_id": "TZI.CSH.DEP.CASHING",
+      "name": "CashingHouse Depot",
+      "current_allocation": 200000,
+      "requested_amount": 300000,
+      "priority": "CRITICAL",
+      "justification": "Financial system security upgrade",
+      "category": "operational"
+    },
+    {
+      "depot_id": "TZI.GRD.DEP.GRID",
+      "name": "Grid Depot",
+      "current_allocation": 80000,
+      "requested_amount": 150000,
+      "priority": "HIGH",
+      "justification": "Cybersecurity infrastructure expansion",
+      "category": "growth_investment"
+    }
+  ]
+}

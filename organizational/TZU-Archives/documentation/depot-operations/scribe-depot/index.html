@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scribe Depot Documentation - TZI.SCR.DEP.BODY</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        header .depot-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        header .info-item {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        nav {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #764ba2;
+        }
+
+        main {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .doc-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #667eea;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .doc-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .doc-card p {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .doc-card .meta {
+            font-size: 0.8em;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .doc-card a {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+
+        .doc-card a:hover {
+            background: #764ba2;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #e9ecef;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header .depot-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .doc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Scribe Depot Documentation</h1>
+            <p class="subtitle">TZI.SCR.DEP.BODY | HueMan-i-Terry/ESTATE</p>
+            <div class="depot-info">
+                <div class="info-item">🏢 Parent: TZI.TR.CON</div>
+                <div class="info-item">📋 Specialization: Estate Management & Documentation</div>
+                <div class="info-item">🔄 Last Updated: September 22, 2024</div>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#core">Core Documentation</a></li>
+                <li><a href="#specialized">Specialized Guides</a></li>
+                <li><a href="#roles">By Role</a></li>
+                <li><a href="#stats">Statistics</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Search documentation..." onkeyup="searchDocs()">
+            </div>
+
+            <div class="section">
+                <h2>📊 Documentation Statistics</h2>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="number">13</div>
+                        <div class="label">Total Documents</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">50K+</div>
+                        <div class="label">Words of Content</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">9</div>
+                        <div class="label">Specialty Roles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">3</div>
+                        <div class="label">Partner Depots</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="core">
+                <h2>📁 Core Documentation</h2>
+                <div class="doc-grid">
+                    <div class="doc-card">
+                        <h3>Operations Manual</h3>
+                        <p>Primary operational reference for all depot activities including organizational structure, specialized scribe roles, and daily operations.</p>
+                        <div class="meta">Audience: All scribes | Update: Quarterly</div>
+                        <a href="docs.html?file=operations-manual.md">View Document</a>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Scribe Onboarding Guide</h3>
+                        <p>Comprehensive 8-week onboarding program for new scribes with detailed training schedules and role-specific guidance.</p>
+                        <div class="meta">Audience: New scribes | Update: Monthly</div>
+                        <a href="docs.html?file=scribe-onboarding-guide.md">View Document</a>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Template Library</h3>
+                        <p>Standard templates for common documentation tasks including reports, contracts, meetings, and specialty-specific templates.</p>
+                        <div class="meta">Audience: All scribes | Update: Monthly</div>
+                        <a href="docs.html?file=template-library.md">View Document</a>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Performance Metrics Guide</h3>
+                        <p>Framework for measuring and reporting depot performance with KPIs, reporting structure, and data collection methods.</p>
+                        <div class="meta">Audience: All scribes | Update: Quarterly</div>
+                        <a href="docs.html?file=performance-metrics-guide.md">View Document</a>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Executive Summary Report</h3>
+                        <p>Strategic overview and analysis of depot operations for parent organization and stakeholders.</p>
+                        <div class="meta">Audience: Leadership | Update: Quarterly</div>
+                        <a href="docs.html?file=executive-summary-report.md">View Document</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="specialized">
+                <h2>🔧 Specialized Documentation</h2>
+                <div class="doc-grid">
+                    <div class="doc-card">
+                        <h3>Automation Implementation Guide</h3>
+                        <p>Practical implementation of automation priorities with code examples, implementation timeline, and success metrics.</p>
+                        <div class="meta">Audience: Technical team | Update: As needed</div>
+                        <a href="docs.html?file=automation-implementation-guide.md">View Document</a>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Partner Depot Integration Guide</h3>
+                        <p>Integration protocols with Consort, CashingHouse, and Holdings depots including API integration and data exchange.</p>
+                        <div class="meta">Audience: Integration teams | Update: Quarterly</div>
+                        <a href="docs.html?file=partner-depot-integration-guide.md">View Document</a>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Crisis Management Procedures</h3>
+                        <p>Comprehensive crisis response and recovery procedures with 4-level crisis classification and complete response protocols.</p>
+                        <div class="meta">Audience: All personnel | Update: Quarterly</div>
+                        <a href="docs.html?file=crisis-management-procedures.md">View Document</a>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Documentation Standards</h3>
+                        <p>Standards for all documentation creation and management including writing standards, formatting, and quality control.</p>
+                        <div class="meta">Audience: All scribes | Update: Quarterly</div>
+                        <a href="docs.html?file=documentation-standards-style-guide.md">View Document</a>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Training Program Guide</h3>
+                        <p>Comprehensive training program from onboarding to advanced leadership development with certification pathways.</p>
+                        <div class="meta">Audience: All personnel | Update: Quarterly</div>
+                        <a href="docs.html?file=training-program-guide.md">View Document</a>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Communication Protocols</h3>
+                        <p>Standards for all internal and external communication including crisis communication and security protocols.</p>
+                        <div class="meta">Audience: All personnel | Update: Quarterly</div>
+                        <a href="docs.html?file=communication-protocols.md">View Document</a>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Audit and Review Procedures</h3>
+                        <p>Comprehensive audit framework and quality assurance procedures for continuous improvement.</p>
+                        <div class="meta">Audience: Audit team | Update: Annually</div>
+                        <a href="docs.html?file=audit-review-procedures.md">View Document</a>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Documentation Index</h3>
+                        <p>Central navigation guide for the complete documentation system with detailed classification and access information.</p>
+                        <div class="meta">Audience: All users | Update: Quarterly</div>
+                        <a href="docs.html?file=documentation-index.md">View Document</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="roles">
+                <h2>👥 Documentation by Role</h2>
+                <div class="doc-grid">
+                    <div class="doc-card">
+                        <h3>Key Operations</h3>
+                        <p>Leadership documentation including operations manual, executive reports, performance metrics, and crisis management.</p>
+                        <div class="meta">Strategic oversight</div>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Scribe of Canvassing</h3>
+                        <p>Community engagement documentation with specialty templates, metrics, and training materials.</p>
+                        <div class="meta">Community & outreach</div>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Scribe of Infrastructure</h3>
+                        <p>Technical documentation including automation guide, system procedures, and security protocols.</p>
+                        <div class="meta">Technical & systems</div>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Scribe of Creation</h3>
+                        <p>Creative process documentation with templates, standards, and workflow guides.</p>
+                        <div class="meta">Creative & content</div>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Scribe of Contracts</h3>
+                        <p>Legal documentation including contract templates, compliance procedures, and audit protocols.</p>
+                        <div class="meta">Legal & contracts</div>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Scribe of Palacing</h3>
+                        <p>Estate management documentation with property templates and integration guides.</p>
+                        <div class="meta">Property & estate</div>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Scribe of Light</h3>
+                        <p>Communication documentation with protocols, templates, and crisis communication procedures.</p>
+                        <div class="meta">Communication & PR</div>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Scribe of Esotericism/Symbolism</h3>
+                        <p>Symbolic documentation with frameworks, philosophical guides, and meaning documentation.</p>
+                        <div class="meta">Symbolic & conceptual</div>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Scribe of Myth</h3>
+                        <p>Narrative documentation with storytelling frameworks, historical archives, and oral history guides.</p>
+                        <div class="meta">Narrative & storytelling</div>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3>Scribe of Oasis</h3>
+                        <p>Wellness documentation with program templates, resource tracking, and work-life balance guides.</p>
+                        <div class="meta">Wellness & resources</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2024 Scribe Depot (TZI.SCR.DEP.BODY) | HueMan-i-Terry/ESTATE | Parent: TZI.TR.CON</p>
+            <p>Documentation Last Updated: September 22, 2024 | Next Review: December 22, 2024</p>
+        </footer>
+    </div>
+
+    <script>
+        function searchDocs() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const cards = document.querySelectorAll('.doc-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(filter) || description.includes(filter)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

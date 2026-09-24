@@ -1,6 +1,6 @@
 # Migration Summary
 
-This document summarizes the migration and consolidation of the scattered directories into the unified Tiapma'atzu OS Toolkit project.
+This document summarizes the migration and consolidation of the scattered directories into the unified Tiapmaatzu OS Toolkit project.
 
 ## Migration Date
 
@@ -16,7 +16,7 @@ The following source directories were consolidated:
 
 ## Destination Structure
 
-**Tiapma'atzu-OS-Toolkit/** - Unified project at `/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/`
+**Tiapmaatzu-OS-Toolkit/** - Unified project at `/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/`
 
 ## Components Migrated
 
@@ -52,36 +52,36 @@ The following hard-coded paths were updated to use the new standardized structur
 
 ### Telegram Bot
 - Old: `/Users/jypsee72/Desktop/Private & Shared/Character Database`
-- New: `/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/core/character-database/Character Database`
+- New: `/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database`
 - Env path: Updated from `../.env` to `../../.env`
 
 ### WhatsApp Bot
 - Old: `/Users/jypsee72/Desktop/Private & Shared/Character Database`
-- New: `/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/core/character-database/Character Database`
+- New: `/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database`
 - Env path: Updated from `../.env` to `../../.env`
 
 ### Social Media Automation
 - Old: `/Users/jypsee72/Desktop/Private & Shared/Character Database`
-- New: `/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/core/character-database/Character Database`
+- New: `/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database`
 - Old: `/Users/jypsee72/Desktop/T.Zi.zu/visual-assets`
-- New: `/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/content/visual-assets`
+- New: `/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/content/visual-assets`
 - Fixed: Removed duplicate `visual-assets` in fallback path
 
 ### Notion Sync
 - Old: `/Users/jypsee72/Desktop/Private & Shared/Character Database`
-- New: `/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/core/character-database/Character Database`
+- New: `/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database`
 - Old: `/Users/jypsee72/Desktop/T.Zi.zu/visual-assets`
-- New: `/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/content/visual-assets`
+- New: `/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/content/visual-assets`
 
 ## Standardized Paths
 
 All systems now use these standardized paths:
 
 ```env
-CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/core/character-database/Character Database
-VISUAL_ASSETS_PATH=/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/content/visual-assets
-CONTENT_CALENDAR_PATH=/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/core/character-database/Content Calendar
-TASK_LIST_PATH=/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/core/character-database/Task List
+CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database
+VISUAL_ASSETS_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/content/visual-assets
+CONTENT_CALENDAR_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Content Calendar
+TASK_LIST_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Task List
 ```
 
 ## Configuration
@@ -120,7 +120,7 @@ To verify the migration:
 
 1. **Check directory structure:**
    ```bash
-   cd /Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit
+   cd /Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit
    ls -la
    ```
 

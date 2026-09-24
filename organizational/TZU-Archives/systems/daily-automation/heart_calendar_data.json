@@ -1,0 +1,83 @@
+{
+  "Q1_REVIEW": {
+    "event_id": "Q1_REVIEW",
+    "depot_id": "ALL",
+    "title": "Q1 Strategic Review",
+    "description": "Quarterly performance review and strategic planning",
+    "heart_date": {
+      "year": 2026,
+      "month": "Emahney",
+      "day": 16.0
+    },
+    "gregorian_date": "2026-12-13",
+    "event_type": "review",
+    "priority": "high",
+    "status": "planned",
+    "participants": [
+      "ZI",
+      "Depot_Heads"
+    ],
+    "notes": "Review Q1 performance and plan Q2 strategy"
+  },
+  "Q2_REVIEW": {
+    "event_id": "Q2_REVIEW",
+    "depot_id": "ALL",
+    "title": "Q2 Strategic Review",
+    "description": "Quarterly performance review and strategic planning",
+    "heart_date": {
+      "year": 2026,
+      "month": "Justin",
+      "day": 29.0
+    },
+    "gregorian_date": "2027-02-20",
+    "event_type": "review",
+    "priority": "high",
+    "status": "planned",
+    "participants": [
+      "ZI",
+      "Depot_Heads"
+    ],
+    "notes": "Review Q2 performance and plan Q3 strategy"
+  },
+  "Q3_REVIEW": {
+    "event_id": "Q3_REVIEW",
+    "depot_id": "ALL",
+    "title": "Q3 Strategic Review",
+    "description": "Quarterly performance review and strategic planning",
+    "heart_date": {
+      "year": 2027,
+      "month": "Jessica",
+      "day": 15.0
+    },
+    "gregorian_date": "2027-05-30",
+    "event_type": "review",
+    "priority": "high",
+    "status": "planned",
+    "participants": [
+      "ZI",
+      "Depot_Heads"
+    ],
+    "notes": "Review Q3 performance and plan Q4 strategy"
+  },
+  "ANNUAL_REVIEW": {
+    "event_id": "ANNUAL_REVIEW",
+    "depot_id": "ALL",
+    "title": "Annual Strategic Review",
+    "description": "Annual performance review and strategic planning",
+    "heart_date": {
+      "year": 2027,
+      "month": "Brandon",
+      "day": 15.0
+    },
+    "gregorian_date": "2027-08-22",
+    "event_type": "review",
+    "priority": "high",
+    "status": "planned",
+    "participants": [
+      "ZI",
+      "Depot_Heads",
+      "Stakeholders"
+    ],
+    "notes": "Annual review and next year planning"
+  }
+}

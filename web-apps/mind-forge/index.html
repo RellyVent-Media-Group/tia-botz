@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mind-Forge - AI-Powered Creative Canvas</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body {
+font-family: 'Inter', sans-serif;
+background-color: #0a0d10;
+color: #f4efe4;
+}
+textarea:focus {
+outline: none;
+ring: 2px;
+ring-color: #8acbd2;
+}
+.spinner {
+border: 4px solid rgba(138, 203, 210, 0.3);
+border-top: 4px solid #8acbd2;
+border-radius: 50%;
+width: 48px;
+height: 48px;
+animation: spin 1s linear infinite;
+}
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+</style>
+</head>
+<body class="min-h-screen p-8 flex flex-col items-center">
+<!-- Main Container -->
+<div class="bg-[#12171d] rounded-3xl shadow-2xl overflow-hidden w-full max-w-6xl flex flex-col lg:flex-row border border-[#181f27]">
+<!-- Prompt Generator Section -->
+<div class="p-10 lg:w-1/3 border-r border-[#181f27] flex flex-col justify-between">
+<div class="mb-8">
+<h1 class="text-3xl font-bold mb-4 text-[#8acbd2]">Mind-Forge</h1>
+<p class="text-sm text-[#aeb4b7] mb-6">Unleash your creativity. Enter a simple idea and let our AI forge it into a detailed, inspiring prompt for your next great work.</p>
+<div class="mb-4">
+<label for="user-input" class="block text-sm font-medium mb-2 text-[#f4efe4]">Your Idea</label>
+<textarea
+id="user-input"
+rows="4"
+class="w-full p-3 border border-[#181f27] rounded-xl bg-[#0a0d10] text-[#f4efe4] focus:ring-2 focus:ring-[#8acbd2] transition-all duration-300 resize-none"
+placeholder="e.g., A futuristic city built on a giant tree."
+></textarea>
+</div>
+<button
+id="generate-btn"
+class="w-full bg-[#8acbd2] text-[#0a0d10] font-semibold py-3 px-6 rounded-xl hover:bg-[#75b982] transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+>
+Generate Prompt
+</button>
+</div>
+<!-- Status and Error Messages -->
+<div id="error-message" class="hidden p-4 bg-[#c84c48]/20 text-[#c84c48] border border-[#c84c48] rounded-lg text-sm transition-all duration-300"></div>
+</div>
+
+<!-- Core Canvas Section -->
+<div class="p-10 lg:w-2/3 bg-[#0a0d10] flex flex-col justify-between relative">
+<div class="absolute top-0 left-0 w-full h-full p-10 flex flex-col justify-center items-center" id="loading-container" style="display: none;">
+<div class="spinner mx-auto mb-4"></div>
+<p class="text-[#aeb4b7] font-medium">Forging new ideas...</p>
+</div>
+<div class="flex-grow overflow-y-auto mb-6 relative" id="canvas-container">
+<div class="text-center text-[#aeb4b7] font-light italic py-8" id="empty-state">
+<p>Your creative prompt will appear here.</p>
+</div>
+<div id="canvas-text" class="prose max-w-none text-[#f4efe4] transition-opacity duration-300" style="display: none;">
+<h2 class="text-2xl font-bold mb-4 text-[#f4efe4]">Creative Canvas</h2>
+<div id="prompt-content"></div>
+</div>
+</div>
+<button
+id="copy-btn"
+class="w-full bg-[#181f27] text-[#f4efe4] font-semibold py-3 px-6 rounded-xl hover:bg-[#181f27]/80 transition-colors duration-300 shadow-sm hidden"
+>
+Copy Prompt
+</button>
+</div>
+</div>
+
+<script>
+const userInput = document.getElementById('user-input');
+const generateBtn = document.getElementById('generate-btn');
+const copyBtn = document.getElementById('copy-btn');
+const errorMessage = document.getElementById('error-message');
+const loadingContainer = document.getElementById('loading-container');
+const canvasContainer = document.getElementById('canvas-container');
+const emptyState = document.getElementById('empty-state');
+const canvasText = document.getElementById('canvas-text');
+const promptContent = document.getElementById('prompt-content');
+
+// Sample prompts for demonstration (simulating AI generation)
+const samplePrompts = {
+"futuristic city": `Imagine a sprawling metropolis where ancient traditions merge with cutting-edge technology. Towering structures of living glass pulse with bio-luminescent light, each building a testament to humanity's harmony with nature. Flying vehicles navigate through vertical gardens, while AI-assisted citizens collaborate in seamless harmony. The air hums with the energy of progress, yet whispers of ancestral wisdom echo through the streets. Consider the contrast between the organic and the synthetic, the old and the new. How does this city sustain itself? What challenges does it face? What stories live in its shadows?`,
+"giant tree": `Visualize a tree of colossal proportions, its canopy spanning miles, its roots delving deep into the planet's core. This isn't just a tree—it's a living ecosystem, a sanctuary, a world unto itself. Creatures evolved in symbiosis with its branches call it home. Its leaves process light and thought, its sap flows with memories and dreams. Communities have built their lives around its trunk, revering it as a guardian. Explore the relationship between scale and intimacy. How do you navigate a world where one lifeform dominates the landscape? What wisdom does this ancient being hold?`,
+"underwater": `Dive into an oceanic realm where humanity has adapted to life beneath the waves. Cities of coral and bioluminescent materials glow in the deep, their inhabitants breathing through modified physiology or advanced technology. Schools of fish navigate the same currents as submersible vehicles. The pressure is both physical and metaphorical—the weight of the ocean, the weight of survival. Consider how culture evolves in this environment. What new forms of art, music, and communication emerge? How do the rhythms of the deep shape daily life?`,
+"space station": `Picture a space station that serves as a microcosm of human civilization. Each sector represents a different culture, biome, or philosophy. Zero-gravity gardens grow exotic flora. The windows frame infinite stars, a constant reminder of humanity's place in the cosmos. The station hums with the quiet of recycled air and the thrum of life support. Explore the dynamics of a closed ecosystem. How do diverse communities coexist in isolation? What happens when systems fail? What does "home" mean when you're surrounded by void?`,
+"magic academy": `Envision an academy where magic is taught not as myth, but as a science. Students study the physics of spellcasting, the chemistry of potions, the biology of enchanted creatures. The library shelves groan with tomes of empirical sorcery. The professors are researchers pushing the boundaries of what's possible. Yet, the unexplainable still lingers—the spark that defies measurement. Consider the intersection of wonder and rigor. How does systematizing the mystical change it? What's lost and what's gained when magic becomes methodical?`
+};
+
+function showError(message) {
+errorMessage.textContent = message;
+errorMessage.classList.remove('hidden');
+setTimeout(() => {
+errorMessage.classList.add('hidden');
+}, 5000);
+}
+
+function generatePrompt() {
+const input = userInput.value.trim();
+if (!input) {
+showError('Please enter a topic or idea.');
+return;
+}
+
+// Show loading
+loadingContainer.style.display = 'flex';
+generateBtn.disabled = true;
+generateBtn.textContent = 'Forging...';
+emptyState.style.display = 'none';
+canvasText.style.display = 'none';
+copyBtn.classList.add('hidden');
+
+// Simulate AI generation delay
+setTimeout(() => {
+// Find matching prompt or generate a generic one
+let generatedPrompt = samplePrompts[input.toLowerCase()] || null;
+
+if (!generatedPrompt) {
+// Generate a generic prompt based on input
+generatedPrompt = `Explore the concept of "${input}" through multiple lenses. Consider its personal significance, its cultural context, its potential for transformation. What emotions does it evoke? What memories does it unlock? How might it be reimagined or repurposed? Let your mind wander through associations, contrasts, and possibilities. This is your canvas—paint with ideas, sculpt with questions, compose with insights.`;
+}
+
+// Display the prompt
+promptContent.innerHTML = generatedPrompt.split('\n').map(line => {
+if (line.trim()) {
+return `<p class="mb-2">${line}</p>`;
+}
+return '';
+}).join('');
+
+// Hide loading, show content
+loadingContainer.style.display = 'none';
+canvasText.style.display = 'block';
+copyBtn.classList.remove('hidden');
+generateBtn.disabled = false;
+generateBtn.textContent = 'Generate Prompt';
+}, 1500);
+}
+
+function copyPrompt() {
+const text = promptContent.innerText;
+navigator.clipboard.writeText(text).then(() => {
+const originalText = copyBtn.textContent;
+copyBtn.textContent = 'Copied!';
+setTimeout(() => {
+copyBtn.textContent = originalText;
+}, 2000);
+}).catch(err => {
+console.error('Failed to copy:', err);
+showError('Failed to copy to clipboard');
+});
+}
+
+generateBtn.addEventListener('click', generatePrompt);
+copyBtn.addEventListener('click', copyPrompt);
+
+// Allow Enter key to generate (with Ctrl/Cmd)
+userInput.addEventListener('keydown', (e) => {
+if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+generatePrompt();
+}
+});
+</script>
+</body>
+</html>

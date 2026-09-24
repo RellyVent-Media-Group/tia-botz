@@ -6,7 +6,7 @@
 |----------|------------|---------------|---------------|------------|
 | **Fiverr - AI Scriptwriter Pro** | $50 | $150 | $450 | Script writing |
 | **Fiverr - AI Lore Studio** | $75 | $200 | $500 | Narrative design |
-| **CRAKREVENUE** | $67 | $97 | $147 | Adult industry marketing |
+| **CRAKREVENUE** | $67 | $97 | $147 | Adult industry marketing* |
 | **Telegram** | $197 | $397 | $797 | Bot integration |
 | **WhatsApp** | $497 | $997 | $1,997 | Business API |
 | **Google Ads** | $197 | $497 | $997 | Marketing campaigns |
@@ -23,10 +23,10 @@
 | **CRAKREVENUE** | 95% vs traditional shoots | 90-minute workflow | 40% brand recognition | Adult industry optimized |
 | **Telegram** | 100% platform fees | 10+ hours/week automation | Subscription revenue | Automated delivery |
 | **WhatsApp** | 98% open rates vs email | Professional automation | High engagement | Business credibility |
-| **Google Ads** | 50-67% CPA reduction | 90-minute workflow | 100-300% ROAS improvement | Cross-campaign consistency |
-| **AdMob** | 50-100% CPM increase | 90-minute workflow | 50-100% revenue improvement | User engagement focus |
-| **Instagram** | 100-200% engagement improvement | 90-minute workflow | 100-200% follower growth | Visual consistency |
-| **TikTok** | 100-200% viral improvement | 90-minute workflow | 100-200% completion rate | Algorithm optimization |
+| **Google Ads** | 50-67% CPA reduction (projected) | 90-minute workflow | 100-300% ROAS improvement (projected based on industry benchmarks) | Cross-campaign consistency |
+| **AdMob** | 50-100% CPM increase (projected) | 90-minute workflow | 50-100% revenue improvement (projected based on industry benchmarks) | User engagement focus |
+| **Instagram** | 100-200% engagement improvement (projected) | 90-minute workflow | 100-200% follower growth (projected based on industry benchmarks) | Visual consistency |
+| **TikTok** | 100-200% viral improvement (projected) | 90-minute workflow | 100-200% completion rate (projected based on industry benchmarks) | Algorithm optimization |
 
 ## Revenue Potential Analysis
 
@@ -115,6 +115,28 @@
 - **Integration ecosystem** - Not just prompts, but full workflow systems
 - **Notion integration** - Organization and tracking included
 - **Proven performance data** - Concrete metrics and ROI projections
+
+---
+
+## Important Disclaimers
+
+**Performance Projections:** All ROI claims, revenue improvements, engagement metrics, and time savings shown in this document are projections based on industry benchmarks and best practices. Actual results may vary significantly depending on factors including:
+- Market conditions and competition
+- Implementation quality and consistency
+- Target audience and niche
+- Existing brand presence and resources
+- Platform algorithm changes
+- External economic factors
+
+**Platform Pricing:** The pricing shown for Telegram, WhatsApp, Google Ads, AdMob, Instagram, and TikTok represents consultation, setup, and integration package pricing - not the platforms themselves. These platforms have their own separate costs (ad spend, API fees, etc.) that are not included in these packages.
+
+**Results Not Guaranteed:** Past performance is not indicative of future results. We provide tools, strategies, and systems to help you succeed, but your actual outcomes depend on your execution, market conditions, and many other variables beyond our control.
+
+**Consult a Professional:** For significant investments, we recommend consulting with legal, financial, and marketing professionals to develop a strategy tailored to your specific situation.
+
+---
+
+**\* CRAKREVENUE Brand Alignment Note:** CRAKREVENUE is a specialized offering for adult industry marketing. This service operates independently from the Tiapmaatzu OS Toolkit and ChiefPilot ecosystem. If your brand positioning does not align with adult industry content, you may exclude this platform from your strategy. Contact us to discuss brand-appropriate alternatives for your specific market.
 
 ---
 

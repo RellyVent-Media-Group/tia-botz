@@ -34,6 +34,40 @@
 
 ---
 
+## Reference Documentation
+
+### Portfolio Construction Catalog
+**File:** `Portfolio-Construction-Catalog.md`
+**Purpose:** Complete guide for building visual assets across all Souls, Entities & AGENTS
+**Key Output:** Consistent, high-quality visual portfolios for all characters
+**Shot Types:** Classic Hook Face, Over Dramatic/Epic/Funny, Trust-Building Warmth, Branding Hero Shot
+
+### Notion Database Schemas
+**File:** `Notion-Database-Schemas.md`
+**Purpose:** Complete schemas for Content Calendar, Task List, and Character Sheets databases
+**Key Output:** Structured Notion databases for production management
+**Databases:** Content Calendar, Task List, Character Sheets
+
+### Lockbox Quest Gamification
+**File:** `Lockbox-Quest-Gamification.md`
+**Purpose:** Gamified financial management system for micro-entrepreneurs with AGENT integration
+**Key Output:** Interactive web app with XP, levels, streaks, quests, badges, and AGENT quest guides
+**Features:** Digital mailbox, tax vault, rewards catalog, personalized AGENT guidance
+
+### PAATS System Architecture
+**File:** `PAATS-System-Architecture.md`
+**Purpose:** Hybrid microservices and AI agents architectural blueprint for the PAATS system
+**Key Output:** Interactive web app visualization and technical specification
+**Features:** Microagent pattern, event-driven backbone (Kafka), dual-protocol API strategy (REST/gRPC), MLOps integration
+
+### PAATS System Technical Specification
+**File:** `PAATS-System-Specification.md`
+**Purpose:** Complete technical specification for PAATS system implementation
+**Key Output:** Detailed technical blueprint for development team
+**Contents:** Architecture, technology stack, API specifications, security, monitoring, deployment roadmap
+
+---
+
 ## How to Use These SOPs
 
 ### Daily Routine

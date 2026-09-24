@@ -9,7 +9,12 @@
     "dev": "node --watch src/index.js",
     "schedule": "node src/scheduler.js",
     "post:instagram": "node src/platforms/instagram.js",
-    "post:tiktok": "node src/platforms/tiktok.js"
+    "post:tiktok": "node src/platforms/tiktok.js",
+    "test": "node tests/api-clients.test.js",
+    "test:watch": "node --watch tests/api-clients.test.js",
+    "audit": "npm audit",
+    "audit:fix": "npm audit fix",
+    "security:check": "npm audit && echo 'Checking for vulnerabilities...'"
   },
   "dependencies": {
     "axios": "^1.7.9",

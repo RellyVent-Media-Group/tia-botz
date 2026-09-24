@@ -2,6 +2,26 @@
  * ChiefPilot v3 / Gilded Mirrors Universe Types
  */
 
+// Eternity Calls Character Database Types (from Private & Shared)
+export interface EternityCharacter {
+  id: string;
+  file: string;
+  name: string;
+  allocatedBudget: string;
+  allocatedBudgetValue: number;
+  archetype: string;
+  classicHookPrompt: string;
+  description: string;
+  entityName: string;
+  gender: string;
+  heroBrandingPrompt: string;
+  keyToolCategory: string;
+  rarity: string;
+  status: string;
+  trustWarmthPrompt: string;
+  generatedAssets: string[];
+}
+
 export type WorkstreamType =
   | "universe-bible"
   | "character-bible"
@@ -14,6 +34,20 @@ export type WorkstreamType =
   | "screening-room"
   | "zu-depots"
   | "prompt-vault";
+
+export type ShadowIntensity = "surface" | "deep" | "primordial";
+
+export type ArchetypeWound =
+  | "Betrayal"
+  | "Abandonment"
+  | "Invisibility"
+  | "Impotence"
+  | "Defilement"
+  | "Chaos"
+  | "Worthlessness"
+  | "Fragmentation"
+  | "Suffocation"
+  | "Exile";
 
 export interface SoulEntity {
   id: string;
@@ -38,6 +72,12 @@ export interface SoulEntity {
   promptTemplate: string;
   temenosPractice: string;
   avatarSeed: string;
+  // Jungian Shadow Work fields
+  coreWound?: string;
+  goldenShadow?: string;
+  archetypeWound?: ArchetypeWound;
+  polarityAxis?: string; // e.g. "Control ↔ Surrender"
+  shadowIntensity?: ShadowIntensity;
 }
 
 export interface CharacterSheet {
@@ -152,4 +192,69 @@ export interface ShadowDialogueTurn {
   speaker: "Persona" | "Shadow" | "Synthesizer";
   message: string;
   timestamp: string;
+}
+
+// Jungian Integration Practice Types
+export type IntegrationTechnique =
+  | "Active Imagination"
+  | "Polarity Work"
+  | "3-2-1 Process"
+  | "Dream Continuation"
+  | "Golden Shadow Reclaiming"
+  | "Gestalt Dialogue";
+
+export interface PracticeStep {
+  number: number;
+  title: string;
+  prompt: string;
+  guidance: string;
+  suggestedDurationMin: number;
+}
+
+export interface IntegrationExercise {
+  id: string;
+  soulId: string;
+  soulName: string;
+  soulTitle: string;
+  soulAvatar: string;
+  title: string;
+  technique: IntegrationTechnique;
+  polarity: string;
+  intensity: ShadowIntensity;
+  core_wound: string;
+  golden_shadow: string;
+  archetype_wound: ArchetypeWound;
+  duration: string;
+  caution: string;
+  intro: string;
+  steps: PracticeStep[];
+  ritual_action: string;
+  somatic_cue: string;
+  affirmation: string;
+  closing_benediction: string;
+}
+
+export interface JournalEntry {
+  id: string;
+  createdAt: string;
+  soulId: string;
+  soulName: string;
+  exerciseTitle: string;
+  technique: IntegrationTechnique;
+  intensity: ShadowIntensity;
+  polarity: string;
+  stepNotes: Record<number, string>;
+  letterToWound: string;
+  goldenShadowEmbodiment: string;
+  actionCommitment: string;
+  feltShiftRating: number; // 1 to 10
+  completed: boolean;
+}
+
+// Audio Prompt Types
+export interface AudioPromptData {
+  title: string;
+  soundscape: string;
+  pacingGuidance: string;
+  script: string;
 }

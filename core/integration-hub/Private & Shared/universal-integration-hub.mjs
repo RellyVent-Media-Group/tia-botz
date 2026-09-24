@@ -23,7 +23,7 @@ const __dirname = dirname(__filename);
 
 // Configuration
 const CONFIG = {
-  port: process.env.INTEGRATION_PORT || 3000,
+  port: process.env.INTEGRATION_PORT || 3001,
   characterDataPath: join(__dirname, 'characters-cleaned.json'),
   notionApiKey: process.env.NOTION_API_KEY,
   notionDatabaseId: process.env.NOTION_DATABASE_ID,

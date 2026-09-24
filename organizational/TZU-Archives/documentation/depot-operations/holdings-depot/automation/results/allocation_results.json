@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-09-22T15:30:54.863798",
+  "total_budget": 1000000.0,
+  "total_requests": 4,
+  "decisions": [
+    {
+      "depot_id": "TZI.CSH.DEP.CASHING",
+      "depot_name": "CashingHouse Depot",
+      "allocated_amount": 200000.0,
+      "decision": "approved",
+      "reason": "Full allocation approved within budget"
+    },
+    {
+      "depot_id": "TZI.CNS.DEP.CONSORT",
+      "depot_name": "Consort Depot",
+      "allocated_amount": 200000,
+      "decision": "approved",
+      "reason": "Full allocation approved within budget"
+    },
+    {
+      "depot_id": "TZI.GRD.DEP.GRID",
+      "depot_name": "Grid Depot",
+      "allocated_amount": 150000,
+      "decision": "approved",
+      "reason": "Full allocation approved within budget"
+    },
+    {
+      "depot_id": "TZI.SCR.DEP.SCRIBE",
+      "depot_name": "Scribe Depot",
+      "allocated_amount": 50000,
+      "decision": "approved",
+      "reason": "Full allocation approved within budget"
+    }
+  ],
+  "dry_run": true,
+  "summary": {
+    "total_allocated": 600000.0,
+    "approved_count": 4,
+    "partial_count": 0,
+    "denied_count": 0,
+    "allocation_rate": 60.0
+  }
+}

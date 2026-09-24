@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 // Content Security Policy middleware
 app.use((_req, res, next) => {
@@ -270,9 +270,82 @@ Generate the next 3-4 dynamic dialogue beats between Persona and Shadow followed
   }
 });
 
+// Active Imagination Audio Prompt endpoint (Jungian guided meditation scripts)
+app.post("/api/generate-audio-prompt", async (req, res) => {
+  try {
+    const {
+      soulName = "The Soul Archetype",
+      coreWound = "Unconscious terror of dissolution",
+      archetypeWound = "Primordial Exile",
+      goldenShadow = "Sovereign peace and unbounded vitality",
+      intensity = "deep",
+      polarity = "Control ↔ Surrender"
+    } = req.body;
+
+    const ai = getGenAI();
+    const prompt = `You are an expert Jungian depth psychologist and contemplative meditation guide specializing in Carl Jung's technique of Active Imagination.
+Craft an authentic, hypnotic, somatically grounded "Active Imagination" guided audio prompt script and text-to-speech narrative for a seeker integrating the following soul archetype:
+
+Archetype Soul Name: "${soulName}"
+Core Wound: "${coreWound}"
+Archetypal Wound Category: "${archetypeWound}"
+Polarity Axis: "${polarity}"
+Golden Shadow (Disowned Virtue): "${goldenShadow}"
+Shadow Intensity Level: "${intensity}"
+
+Design requirements:
+1. Provide an evocative, poetic title for this guided meditation.
+2. Provide a specific acoustic soundscape recommendation (e.g. Solfeggio frequencies, binaural cues, natural ambient elements, sub-bass levels).
+3. Provide concise vocal pacing guidance for the narrator or text-to-speech engine.
+4. Write the full spoken audio script formatted with explicit timing cues like "[Pause 4s]", breathing instructions, visceral somatic descent, meeting the autonomous shadow personification, the Socratic unconscious dialogue questions, and the physical reclamation of the golden shadow.
+
+Output strictly valid JSON with this exact schema:
+{
+  "title": "string",
+  "soundscape": "string",
+  "pacingGuidance": "string",
+  "script": "string"
+}`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-3.8-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json"
+      }
+    });
+
+    const responseText = response.text || '';
+    let parsed;
+    try {
+      parsed = JSON.parse(responseText);
+    } catch {
+      parsed = {
+        title: `Active Imagination Descent: ${soulName}`,
+        soundscape: '432Hz Solfeggio meditative drone with gentle sub-bass hum',
+        pacingGuidance: 'Speak slowly and deliberately with 4-5 second pauses.',
+        script: responseText
+      };
+    }
+
+    return res.json(parsed);
+  } catch (err: any) {
+    console.error('Error in /api/generate-audio-prompt:', err);
+    return res.status(500).json({
+      error: err.message || 'Failed to generate audio script',
+      title: `Active Imagination Descent: ${req.body?.soulName || 'Soul'}`,
+      soundscape: '432Hz Solfeggio drone with low-frequency sub-hum',
+      pacingGuidance: 'Speak slowly and deliberately.',
+      script: `Close your eyes and breathe into your core. Acknowledge the wound of "${req.body?.coreWound || 'the unintegrated self'}". Allow the autonomous shadow to speak in stillness. Reclaim the golden shadow of "${req.body?.goldenShadow || 'vital wholeness'}".`
+    });
+  }
+});
+
 // Setup Vite middleware in dev or static serving in prod
 async function configureApp() {
-  if (process.env.NODE_ENV !== "production") {
+  const isProduction = process.env.NODE_ENV === "production";
+  
+  if (!isProduction) {
     const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
@@ -292,25 +365,15 @@ async function configureApp() {
 // Configure the app and export
 const appPromise = configureApp();
 
-// Export for ES modules
-export default appPromise;
-
-// Export for CommonJS (Vercel)
-// @ts-ignore - module.exports is available in CJS context
-if (typeof module !== 'undefined' && module.exports) {
-  appPromise.then((app) => {
-    module.exports = app;
-  });
-}
-
 // Start server for local development
 appPromise.then((configuredApp) => {
-  if (process.argv[1]?.includes('server.ts') || process.env.NODE_ENV !== 'production') {
-    configuredApp.listen(PORT, "0.0.0.0", () => {
-      console.log(`ChiefPilot Universe Server running on http://0.0.0.0:${PORT}`);
-    });
-  }
+  configuredApp.listen(PORT, "0.0.0.0", () => {
+    console.log(`ChiefPilot Universe Server running on http://0.0.0.0:${PORT}`);
+  });
 }).catch((err) => {
   console.error("Failed to start server:", err);
   process.exit(1);
 });
+
+// Export for ES modules
+export default appPromise;

@@ -6,6 +6,7 @@ Automates financial tracking, revenue optimization, and payment processing
 
 import json
 import datetime
+import statistics
 from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict
 from enum import Enum
@@ -371,6 +372,118 @@ class FinancialTracker:
                 })
         
         return recommendations
+    
+    def get_revenue_trends(self, days: int = 30) -> Dict:
+        """Analyze revenue trends over specified period"""
+        cutoff_date = datetime.datetime.now() - datetime.timedelta(days=days)
+        
+        platform_trends = {}
+        for platform in PlatformType:
+            platform_trans = [t for t in self.transactions.values() 
+                            if t.platform == platform and 
+                            datetime.datetime.fromisoformat(t.transaction_date) >= cutoff_date]
+            
+            if platform_trans:
+                amounts = [t.amount for t in platform_trans]
+                platform_trends[platform.value] = {
+                    "total_revenue": sum(amounts),
+                    "transaction_count": len(amounts),
+                    "average_transaction": statistics.mean(amounts),
+                    "min_transaction": min(amounts),
+                    "max_transaction": max(amounts),
+                    "revenue_std_dev": statistics.stdev(amounts) if len(amounts) > 1 else 0
+                }
+        
+        return {
+            "period_days": days,
+            "platform_trends": platform_trends,
+            "total_period_revenue": sum(t["total_revenue"] for t in platform_trends.values())
+        }
+    
+    def get_automation_triggers(self) -> List[Dict]:
+        """Generate automation triggers based on financial data"""
+        triggers = []
+        
+        # Low revenue alert
+        total_revenue = self.get_total_revenue()
+        if total_revenue['total_revenue'] < 1000:
+            triggers.append({
+                "type": "low_revenue_alert",
+                "severity": "warning",
+                "message": f"Total revenue ${total_revenue['total_revenue']:.2f} is below target",
+                "action": "Review marketing strategy and pricing"
+            })
+        
+        # High commission alert
+        if total_revenue['total_commission'] > total_revenue['total_revenue'] * 0.25:
+            triggers.append({
+                "type": "high_commission_alert",
+                "severity": "warning",
+                "message": f"Commission rates {total_revenue['total_commission']/total_revenue['total_revenue']*100:.1f}% are high",
+                "action": "Consider platform diversification or rate negotiation"
+            })
+        
+        # Pending transaction alert
+        pending = self.get_pending_transactions()
+        if len(pending) > 10:
+            triggers.append({
+                "type": "pending_transaction_alert",
+                "severity": "info",
+                "message": f"{len(pending)} pending transactions require attention",
+                "action": "Process pending transactions"
+            })
+        
+        # Platform performance alerts
+        for platform in PlatformType:
+            platform_revenue = self.get_revenue_by_platform(platform)
+            if platform_revenue['total_transactions'] > 0:
+                if platform_revenue['total_net_revenue'] < platform_revenue['total_revenue'] * 0.7:
+                    triggers.append({
+                        "type": "platform_performance_alert",
+                        "severity": "warning",
+                        "message": f"{platform.value.upper()} net revenue is below 70% of gross",
+                        "action": f"Review {platform.value} commission structure"
+                    })
+        
+        return triggers
+    
+    def generate_enhanced_report(self) -> str:
+        """Generate enhanced financial report with trends and triggers"""
+        report = []
+        report.append("=" * 80)
+        report.append("CASHINGHOUSE DEPOT ENHANCED FINANCIAL REPORT")
+        report.append(f"Generated: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        report.append("=" * 80)
+        report.append("")
+        
+        # Standard report
+        report.append(self.generate_financial_report())
+        report.append("")
+        
+        # Revenue trends
+        trends = self.get_revenue_trends(30)
+        report.append("30-DAY REVENUE TRENDS:")
+        report.append(f"  Total Period Revenue: ${trends['total_period_revenue']:,.2f}")
+        for platform, data in trends['platform_trends'].items():
+            report.append(f"  {platform.upper()}:")
+            report.append(f"    Revenue: ${data['total_revenue']:,.2f}")
+            report.append(f"    Transactions: {data['transaction_count']}")
+            report.append(f"    Avg: ${data['average_transaction']:.2f}")
+            report.append(f"    Range: ${data['min_transaction']:.2f} - ${data['max_transaction']:.2f}")
+        report.append("")
+        
+        # Automation triggers
+        triggers = self.get_automation_triggers()
+        if triggers:
+            report.append("AUTOMATION TRIGGERS:")
+            for trigger in triggers:
+                severity_icon = "⚠️" if trigger['severity'] == 'warning' else "ℹ️"
+                report.append(f"  {severity_icon} {trigger['type'].replace('_', ' ').title()}")
+                report.append(f"    {trigger['message']}")
+                report.append(f"    Action: {trigger['action']}")
+            report.append("")
+        
+        return "\n".join(report)
 
 
 def main():
@@ -406,8 +519,8 @@ def main():
         trans_id = tracker.add_transaction(**trans_config)
         tracker.update_transaction_status(trans_id, TransactionStatus.COMPLETED)
     
-    # Generate financial report
-    print(tracker.generate_financial_report())
+    # Generate enhanced financial report
+    print(tracker.generate_enhanced_report())
     
     # Generate pricing optimization recommendations
     print("\nPRICING OPTIMIZATION RECOMMENDATIONS:")

@@ -1,0 +1,105 @@
+{
+  "documents": {
+    "manual_20260922_114214": {
+      "document_id": "manual_20260922_114214",
+      "document_type": "manual",
+      "title": "Scribe Depot Operations Manual",
+      "description": "Comprehensive operations manual for Scribe Depot",
+      "content": "\n# OPERATIONS MANUAL\n\n## Purpose\n[Manual purpose]\n\n## Scope\n[Manual scope]\n\n## Procedures\n[Operational procedures]\n\n## Guidelines\n[Operational guidelines]\n\n## Emergency Procedures\n[Emergency procedures]\n\n## Appendices\n[Additional information]\n",
+      "status": "draft",
+      "author": "System",
+      "reviewer": "ZI",
+      "created_at": "2026-09-22T11:42:14.287872",
+      "updated_at": "2026-09-22T11:42:14.287877",
+      "version": "1.0",
+      "tags": [
+        "operations",
+        "manual",
+        "depot"
+      ],
+      "related_documents": [],
+      "metadata": {}
+    },
+    "guideline_20260922_114214": {
+      "document_id": "guideline_20260922_114214",
+      "document_type": "guideline",
+      "title": "Document Management Guidelines",
+      "description": "Guidelines for document creation and management",
+      "content": "\n# GUIDELINES\n\n## Overview\n[Guideline overview]\n\n## Principles\n[Guiding principles]\n\n## Standards\n[Operational standards]\n\n## Best Practices\n[Best practices]\n\n## Compliance\n[Compliance requirements]\n\n## References\n[Additional references]\n",
+      "status": "draft",
+      "author": "System",
+      "reviewer": "Scribe of Canvassing",
+      "created_at": "2026-09-22T11:42:14.287913",
+      "updated_at": "2026-09-22T11:42:14.287915",
+      "version": "1.0",
+      "tags": [
+        "guidelines",
+        "documentation",
+        "process"
+      ],
+      "related_documents": [],
+      "metadata": {}
+    },
+    "report_20260922_114214": {
+      "document_id": "report_20260922_114214",
+      "document_type": "report",
+      "title": "Q1 2024 Infrastructure Performance Report",
+      "description": "Quarterly report on infrastructure performance",
+      "content": "\n# REPORT\n\n## Executive Summary\n[Report summary]\n\n## Methodology\n[Methodology description]\n\n## Findings\n[Report findings]\n\n## Recommendations\n[Recommendations]\n\n## Conclusion\n[Report conclusion]\n",
+      "status": "approved",
+      "author": "Scribe of Infrastructure",
+      "reviewer": "ZI",
+      "created_at": "2026-09-22T11:42:14.288630",
+      "updated_at": "2026-09-22T11:42:14.289333",
+      "version": "1.0",
+      "tags": [
+        "infrastructure",
+        "report",
+        "Q1",
+        "2024"
+      ],
+      "related_documents": [],
+      "metadata": {}
+    },
+    "contract_20260922_114214": {
+      "document_id": "contract_20260922_114214",
+      "document_type": "contract",
+      "title": "Service Agreement Contract",
+      "description": "Contract for Service Agreement",
+      "content": "\n# CONTRACT AGREEMENT\n\n## Parties\nThis agreement is made between the parties listed below.\n\n## Terms and Conditions\n[Contract terms will be populated here]\n\n## Duration\nStart Date: [Start Date]\nEnd Date: [End Date]\n\n## Compensation\nTotal Value: $[Value]\n\n## Signatures\n[Signature section]\n",
+      "status": "draft",
+      "author": "System",
+      "reviewer": "Scribe of Contracts",
+      "created_at": "2026-09-22T11:42:14.289734",
+      "updated_at": "2026-09-22T11:42:14.289737",
+      "version": "1.0",
+      "tags": [
+        "contract",
+        "service agreement"
+      ],
+      "related_documents": [],
+      "metadata": {}
+    }
+  },
+  "contracts": {
+    "CONTRACT_20260922_114214": {
+      "contract_id": "CONTRACT_20260922_114214",
+      "contract_type": "Service Agreement",
+      "parties": [
+        "TZI Systems",
+        "External Provider"
+      ],
+      "terms": {
+        "service_level": "99.9%",
+        "response_time": "4 hours"
+      },
+      "status": "active",
+      "start_date": "2024-09-01",
+      "end_date": "2025-09-01",
+      "value": 50000.0,
+      "document_id": "contract_20260922_114214",
+      "auto_renewal": true,
+      "notifications": []
+    }
+  }
+}

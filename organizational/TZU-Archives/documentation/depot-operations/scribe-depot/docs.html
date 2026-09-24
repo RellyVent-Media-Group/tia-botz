@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="back-nav">
+        <a href="index.html">← Back to Documentation Index</a>
+    </div>
+    
+    <div id="content" class="markdown-body"></div>
+    
+    <script>
+        // Get the file parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const fileName = urlParams.get('file') || 'operations-manual.md';
+        
+        // Update page title
+        const titleMap = {
+            'operations-manual.md': 'Operations Manual',
+            'scribe-onboarding-guide.md': 'Scribe Onboarding Guide',
+            'template-library.md': 'Template Library',
+            'performance-metrics-guide.md': 'Performance Metrics Guide',
+            'executive-summary-report.md': 'Executive Summary Report',
+            'automation-implementation-guide.md': 'Automation Implementation Guide',
+            'partner-depot-integration-guide.md': 'Partner Depot Integration Guide',
+            'crisis-management-procedures.md': 'Crisis Management Procedures',
+            'documentation-standards-style-guide.md': 'Documentation Standards and Style Guide',
+            'training-program-guide.md': 'Training Program Guide',
+            'communication-protocols.md': 'Communication Protocols',
+            'audit-review-procedures.md': 'Audit and Review Procedures',
+            'documentation-index.md': 'Documentation Index'
+        };
+        
+        document.title = titleMap[fileName] || 'Documentation Viewer';
+        
+        // Fetch the markdown file
+        fetch(fileName)
+            .then(response => response.text())
+            .then(markdown => {
+                // Convert markdown to HTML
+                document.getElementById('content').innerHTML = marked.parse(markdown);
+            })
+            .catch(error => {
+                document.getElementById('content').innerHTML = '<p>Error loading document: ' + error + '</p>';
+            });
+    </script>
+</body>
+</html>

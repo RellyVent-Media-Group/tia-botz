@@ -1,0 +1,36 @@
+[
+  {
+    "id": "event_20260923135009",
+    "title": "Sample Strategic Review",
+    "heart_date": {
+      "year": 2026,
+      "month": "Matteo",
+      "day": 14,
+      "seasonal_tag": null
+    },
+    "gregorian_date": "2026-09-23",
+    "depot": "Consort",
+    "description": "Quarterly strategic review for Consort Depot",
+    "priority": "high",
+    "completed": false,
+    "event_type": "special",
+    "related_soul_id": null
+  },
+  {
+    "id": "event_20260923135017",
+    "title": "Sample Strategic Review",
+    "heart_date": {
+      "year": 2026,
+      "month": "Matteo",
+      "day": 14,
+      "seasonal_tag": null
+    },
+    "gregorian_date": "2026-09-23",
+    "depot": "Consort",
+    "description": "Quarterly strategic review for Consort Depot",
+    "priority": "high",
+    "completed": false,
+    "event_type": "special",
+    "related_soul_id": null
+  }
+]

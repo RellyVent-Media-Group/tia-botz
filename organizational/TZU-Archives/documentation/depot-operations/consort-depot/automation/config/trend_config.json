@@ -1,0 +1,10 @@
+{
+  "dry_run": true,
+  "platforms": ["tiktok", "instagram", "youtube", "x"],
+  "trend_threshold": 10000,
+  "engagement_threshold": 0.05,
+  "lookback_hours": 24,
+  "trend_categories": ["hashtag", "audio", "challenge", "format"],
+  "alert_on_high_significance": true,
+  "auto_content_generation": false
+}

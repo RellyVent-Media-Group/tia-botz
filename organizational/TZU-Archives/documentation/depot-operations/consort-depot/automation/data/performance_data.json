@@ -1,0 +1,42 @@
+[
+  {
+    "id": "PERF001",
+    "content_id": "CNT001",
+    "platform": "tiktok",
+    "views": 50000,
+    "likes": 3500,
+    "shares": 500,
+    "comments": 200,
+    "date": "2026-09-22"
+  },
+  {
+    "id": "PERF002",
+    "content_id": "CNT002",
+    "platform": "instagram",
+    "views": 30000,
+    "likes": 2500,
+    "shares": 300,
+    "comments": 150,
+    "date": "2026-09-22"
+  },
+  {
+    "id": "PERF003",
+    "content_id": "CNT003",
+    "platform": "youtube",
+    "views": 15000,
+    "likes": 800,
+    "shares": 100,
+    "comments": 50,
+    "date": "2026-09-22"
+  },
+  {
+    "id": "PERF004",
+    "content_id": "CNT004",
+    "platform": "x",
+    "views": 8000,
+    "likes": 400,
+    "shares": 50,
+    "comments": 25,
+    "date": "2026-09-22"
+  }
+]

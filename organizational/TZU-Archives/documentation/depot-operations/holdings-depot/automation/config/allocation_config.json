@@ -1,0 +1,25 @@
+{
+  "total_budget": 1000000.0,
+  "min_allocation": 10000.0,
+  "max_single_allocation": 200000.0,
+  "approval_hierarchy": {
+    "level_1": {
+      "limit": 50000.0,
+      "approver": "team_lead"
+    },
+    "level_2": {
+      "limit": 100000.0,
+      "approver": "depot_manager"
+    },
+    "level_3": {
+      "limit": 200000.0,
+      "approver": "director"
+    }
+  },
+  "allocation_rules": {
+    "emergency_fund": 0.15,
+    "growth_investment": 0.40,
+    "operational": 0.30,
+    "reserve": 0.15
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "allocations": {
+    "1": {
+      "character_id": 1,
+      "character_name": "Mary Magnumbytes",
+      "allocated_budget": 150000,
+      "allocated_to_assets": 52000.0,
+      "remaining_budget": 98000.0,
+      "asset_ids": [
+        "test_asset_001",
+        "test_asset_validation"
+      ],
+      "last_synced": "2026-09-22T13:23:07.510143"
+    },
+    "2": {
+      "character_id": 2,
+      "character_name": "Mac Nazarene",
+      "allocated_budget": 120000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 120000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694168"
+    },
+    "3": {
+      "character_id": 3,
+      "character_name": "Dikinya Myles",
+      "allocated_budget": 110000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 110000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694173"
+    },
+    "4": {
+      "character_id": 4,
+      "character_name": "Ronda Villasea",
+      "allocated_budget": 130000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 130000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694177"
+    },
+    "5": {
+      "character_id": 5,
+      "character_name": "Brad Turdet",
+      "allocated_budget": 140000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 140000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694180"
+    },
+    "6": {
+      "character_id": 6,
+      "character_name": "Mrs. Cox-Turner",
+      "allocated_budget": 160000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 160000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694183"
+    },
+    "7": {
+      "character_id": 7,
+      "character_name": "Mr. Turner",
+      "allocated_budget": 125000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 125000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694186"
+    },
+    "8": {
+      "character_id": 8,
+      "character_name": "Cracoria Masters",
+      "allocated_budget": 180000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 180000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694188"
+    },
+    "9": {
+      "character_id": 9,
+      "character_name": "Latti Pleddespo",
+      "allocated_budget": 200000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 200000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694191"
+    },
+    "10": {
+      "character_id": 10,
+      "character_name": "Dezi Asete",
+      "allocated_budget": 170000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 170000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694194"
+    },
+    "11": {
+      "character_id": 11,
+      "character_name": "Zupa Novaclutch",
+      "allocated_budget": 175000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 175000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694197"
+    },
+    "12": {
+      "character_id": 12,
+      "character_name": "Dixon Uhbuts",
+      "allocated_budget": 145000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 145000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694200"
+    },
+    "13": {
+      "character_id": 13,
+      "character_name": "Airiol Uhbuts",
+      "allocated_budget": 135000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 135000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694203"
+    },
+    "14": {
+      "character_id": 14,
+      "character_name": "Ovaihge Whitmeiners",
+      "allocated_budget": 155000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 155000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694206"
+    },
+    "15": {
+      "character_id": 15,
+      "character_name": "Liangivalla Pouchaquehe",
+      "allocated_budget": 130000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 130000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694209"
+    },
+    "16": {
+      "character_id": 16,
+      "character_name": "Babelonia Nocturne",
+      "allocated_budget": 165000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 165000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694211"
+    },
+    "17": {
+      "character_id": 17,
+      "character_name": "Brytoni Himheru",
+      "allocated_budget": 140000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 140000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694214"
+    },
+    "18": {
+      "character_id": 18,
+      "character_name": "Gaio Weavedreamer",
+      "allocated_budget": 125000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 125000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694217"
+    },
+    "19": {
+      "character_id": 19,
+      "character_name": "Loona Minta",
+      "allocated_budget": 120000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 120000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694220"
+    },
+    "20": {
+      "character_id": 20,
+      "character_name": "Justin Stoneysands",
+      "allocated_budget": 115000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 115000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694223"
+    },
+    "21": {
+      "character_id": 21,
+      "character_name": "Shielah Trapewe",
+      "allocated_budget": 110000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 110000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694225"
+    },
+    "22": {
+      "character_id": 22,
+      "character_name": "Chrystal Vyner",
+      "allocated_budget": 150000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 150000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694228"
+    },
+    "23": {
+      "character_id": 23,
+      "character_name": "Tony Lerome",
+      "allocated_budget": 130000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 130000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694232"
+    },
+    "24": {
+      "character_id": 24,
+      "character_name": "Vutre Queen",
+      "allocated_budget": 105000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 105000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694235"
+    },
+    "25": {
+      "character_id": 25,
+      "character_name": "Ritaphuq Zaniman",
+      "allocated_budget": 135000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 135000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694238"
+    },
+    "26": {
+      "character_id": 26,
+      "character_name": "Weila Vite",
+      "allocated_budget": 125000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 125000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694240"
+    },
+    "27": {
+      "character_id": 27,
+      "character_name": "Randy Taller",
+      "allocated_budget": 95000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 95000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694243"
+    },
+    "28": {
+      "character_id": 28,
+      "character_name": "Demetrius Hawk",
+      "allocated_budget": 90000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 90000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694246"
+    },
+    "29": {
+      "character_id": 29,
+      "character_name": "Jessa Relay",
+      "allocated_budget": 85000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 85000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694251"
+    },
+    "30": {
+      "character_id": 30,
+      "character_name": "Analeg Casua",
+      "allocated_budget": 80000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 80000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694256"
+    },
+    "31": {
+      "character_id": 31,
+      "character_name": "Melissa Darweah",
+      "allocated_budget": 125000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 125000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694259"
+    },
+    "32": {
+      "character_id": 32,
+      "character_name": "Tre Leezaphino",
+      "allocated_budget": 135000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 135000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694262"
+    },
+    "33": {
+      "character_id": 33,
+      "character_name": "Seraphina Welighter",
+      "allocated_budget": 140000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 140000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694264"
+    },
+    "34": {
+      "character_id": 34,
+      "character_name": "Krav'ehn Stormindr",
+      "allocated_budget": 130000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 130000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694267"
+    },
+    "35": {
+      "character_id": 35,
+      "character_name": "Lyra Strawea",
+      "allocated_budget": 145000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 145000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694270"
+    },
+    "36": {
+      "character_id": 36,
+      "character_name": "Marcus Ayesoloe",
+      "allocated_budget": 5000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 5000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694273"
+    },
+    "37": {
+      "character_id": 37,
+      "character_name": "Elana Hornedcrescent",
+      "allocated_budget": 5000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 5000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694275"
+    },
+    "38": {
+      "character_id": 38,
+      "character_name": "Daren Golim",
+      "allocated_budget": 5000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 5000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694278"
+    },
+    "39": {
+      "character_id": 39,
+      "character_name": "Nyx Nightwhisper",
+      "allocated_budget": 5000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 5000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694281"
+    },
+    "40": {
+      "character_id": 40,
+      "character_name": "Aaron Starhunter",
+      "allocated_budget": 5000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 5000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694284"
+    },
+    "41": {
+      "character_id": 41,
+      "character_name": "Ronda Slow",
+      "allocated_budget": 5000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 5000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694286"
+    },
+    "42": {
+      "character_id": 42,
+      "character_name": "Leavil Lebb",
+      "allocated_budget": 5000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 5000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694289"
+    },
+    "43": {
+      "character_id": 43,
+      "character_name": "Crystal Hairbearer",
+      "allocated_budget": 5000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 5000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694292"
+    },
+    "44": {
+      "character_id": 44,
+      "character_name": "Dennis Earsin",
+      "allocated_budget": 5000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 5000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694295"
+    },
+    "45": {
+      "character_id": 45,
+      "character_name": "Jessica LaBoutny",
+      "allocated_budget": 5000,
+      "allocated_to_assets": 0.0,
+      "remaining_budget": 5000,
+      "asset_ids": [],
+      "last_synced": "2026-09-22T13:17:15.694298"
+    }
+  },
+  "last_synced": "2026-09-22T13:23:07.510147"
+}

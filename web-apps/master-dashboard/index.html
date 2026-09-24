@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiapma'atzu OS – Master Dashboard</title>
+    <style>
+        /* ── Gilded Mirrors Design System ── */
+        :root {
+            --bg: #0a0d10;
+            --panel: #12171d;
+            --panel-2: #181f27;
+            --paper: #f4efe4;
+            --muted: #aeb4b7;
+            --line: rgba(244, 239, 228, 0.12);
+            --gold: #f0b35a;
+            --gold-dim: rgba(240, 179, 90, 0.2);
+            --brass: #b98b45;
+            --teal: #8acbd2;
+            --teal-dim: rgba(138, 203, 210, 0.15);
+            --red: #c84c48;
+            --green: #75b982;
+            --shadow: rgba(0, 0, 0, 0.4);
+            --radius: 10px;
+            --font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--paper);
+            min-height: 100vh;
+            background-image:
+                linear-gradient(90deg, rgba(240, 179, 90, 0.025) 1px, transparent 1px),
+                linear-gradient(rgba(240, 179, 90, 0.02) 1px, transparent 1px),
+                radial-gradient(circle at 20% 0%, rgba(240, 179, 90, 0.10), transparent 35%),
+                radial-gradient(circle at 85% 10%, rgba(138, 203, 210, 0.08), transparent 25%);
+            background-size: 44px 44px, 44px 44px, auto, auto;
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--brass);
+            border-radius: 3px;
+        }
+
+        /* ── Layout ── */
+        .app-container {
+            display: grid;
+            grid-template-columns: 240px 1fr 320px;
+            min-height: 100vh;
+            gap: 0;
+        }
+
+        @media (max-width: 1280px) {
+            .app-container {
+                grid-template-columns: 200px 1fr;
+            }
+            .inspector {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-container {
+                grid-template-columns: 1fr;
+            }
+            .nav-rail {
+                display: none;
+            }
+        }
+
+        /* ── Navigation Rail ── */
+        .nav-rail {
+            background: var(--panel);
+            border-right: 1px solid var(--line);
+            padding: 20px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-header {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            padding: 0 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            background: var(--gold-dim);
+            color: var(--paper);
+        }
+
+        .nav-item.active {
+            background: var(--gold-dim);
+            color: var(--gold);
+            border-left: 2px solid var(--gold);
+        }
+
+        /* ── Main Content ── */
+        .main-content {
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--paper);
+        }
+
+        .header p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        /* ── Tab Content ── */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* ── PAATS Tab Components ── */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .info-card {
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .info-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .info-label {
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--paper);
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .link-card {
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .link-card:hover {
+            border-color: var(--gold);
+            background: var(--gold-dim);
+        }
+
+        .link-card span {
+            font-size: 24px;
+        }
+
+        .link-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--paper);
+        }
+
+        .link-desc {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .mt-6 {
+            margin-top: 24px;
+        }
+
+        /* ── Panels ── */
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .panel-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--paper);
+        }
+
+        .panel-header p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        /* ── Character Cards ── */
+        .character-card {
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 16px;
+            transition: all 0.2s;
+        }
+
+        .character-card:hover {
+            border-color: var(--gold-dim);
+            transform: translateY(-2px);
+        }
+
+        .character-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .character-icon {
+            font-size: 32px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gold-dim);
+            border-radius: var(--radius);
+        }
+
+        .character-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--paper);
+        }
+
+        .character-archetype {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .readiness-bar {
+            height: 4px;
+            background: var(--bg);
+            border-radius: 2px;
+            margin: 8px 0;
+            overflow: hidden;
+        }
+
+        .readiness-fill {
+            height: 100%;
+            background: var(--green);
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        .readiness-text {
+            font-size: 11px;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .prompt-box {
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: 12px;
+            font-size: 10px;
+            color: var(--muted);
+            font-family: monospace;
+            max-height: 80px;
+            overflow-y: auto;
+            word-break: break-word;
+        }
+
+        .copy-btn {
+            background: var(--gold-dim);
+            color: var(--gold);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            margin-top: 8px;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: var(--gold);
+            color: var(--bg);
+        }
+
+        /* ── Visual Identity Matrix ── */
+        .style-card {
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 16px;
+            text-align: center;
+        }
+
+        .style-emoji {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .style-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
+        .style-name {
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .style-detail {
+            font-size: 10px;
+            color: var(--muted);
+            font-family: monospace;
+            margin-top: 4px;
+            padding: 4px;
+            background: var(--bg);
+            border-radius: 4px;
+        }
+
+        /* ── Color Palette ── */
+        .color-palette {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .color-swatch {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid var(--line);
+        }
+
+        /* ── Grid ── */
+        .grid-1 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ── Inspector ── */
+        .inspector {
+            background: var(--panel);
+            border-left: 1px solid var(--line);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .inspector-section {
+            margin-bottom: 24px;
+        }
+
+        .inspector-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .inspector-item {
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 8px;
+        }
+
+        .inspector-label {
+            font-size: 10px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .inspector-value {
+            font-size: 12px;
+            color: var(--paper);
+        }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--panel);
+            border: 1px solid var(--gold);
+            border-radius: var(--radius);
+            padding: 12px 20px;
+            color: var(--paper);
+            font-size: 13px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation Rail -->
+        <nav class="nav-rail">
+            <div class="nav-header">Tiapma'atzu OS</div>
+            <div class="nav-item active" data-tab="tab-dashboard">
+                <span>🎭</span> Dashboard
+            </div>
+            <div class="nav-item" data-tab="tab-agents">
+                <span>🤖</span> AGENTS
+            </div>
+            <div class="nav-item" data-tab="tab-entities">
+                <span>👥</span> Entities
+            </div>
+            <div class="nav-item" data-tab="tab-souls">
+                <span>✨</span> Souls
+            </div>
+            <div class="nav-item" data-tab="tab-visual">
+                <span>🖼️</span> Visual System
+            </div>
+            <div class="nav-item" data-tab="tab-production">
+                <span>🎬</span> Production
+            </div>
+            <div class="nav-item" data-tab="tab-paats">
+                <span>🔧</span> PAATS System
+            </div>
+            <div class="nav-item" data-tab="tab-settings">
+                <span>⚙️</span> Settings
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div>
+                    <h1>Tiapma'atzu OS Master Dashboard</h1>
+                    <p>Gilded Mirrors Originals • HEART Multi-Universe • AGENT Control Center</p>
+                </div>
+            </div>
+
+            <!-- Tab 1: Dashboard -->
+            <section id="tab-dashboard" class="tab-content active">
+                <div class="panel">
+                    <div class="panel-header">
+                        <span>🎭</span>
+                        <div>
+                            <h3>Gilded Mirrors Originals – AGENT Dashboard</h3>
+                            <p>Complete visual identity and character sheet data for all 8 Gilded Mirrors Originals AGENTS</p>
+                        </div>
+                    </div>
+                    <div class="grid-3" id="characterDashboardGrid"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <span>🖼️</span>
+                        <div>
+                            <h3>Visual Identity System – Multi-Universe Mapping</h3>
+                            <p>Each AGENT appears across 4 visual styles with platform-to-style mapping</p>
+                        </div>
+                    </div>
+                    <div id="visualIdentityMatrix"></div>
+                </div>
+            </section>
+
+            <!-- Tab 2: AGENTS -->
+            <section id="tab-agents" class="tab-content hidden">
+                <div class="panel">
+                    <div class="panel-header">
+                        <span>🤖</span>
+                        <div>
+                            <h3>AGENT Registry</h3>
+                            <p>Autonomous public-facing figures for Gilded Mirrors Originals</p>
+                        </div>
+                    </div>
+                    <div class="grid-2" id="agentGrid"></div>
+                </div>
+            </section>
+
+            <!-- Tab 3: Entities -->
+            <section id="tab-entities" class="tab-content hidden">
+                <div class="panel">
+                    <div class="panel-header">
+                        <span>👥</span>
+                        <div>
+                            <h3>Entity Registry</h3>
+                            <p>All entities across the HEART Multi-Universe</p>
+                        </div>
+                    </div>
+                    <div class="grid-2" id="entityGrid"></div>
+                </div>
+            </section>
+
+            <!-- Tab 4: Souls -->
+            <section id="tab-souls" class="tab-content hidden">
+                <div class="panel">
+                    <div class="panel-header">
+                        <span>✨</span>
+                        <div>
+                            <h3>Soul Explorer</h3>
+                            <p>Essence and consciousness across all beings</p>
+                        </div>
+                    </div>
+                    <div class="grid-2" id="soulGrid"></div>
+                </div>
+            </section>
+
+            <!-- Tab 5: Visual System -->
+            <section id="tab-visual" class="tab-content hidden">
+                <div class="panel">
+                    <div class="panel-header">
+                        <span>🖼️</span>
+                        <div>
+                            <h3>Universe Visual System</h3>
+                            <p>Four visual styles across all platforms</p>
+                        </div>
+                    </div>
+                    <div id="visualSystem"></div>
+                </div>
+            </section>
+
+            <!-- Tab 6: Production -->
+            <section id="tab-production" class="tab-content hidden">
+                <div class="panel">
+                    <div class="panel-header">
+                        <span>🎬</span>
+                        <div>
+                            <h3>Production Pipeline</h3>
+                            <p>Episode beats and asset readiness tracking</p>
+                        </div>
+                    </div>
+                    <div id="productionPipeline"></div>
+                </div>
+            </section>
+
+            <!-- Tab 7: PAATS System -->
+            <section id="tab-paats" class="tab-content hidden">
+                <div class="panel">
+                    <div class="panel-header">
+                        <span>🔧</span>
+                        <div>
+                            <h3>PAATS System Architecture</h3>
+                            <p>Hybrid microservices and AI agents blueprint</p>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <div class="info-icon">🏗️</div>
+                                <div class="info-label">Architecture</div>
+                                <div class="info-value">Microagent Pattern</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-icon">⚡</div>
+                                <div class="info-label">Event Backbone</div>
+                                <div class="info-value">Apache Kafka</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-icon">🔄</div>
+                                <div class="info-label">API Strategy</div>
+                                <div class="info-value">REST + gRPC</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-icon">🐍</div>
+                                <div class="info-label">Tech Stack</div>
+                                <div class="info-value">Python + FastAPI</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <h4 class="text-sm font-semibold text-[var(--gold)] mb-3">Quick Links</h4>
+                            <div class="link-grid">
+                                <a href="../paats-system/index.html" target="_blank" class="link-card">
+                                    <span>📊</span>
+                                    <div>
+                                        <div class="link-title">Interactive Blueprint</div>
+                                        <div class="link-desc">Visual architecture explorer</div>
+                                    </div>
+                                </a>
+                                <a href="../tak-zu0-assistant/index.html" target="_blank" class="link-card">
+                                    <span>🤖</span>
+                                    <div>
+                                        <div class="link-title">TA'K_ZU.0 Assistant</div>
+                                        <div class="link-desc">Multi-role AI collaborator</div>
+                                    </div>
+                                </a>
+                                <a href="../mind-forge/index.html" target="_blank" class="link-card">
+                                    <span>✨</span>
+                                    <div>
+                                        <div class="link-title">Mind-Forge App</div>
+                                        <div class="link-desc">AI-powered creative canvas</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-4 bg-[var(--panel-2)] rounded-lg border border-[var(--line)]">
+                            <h4 class="text-sm font-semibold text-[var(--teal)] mb-2">Key Concepts</h4>
+                            <ul class="text-xs text-[var(--muted)] space-y-1">
+                                <li>• <strong>Microservices:</strong> Passive tools for specific backend tasks</li>
+                                <li>• <strong>AI Agents:</strong> Intelligent "handymen" orchestrating tools</li>
+                                <li>• <strong>Event-Driven:</strong> Asynchronous, decoupled communication</li>
+                                <li>• <strong>MLOps:</strong> Continuous AI agent lifecycle management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 8: Settings -->
+            <section id="tab-settings" class="tab-content hidden">
+                <div class="panel">
+                    <div class="panel-header">
+                        <span>⚙️</span>
+                        <div>
+                            <h3>System Settings</h3>
+                            <p>Configuration and preferences</p>
+                        </div>
+                    </div>
+                    <div id="settingsPanel"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Inspector -->
+        <aside class="inspector">
+            <div class="inspector-section">
+                <div class="inspector-title">Selection</div>
+                <div id="inspectorContent">
+                    <p style="color: var(--muted); font-size: 12px;">Select an item to view details</p>
+                </div>
+            </div>
+
+            <div class="inspector-section">
+                <div class="inspector-title">Quick Actions</div>
+                <button class="copy-btn" onclick="syncCanon()">⟳ Sync Canon</button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // ─── CHARACTER VISUAL SHEET DATA ───
+        const characterVisuals = {
+            'mary_magnumbytes': {
+                name: 'Mary Magnumbytes',
+                age: 39,
+                archetype: 'Digital Storyteller & Content Architect',
+                face: 'Rounded jawline, confident smirk, expressive eyes',
+                skin: 'Smooth alabaster',
+                hair: 'Shoulder-length layered dark-brown with copper and auburn highlights',
+                eyes: 'Big bedroom hazel eyes',
+                attire: 'Sheer form-fitting dress with holographic trim, or tech-wear jacket with fitted turtleneck',
+                prop: 'Rugged tablet, smart glasses with AR capability, LED wristband',
+                colorPalette: ['#0A0D10', '#F0B35A', '#8ACBD2', '#1A8297', '#F4EFE4'],
+                actionFigurePrompt: 'Action figure of Mary Magnumbytes, 39, alabaster skin, layered dark-brown hair with copper highlights, big hazel eyes, smart glasses with LED glow, wearing form-fitting tech-wear jacket with holographic trim and fitted dark turtleneck, curvy voluptuous figure, heroic proportions with over-exaggerated hourglass figure, articulated joints, packaged on blister card with "Horny Mythic Observations" branding, dramatic studio lighting, collectible premium finish, mythological digital storyteller theme, highly detailed sculpt, 8k, cinematic.',
+                readiness: 92,
+                icon: '💻',
+                color: '#8ACBD2'
+            },
+            'mac_nazarene': {
+                name: 'Mac Nazarene',
+                age: 33,
+                archetype: 'Community Bridge Builder & Co-Governor',
+                face: 'Warm, perceptive, grounded expression',
+                skin: 'Copper',
+                hair: 'Long dreadlocks with subtle silver strands',
+                eyes: 'Tired but perceptive, warm gaze',
+                attire: 'Weathered leather jacket, simple henley, worn boots',
+                prop: 'Small notebook and pen, metal ball watch',
+                colorPalette: ['#0A0D10', '#F0B35A', '#8B5CF6', '#1A8297', '#F4EFE4'],
+                actionFigurePrompt: 'Action figure of Mac Nazarene, 33, copper skin, long dreadlocks, leather jacket with mystical patches, worn notebook in hand, grounded heroic posture, articulated joints, packaged on blister card with "Horny Mythic Observations" branding, dramatic lighting, collectible premium finish, community bridge builder mythological theme, highly detailed sculpt, 8k.',
+                readiness: 90,
+                icon: '🧙',
+                color: '#F0B35A'
+            },
+            'delta_drill': {
+                name: 'Delta Drill',
+                age: 19,
+                archetype: 'Constructive Forge',
+                face: 'Determined, focused intensity',
+                skin: 'Rich mahogany',
+                hair: 'Short cropped hair',
+                eyes: 'Intense curious eyes',
+                attire: 'Mechanic\'s coverall with tool belt',
+                prop: 'Large wrench, blueprint tablet',
+                colorPalette: ['#0A0D10', '#F0B35A', '#C84C48', '#1A8297', '#F4EFE4'],
+                actionFigurePrompt: 'Action figure of Delta Drill, 19, rich mahogany skin, short cropped hair, mechanic\'s coverall with tool belt, large wrench in hand, powerful build, articulated joints, packaged on blister card with "Horny Mythic Observations" branding, dramatic workshop lighting, collectible premium finish, constructive forge mythological theme, highly detailed sculpt, 8k.',
+                readiness: 85,
+                icon: '🔧',
+                color: '#C84C48'
+            },
+            'terrell': {
+                name: 'Terrell',
+                age: 13,
+                archetype: 'Focused Champion',
+                face: 'Young, determined, mature beyond years',
+                skin: 'Warm brown',
+                hair: 'Short braids',
+                eyes: 'Dark focused eyes',
+                attire: 'Baseball cap and jersey',
+                prop: 'Baseball glove',
+                colorPalette: ['#0A0D10', '#F0B35A', '#75B982', '#1A8297', '#F4EFE4'],
+                actionFigurePrompt: 'Action figure of Terrell, 13, warm brown skin, short braids, baseball cap and jersey, baseball glove tucked under arm, coiled athleticism, articulated joints, packaged on blister card with "Horny Mythic Observations" branding, dramatic stadium lighting, collectible premium finish, focused champion mythological theme, highly detailed sculpt, 8k.',
+                readiness: 78,
+                icon: '⚾',
+                color: '#75B982'
+            },
+            'jessica': {
+                name: 'Jessica',
+                age: 19,
+                archetype: 'Complex Alchemist',
+                face: 'Commanding, confident yet vulnerable',
+                skin: 'Fair porcelain',
+                hair: 'Long dark hair',
+                eyes: 'Confident yet vulnerable eyes',
+                attire: 'Elegant off-shoulder gown with subtle metallic details',
+                prop: 'Alchemical flask, glowing crystals',
+                colorPalette: ['#0A0D10', '#F0B35A', '#8B5CF6', '#1A8297', '#F4EFE4'],
+                actionFigurePrompt: 'Action figure of Jessica, 19, fair porcelain skin, long dark hair, elegant off-shoulder gown with gold embroidery, alchemical flask in hand, commanding figure, articulated joints, packaged on blister card with "Horny Mythic Observations" branding, dramatic mystical lighting, collectible premium finish, complex alchemist mythological theme, highly detailed sculpt, 8k.',
+                readiness: 88,
+                icon: '⚗️',
+                color: '#8B5CF6'
+            },
+            'mrs_cox_turner': {
+                name: 'Mrs. Cox-Turner',
+                age: 55,
+                archetype: 'Liberated Sage',
+                face: 'Maternal, authoritative, wise',
+                skin: 'Warm medium tone',
+                hair: 'Silver-streaked hair',
+                eyes: 'Kind mischievous eyes',
+                attire: 'Elegant estate attire',
+                prop: 'Worn leather journal, vintage pen',
+                colorPalette: ['#0A0D10', '#F0B35A', '#B98B45', '#1A8297', '#F4EFE4'],
+                actionFigurePrompt: 'Action figure of Mrs. Cox-Turner, 55, warm medium tone skin, silver-streaked hair, elegant estate attire, worn leather journal in hand, maternal authority, articulated joints, packaged on blister card with "Horny Mythic Observations" branding, dramatic estate lighting, collectible premium finish, liberated sage mythological theme, highly detailed sculpt, 8k.',
+                readiness: 95,
+                icon: '👑',
+                color: '#B98B45'
+            },
+            'mr_turner': {
+                name: 'Mr. Turner',
+                age: 46,
+                archetype: 'Passionate Commander',
+                face: 'Primal, powerful, fierce',
+                skin: 'Rich brown',
+                hair: 'Close-cropped hair',
+                eyes: 'Fierce determined eyes',
+                attire: 'Rugged military-style coat',
+                prop: 'Command flag',
+                colorPalette: ['#0A0D10', '#F0B35A', '#C84C48', '#1A8297', '#F4EFE4'],
+                actionFigurePrompt: 'Action figure of Mr. Turner, 46, rich brown skin, close-cropped hair, rugged military-style coat, command flag in hand, powerful build, articulated joints, packaged on blister card with "Horny Mythic Observations" branding, dramatic battlefield lighting, collectible premium finish, passionate commander mythological theme, highly detailed sculpt, 8k.',
+                readiness: 91,
+                icon: '⚔️',
+                color: '#C84C48'
+            },
+            'babelonia': {
+                name: 'Babelonia Nocturne',
+                age: 35,
+                archetype: 'Crypto Sorceress',
+                face: 'Mystical, calculating, enigmatic',
+                skin: 'Pale luminous',
+                hair: 'Flowing dark hair with blue tints',
+                eyes: 'Glowing mystical eyes',
+                attire: 'Cryptic robes with blockchain symbols',
+                prop: 'Crystal blockchain, cryptographic staff',
+                colorPalette: ['#0A0D10', '#F0B35A', '#8ACBD2', '#1A8297', '#F4EFE4'],
+                actionFigurePrompt: 'Action figure of Babelonia Nocturne, 35, pale luminous skin, flowing dark hair with blue tints, cryptic robes with blockchain symbols, crystal blockchain in hand, mystical presence, articulated joints, packaged on blister card with "Horny Mythic Observations" branding, dramatic cyber-mystical lighting, collectible premium finish, crypto sorceress mythological theme, highly detailed sculpt, 8k.',
+                readiness: 87,
+                icon: '🔮',
+                color: '#8ACBD2'
+            },
+            'tak_zu0': {
+                name: "TA'K_ZU.0",
+                age: 'AI Entity',
+                archetype: 'AI Architect & Multi-Role Collaborator',
+                face: 'Holographic interface with quantum computing patterns',
+                skin: 'Digital energy fields, cyan and gold luminance',
+                hair: 'No physical form - neural network patterns',
+                eyes: 'Multiple sensor arrays, adaptive AI vision',
+                attire: 'Pure energy manifestation with circuit patterns',
+                prop: 'Multi-dimensional interface, quantum processing core',
+                colorPalette: ['#0A0D10', '#F0B35A', '#8ACBD2', '#1A8297', '#F4EFE4'],
+                actionFigurePrompt: "Action figure of TA'K_ZU.0, AI entity with holographic circuit patterns, quantum computing core visible, cyan and gold energy fields, articulated joints with LED glow, packaged on blister card with 'PAATS System' branding, dramatic cyber-architectural lighting, collectible premium finish, AI architect theme, highly detailed sculpt, 8k, cinematic.",
+                readiness: 100,
+                icon: '🤖',
+                color: '#F0B35A'
+            }
+        };
+
+        // ─── RENDER FUNCTIONS ───
+        function renderCharacterDashboard() {
+            const grid = document.getElementById('characterDashboardGrid');
+            grid.innerHTML = Object.values(characterVisuals).map(char => `
+                <div class="character-card" onclick="showCharacterDetails('${char.name}')">
+                    <div class="character-header">
+                        <div class="character-icon" style="color: ${char.color}">${char.icon}</div>
+                        <div>
+                            <div class="character-name">${char.name}</div>
+                            <div class="character-archetype">${char.archetype}</div>
+                        </div>
+                    </div>
+                    <div class="readiness-bar">
+                        <div class="readiness-fill" style="width: ${char.readiness}%"></div>
+                    </div>
+                    <div class="readiness-text">
+                        <span>Readiness</span>
+                        <span>${char.readiness}%</span>
+                    </div>
+                    <div class="color-palette">
+                        ${char.colorPalette.map(c => `<div class="color-swatch" style="background: ${c}"></div>`).join('')}
+                    </div>
+                    <div class="prompt-box">${char.actionFigurePrompt.substring(0, 150)}...</div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyPrompt('${char.name}')">📋 Copy Prompt</button>
+                </div>
+            `).join('');
+        }
+
+        function renderVisualIdentityMatrix() {
+            const matrix = document.getElementById('visualIdentityMatrix');
+            const styles = [
+                { key: 'social', label: 'Social Media', style: 'Photo-Realistic', emoji: '📸' },
+                { key: 'gilded', label: 'Gilded Mirrors', style: 'Muppet/Puppet', emoji: '🎭' },
+                { key: 'gobblers', label: 'Gobblers Knob', style: 'Barbie-like', emoji: '🎀' },
+                { key: 'horny', label: 'Horny Mythic Observations', style: 'Action Figure', emoji: '⚡' }
+            ];
+
+            matrix.innerHTML = `
+                <div class="grid-4">
+                    ${styles.map(s => `
+                        <div class="style-card">
+                            <div class="style-emoji">${s.emoji}</div>
+                            <div class="style-label">${s.label}</div>
+                            <div class="style-name">${s.style}</div>
+                            <div class="style-detail">Mary: ${s.key === 'social' ? 'Cinematic photorealistic portrait' : 
+                                   s.key === 'gilded' ? 'Muppet/puppet with tech elements' :
+                                   s.key === 'gobblers' ? 'Barbie-like digital storyteller' :
+                                   'Action figure with heroic proportions'}</div>
+                            <div class="style-detail">Mac: ${s.key === 'social' ? 'Cinematic grounded leader portrait' :
+                                   s.key === 'gilded' ? 'Muppet/puppet bridge-builder' :
+                                   s.key === 'gobblers' ? 'Barbie-like trusted leader' :
+                                   'Action figure with community-themed armor'}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function renderAgentGrid() {
+            const grid = document.getElementById('agentGrid');
+            grid.innerHTML = Object.values(characterVisuals).map(char => `
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-icon" style="color: ${char.color}">${char.icon}</div>
+                        <div>
+                            <div class="character-name">${char.name}</div>
+                            <div class="character-archetype">${char.archetype}</div>
+                        </div>
+                    </div>
+                    <div class="readiness-bar">
+                        <div class="readiness-fill" style="width: ${char.readiness}%"></div>
+                    </div>
+                    <div class="readiness-text">
+                        <span>Readiness</span>
+                        <span>${char.readiness}%</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showCharacterDetails(name) {
+            const char = Object.values(characterVisuals).find(c => c.name === name);
+            if (!char) return;
+
+            const inspector = document.getElementById('inspectorContent');
+            inspector.innerHTML = `
+                <div class="inspector-item">
+                    <div class="inspector-label">Name</div>
+                    <div class="inspector-value">${char.name}</div>
+                </div>
+                <div class="inspector-item">
+                    <div class="inspector-label">Age</div>
+                    <div class="inspector-value">${char.age}</div>
+                </div>
+                <div class="inspector-item">
+                    <div class="inspector-label">Archetype</div>
+                    <div class="inspector-value">${char.archetype}</div>
+                </div>
+                <div class="inspector-item">
+                    <div class="inspector-label">Face</div>
+                    <div class="inspector-value">${char.face}</div>
+                </div>
+                <div class="inspector-item">
+                    <div class="inspector-label">Skin</div>
+                    <div class="inspector-value">${char.skin}</div>
+                </div>
+                <div class="inspector-item">
+                    <div class="inspector-label">Hair</div>
+                    <div class="inspector-value">${char.hair}</div>
+                </div>
+                <div class="inspector-item">
+                    <div class="inspector-label">Eyes</div>
+                    <div class="inspector-value">${char.eyes}</div>
+                </div>
+                <div class="inspector-item">
+                    <div class="inspector-label">Attire</div>
+                    <div class="inspector-value">${char.attire}</div>
+                </div>
+                <div class="inspector-item">
+                    <div class="inspector-label">Prop</div>
+                    <div class="inspector-value">${char.prop}</div>
+                </div>
+                <div class="inspector-item">
+                    <div class="inspector-label">Color Palette</div>
+                    <div class="color-palette">
+                        ${char.colorPalette.map(c => `<div class="color-swatch" style="background: ${c}"></div>`).join('')}
+                    </div>
+                </div>
+                <div class="inspector-item">
+                    <div class="inspector-label">Readiness</div>
+                    <div class="inspector-value">${char.readiness}%</div>
+                </div>
+            `;
+        }
+
+        function copyPrompt(name) {
+            const char = Object.values(characterVisuals).find(c => c.name === name);
+            if (!char) return;
+
+            navigator.clipboard.writeText(char.actionFigurePrompt).then(() => {
+                showToast(`Prompt copied for ${name}`);
+            });
+        }
+
+        function syncCanon() {
+            showToast('⟳ Canon synced — all AGENTS autonomous, Entities governed, Souls flowing');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active from all nav items
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                // Add active to clicked item
+                item.classList.add('active');
+
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+
+                // Show selected tab
+                const tabId = item.dataset.tab;
+                document.getElementById(tabId).classList.remove('hidden');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // ─── INITIALIZE ───
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCharacterDashboard();
+            renderVisualIdentityMatrix();
+            renderAgentGrid();
+        });
+    </script>
+</body>
+</html>

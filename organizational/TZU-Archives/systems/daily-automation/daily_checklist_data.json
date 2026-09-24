@@ -1,0 +1,702 @@
+{
+  "TZI.TR.CON_2026_Terrell_16": {
+    "checklist_id": "TZI.TR.CON_2026_Terrell_16",
+    "depot_id": "TZI.TR.CON",
+    "heart_date": {
+      "year": 2026,
+      "month": "Terrell",
+      "day": 16.0
+    },
+    "gregorian_date": "2026-09-20",
+    "morning_tasks": [
+      {
+        "task_id": "TZI.TR.CON_morning_Terrell_16_0",
+        "depot_id": "TZI.TR.CON",
+        "time_period": "morning",
+        "task_name": "Review content calendar for today",
+        "description": "Automated task: Review content calendar for today",
+        "priority": "high",
+        "estimated_duration": 15,
+        "status": "completed",
+        "completed_at": "2026-09-20T22:24:32.276205",
+        "notes": "Completed via automation",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.TR.CON_morning_Terrell_16_1",
+        "depot_id": "TZI.TR.CON",
+        "time_period": "morning",
+        "task_name": "Check social media engagement from previous day",
+        "description": "Automated task: Check social media engagement from previous day",
+        "priority": "medium",
+        "estimated_duration": 10,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.TR.CON_morning_Terrell_16_2",
+        "depot_id": "TZI.TR.CON",
+        "time_period": "morning",
+        "task_name": "Plan creative production schedule",
+        "description": "Automated task: Plan creative production schedule",
+        "priority": "high",
+        "estimated_duration": 20,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.TR.CON_morning_Terrell_16_3",
+        "depot_id": "TZI.TR.CON",
+        "time_period": "morning",
+        "task_name": "Review trend alerts and opportunities",
+        "description": "Automated task: Review trend alerts and opportunities",
+        "priority": "medium",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      }
+    ],
+    "mid_day_tasks": [
+      {
+        "task_id": "TZI.TR.CON_mid_day_Terrell_16_0",
+        "depot_id": "TZI.TR.CON",
+        "time_period": "mid_day",
+        "task_name": "Execute content production schedule",
+        "description": "Automated task: Execute content production schedule",
+        "priority": "high",
+        "estimated_duration": 60,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.TR.CON_mid_day_Terrell_16_1",
+        "depot_id": "TZI.TR.CON",
+        "time_period": "mid_day",
+        "task_name": "Monitor real-time engagement",
+        "description": "Automated task: Monitor real-time engagement",
+        "priority": "medium",
+        "estimated_duration": 10,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.TR.CON_mid_day_Terrell_16_2",
+        "depot_id": "TZI.TR.CON",
+        "time_period": "mid_day",
+        "task_name": "Coordinate with other depots as needed",
+        "description": "Automated task: Coordinate with other depots as needed",
+        "priority": "low",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.TR.CON_mid_day_Terrell_16_3",
+        "depot_id": "TZI.TR.CON",
+        "time_period": "mid_day",
+        "task_name": "Address any operational issues",
+        "description": "Automated task: Address any operational issues",
+        "priority": "high",
+        "estimated_duration": 30,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      }
+    ],
+    "evening_tasks": [
+      {
+        "task_id": "TZI.TR.CON_evening_Terrell_16_0",
+        "depot_id": "TZI.TR.CON",
+        "time_period": "evening",
+        "task_name": "Review daily performance metrics",
+        "description": "Automated task: Review daily performance metrics",
+        "priority": "high",
+        "estimated_duration": 20,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.TR.CON_evening_Terrell_16_1",
+        "depot_id": "TZI.TR.CON",
+        "time_period": "evening",
+        "task_name": "Plan tomorrow's content schedule",
+        "description": "Automated task: Plan tomorrow's content schedule",
+        "priority": "high",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.TR.CON_evening_Terrell_16_2",
+        "depot_id": "TZI.TR.CON",
+        "time_period": "evening",
+        "task_name": "Update stakeholder sentiment tracking",
+        "description": "Automated task: Update stakeholder sentiment tracking",
+        "priority": "medium",
+        "estimated_duration": 10,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.TR.CON_evening_Terrell_16_3",
+        "depot_id": "TZI.TR.CON",
+        "time_period": "evening",
+        "task_name": "Document lessons learned",
+        "description": "Automated task: Document lessons learned",
+        "priority": "low",
+        "estimated_duration": 10,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      }
+    ],
+    "overall_completion": 8.333333333333332,
+    "created_at": "2026-09-20T22:24:32.266662",
+    "updated_at": "2026-09-20T22:24:32.276213"
+  },
+  "TZI.SCR.DEP.BODY_2026_Terrell_16": {
+    "checklist_id": "TZI.SCR.DEP.BODY_2026_Terrell_16",
+    "depot_id": "TZI.SCR.DEP.BODY",
+    "heart_date": {
+      "year": 2026,
+      "month": "Terrell",
+      "day": 16.0
+    },
+    "gregorian_date": "2026-09-20",
+    "morning_tasks": [
+      {
+        "task_id": "TZI.SCR.DEP.BODY_morning_Terrell_16_0",
+        "depot_id": "TZI.SCR.DEP.BODY",
+        "time_period": "morning",
+        "task_name": "Review documentation needs for today",
+        "description": "Automated task: Review documentation needs for today",
+        "priority": "high",
+        "estimated_duration": 15,
+        "status": "completed",
+        "completed_at": "2026-09-20T22:24:32.279384",
+        "notes": "Completed via automation",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.SCR.DEP.BODY_morning_Terrell_16_1",
+        "depot_id": "TZI.SCR.DEP.BODY",
+        "time_period": "morning",
+        "task_name": "Check contract status and deadlines",
+        "description": "Automated task: Check contract status and deadlines",
+        "priority": "high",
+        "estimated_duration": 10,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.SCR.DEP.BODY_morning_Terrell_16_2",
+        "depot_id": "TZI.SCR.DEP.BODY",
+        "time_period": "morning",
+        "task_name": "Review infrastructure performance",
+        "description": "Automated task: Review infrastructure performance",
+        "priority": "medium",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.SCR.DEP.BODY_morning_Terrell_16_3",
+        "depot_id": "TZI.SCR.DEP.BODY",
+        "time_period": "morning",
+        "task_name": "Plan documentation updates",
+        "description": "Automated task: Plan documentation updates",
+        "priority": "medium",
+        "estimated_duration": 20,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      }
+    ],
+    "mid_day_tasks": [
+      {
+        "task_id": "TZI.SCR.DEP.BODY_mid_day_Terrell_16_0",
+        "depot_id": "TZI.SCR.DEP.BODY",
+        "time_period": "mid_day",
+        "task_name": "Execute documentation tasks",
+        "description": "Automated task: Execute documentation tasks",
+        "priority": "high",
+        "estimated_duration": 90,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.SCR.DEP.BODY_mid_day_Terrell_16_1",
+        "depot_id": "TZI.SCR.DEP.BODY",
+        "time_period": "mid_day",
+        "task_name": "Monitor system performance",
+        "description": "Automated task: Monitor system performance",
+        "priority": "medium",
+        "estimated_duration": 10,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.SCR.DEP.BODY_mid_day_Terrell_16_2",
+        "depot_id": "TZI.SCR.DEP.BODY",
+        "time_period": "mid_day",
+        "task_name": "Process contract requests",
+        "description": "Automated task: Process contract requests",
+        "priority": "high",
+        "estimated_duration": 30,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.SCR.DEP.BODY_mid_day_Terrell_16_3",
+        "depot_id": "TZI.SCR.DEP.BODY",
+        "time_period": "mid_day",
+        "task_name": "Update knowledge base as needed",
+        "description": "Automated task: Update knowledge base as needed",
+        "priority": "low",
+        "estimated_duration": 20,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      }
+    ],
+    "evening_tasks": [
+      {
+        "task_id": "TZI.SCR.DEP.BODY_evening_Terrell_16_0",
+        "depot_id": "TZI.SCR.DEP.BODY",
+        "time_period": "evening",
+        "task_name": "Review daily documentation output",
+        "description": "Automated task: Review daily documentation output",
+        "priority": "high",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.SCR.DEP.BODY_evening_Terrell_16_1",
+        "depot_id": "TZI.SCR.DEP.BODY",
+        "time_period": "evening",
+        "task_name": "Update contract status tracking",
+        "description": "Automated task: Update contract status tracking",
+        "priority": "medium",
+        "estimated_duration": 10,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.SCR.DEP.BODY_evening_Terrell_16_2",
+        "depot_id": "TZI.SCR.DEP.BODY",
+        "time_period": "evening",
+        "task_name": "Plan tomorrow's documentation priorities",
+        "description": "Automated task: Plan tomorrow's documentation priorities",
+        "priority": "high",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.SCR.DEP.BODY_evening_Terrell_16_3",
+        "depot_id": "TZI.SCR.DEP.BODY",
+        "time_period": "evening",
+        "task_name": "Archive completed documents",
+        "description": "Automated task: Archive completed documents",
+        "priority": "low",
+        "estimated_duration": 10,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      }
+    ],
+    "overall_completion": 8.333333333333332,
+    "created_at": "2026-09-20T22:24:32.267376",
+    "updated_at": "2026-09-20T22:24:32.279395"
+  },
+  "TZI.CSH.DEP.SOUL_2026_Terrell_16": {
+    "checklist_id": "TZI.CSH.DEP.SOUL_2026_Terrell_16",
+    "depot_id": "TZI.CSH.DEP.SOUL",
+    "heart_date": {
+      "year": 2026,
+      "month": "Terrell",
+      "day": 16.0
+    },
+    "gregorian_date": "2026-09-20",
+    "morning_tasks": [
+      {
+        "task_id": "TZI.CSH.DEP.SOUL_morning_Terrell_16_0",
+        "depot_id": "TZI.CSH.DEP.SOUL",
+        "time_period": "morning",
+        "task_name": "Review revenue from previous day",
+        "description": "Automated task: Review revenue from previous day",
+        "priority": "high",
+        "estimated_duration": 15,
+        "status": "completed",
+        "completed_at": "2026-09-20T22:24:32.281648",
+        "notes": "Completed via automation",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.CSH.DEP.SOUL_morning_Terrell_16_1",
+        "depot_id": "TZI.CSH.DEP.SOUL",
+        "time_period": "morning",
+        "task_name": "Check payment processing status",
+        "description": "Automated task: Check payment processing status",
+        "priority": "high",
+        "estimated_duration": 10,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.CSH.DEP.SOUL_morning_Terrell_16_2",
+        "depot_id": "TZI.CSH.DEP.SOUL",
+        "time_period": "morning",
+        "task_name": "Review financial alerts and anomalies",
+        "description": "Automated task: Review financial alerts and anomalies",
+        "priority": "high",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.CSH.DEP.SOUL_morning_Terrell_16_3",
+        "depot_id": "TZI.CSH.DEP.SOUL",
+        "time_period": "morning",
+        "task_name": "Plan financial optimization activities",
+        "description": "Automated task: Plan financial optimization activities",
+        "priority": "medium",
+        "estimated_duration": 20,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      }
+    ],
+    "mid_day_tasks": [
+      {
+        "task_id": "TZI.CSH.DEP.SOUL_mid_day_Terrell_16_0",
+        "depot_id": "TZI.CSH.DEP.SOUL",
+        "time_period": "mid_day",
+        "task_name": "Monitor real-time revenue streams",
+        "description": "Automated task: Monitor real-time revenue streams",
+        "priority": "high",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.CSH.DEP.SOUL_mid_day_Terrell_16_1",
+        "depot_id": "TZI.CSH.DEP.SOUL",
+        "time_period": "mid_day",
+        "task_name": "Process payment requests",
+        "description": "Automated task: Process payment requests",
+        "priority": "high",
+        "estimated_duration": 30,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.CSH.DEP.SOUL_mid_day_Terrell_16_2",
+        "depot_id": "TZI.CSH.DEP.SOUL",
+        "time_period": "mid_day",
+        "task_name": "Update financial dashboards",
+        "description": "Automated task: Update financial dashboards",
+        "priority": "medium",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.CSH.DEP.SOUL_mid_day_Terrell_16_3",
+        "depot_id": "TZI.CSH.DEP.SOUL",
+        "time_period": "mid_day",
+        "task_name": "Coordinate with other depots on financial matters",
+        "description": "Automated task: Coordinate with other depots on financial matters",
+        "priority": "low",
+        "estimated_duration": 20,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      }
+    ],
+    "evening_tasks": [
+      {
+        "task_id": "TZI.CSH.DEP.SOUL_evening_Terrell_16_0",
+        "depot_id": "TZI.CSH.DEP.SOUL",
+        "time_period": "evening",
+        "task_name": "Review daily financial performance",
+        "description": "Automated task: Review daily financial performance",
+        "priority": "high",
+        "estimated_duration": 20,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.CSH.DEP.SOUL_evening_Terrell_16_1",
+        "depot_id": "TZI.CSH.DEP.SOUL",
+        "time_period": "evening",
+        "task_name": "Reconcile daily transactions",
+        "description": "Automated task: Reconcile daily transactions",
+        "priority": "high",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.CSH.DEP.SOUL_evening_Terrell_16_2",
+        "depot_id": "TZI.CSH.DEP.SOUL",
+        "time_period": "evening",
+        "task_name": "Update financial forecasts",
+        "description": "Automated task: Update financial forecasts",
+        "priority": "medium",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.CSH.DEP.SOUL_evening_Terrell_16_3",
+        "depot_id": "TZI.CSH.DEP.SOUL",
+        "time_period": "evening",
+        "task_name": "Plan tomorrow's financial priorities",
+        "description": "Automated task: Plan tomorrow's financial priorities",
+        "priority": "high",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      }
+    ],
+    "overall_completion": 8.333333333333332,
+    "created_at": "2026-09-20T22:24:32.270704",
+    "updated_at": "2026-09-20T22:24:32.281659"
+  },
+  "TZI.HLD.DEP.GNOSIS_2026_Terrell_16": {
+    "checklist_id": "TZI.HLD.DEP.GNOSIS_2026_Terrell_16",
+    "depot_id": "TZI.HLD.DEP.GNOSIS",
+    "heart_date": {
+      "year": 2026,
+      "month": "Terrell",
+      "day": 16.0
+    },
+    "gregorian_date": "2026-09-20",
+    "morning_tasks": [
+      {
+        "task_id": "TZI.HLD.DEP.GNOSIS_morning_Terrell_16_0",
+        "depot_id": "TZI.HLD.DEP.GNOSIS",
+        "time_period": "morning",
+        "task_name": "Review asset performance from previous day",
+        "description": "Automated task: Review asset performance from previous day",
+        "priority": "high",
+        "estimated_duration": 15,
+        "status": "completed",
+        "completed_at": "2026-09-20T22:24:32.283200",
+        "notes": "Completed via automation",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.HLD.DEP.GNOSIS_morning_Terrell_16_1",
+        "depot_id": "TZI.HLD.DEP.GNOSIS",
+        "time_period": "morning",
+        "task_name": "Check investment opportunities and alerts",
+        "description": "Automated task: Check investment opportunities and alerts",
+        "priority": "high",
+        "estimated_duration": 20,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.HLD.DEP.GNOSIS_morning_Terrell_16_2",
+        "depot_id": "TZI.HLD.DEP.GNOSIS",
+        "time_period": "morning",
+        "task_name": "Review resource allocation status",
+        "description": "Automated task: Review resource allocation status",
+        "priority": "medium",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.HLD.DEP.GNOSIS_morning_Terrell_16_3",
+        "depot_id": "TZI.HLD.DEP.GNOSIS",
+        "time_period": "morning",
+        "task_name": "Plan investment activities",
+        "description": "Automated task: Plan investment activities",
+        "priority": "high",
+        "estimated_duration": 20,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      }
+    ],
+    "mid_day_tasks": [
+      {
+        "task_id": "TZI.HLD.DEP.GNOSIS_mid_day_Terrell_16_0",
+        "depot_id": "TZI.HLD.DEP.GNOSIS",
+        "time_period": "mid_day",
+        "task_name": "Execute investment decisions",
+        "description": "Automated task: Execute investment decisions",
+        "priority": "high",
+        "estimated_duration": 30,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.HLD.DEP.GNOSIS_mid_day_Terrell_16_1",
+        "depot_id": "TZI.HLD.DEP.GNOSIS",
+        "time_period": "mid_day",
+        "task_name": "Monitor real-time asset performance",
+        "description": "Automated task: Monitor real-time asset performance",
+        "priority": "medium",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.HLD.DEP.GNOSIS_mid_day_Terrell_16_2",
+        "depot_id": "TZI.HLD.DEP.GNOSIS",
+        "time_period": "mid_day",
+        "task_name": "Coordinate resource allocation",
+        "description": "Automated task: Coordinate resource allocation",
+        "priority": "medium",
+        "estimated_duration": 20,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.HLD.DEP.GNOSIS_mid_day_Terrell_16_3",
+        "depot_id": "TZI.HLD.DEP.GNOSIS",
+        "time_period": "mid_day",
+        "task_name": "Address any investment issues",
+        "description": "Automated task: Address any investment issues",
+        "priority": "high",
+        "estimated_duration": 30,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      }
+    ],
+    "evening_tasks": [
+      {
+        "task_id": "TZI.HLD.DEP.GNOSIS_evening_Terrell_16_0",
+        "depot_id": "TZI.HLD.DEP.GNOSIS",
+        "time_period": "evening",
+        "task_name": "Review daily portfolio performance",
+        "description": "Automated task: Review daily portfolio performance",
+        "priority": "high",
+        "estimated_duration": 20,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.HLD.DEP.GNOSIS_evening_Terrell_16_1",
+        "depot_id": "TZI.HLD.DEP.GNOSIS",
+        "time_period": "evening",
+        "task_name": "Update asset valuations",
+        "description": "Automated task: Update asset valuations",
+        "priority": "medium",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.HLD.DEP.GNOSIS_evening_Terrell_16_2",
+        "depot_id": "TZI.HLD.DEP.GNOSIS",
+        "time_period": "evening",
+        "task_name": "Plan tomorrow's investment priorities",
+        "description": "Automated task: Plan tomorrow's investment priorities",
+        "priority": "high",
+        "estimated_duration": 15,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      },
+      {
+        "task_id": "TZI.HLD.DEP.GNOSIS_evening_Terrell_16_3",
+        "depot_id": "TZI.HLD.DEP.GNOSIS",
+        "time_period": "evening",
+        "task_name": "Document investment decisions",
+        "description": "Automated task: Document investment decisions",
+        "priority": "low",
+        "estimated_duration": 10,
+        "status": "pending",
+        "completed_at": "",
+        "notes": "",
+        "assigned_to": "auto"
+      }
+    ],
+    "overall_completion": 8.333333333333332,
+    "created_at": "2026-09-20T22:24:32.273325",
+    "updated_at": "2026-09-20T22:24:32.283209"
+  }
+}

@@ -1,0 +1,22 @@
+# Python Requirements for Tiapmaatzu OS Toolkit - Organizational Systems
+# Core organizational automation scripts
+
+# Standard library modules used (no additional packages required):
+# - json
+# - os
+# - datetime
+# - typing
+# - enum
+# - dataclasses
+
+# Future dependencies (as needed):
+# - python-dateutil>=2.8.0  # For advanced date parsing
+# - pytz>=2023.0  # For timezone support
+# - requests>=2.31.0  # For API integrations
+# - pandas>=2.0.0  # For data analysis
+# - numpy>=1.24.0  # For numerical operations
+
+# Development dependencies (optional):
+# - pytest>=7.4.0  # For testing
+# - black>=23.0.0  # For code formatting
+# - flake8>=6.0.0  # For linting

@@ -7,6 +7,7 @@ Automates content creation, social media management, and media production workfl
 import json
 import datetime
 import os
+import statistics
 from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict
 from enum import Enum
@@ -280,6 +281,7 @@ class SocialMediaAutomation:
     
     def __init__(self, content_pipeline: ContentPipeline):
         self.pipeline = content_pipeline
+        self.character_profiles = content_pipeline.character_profiles
         self.platform_configs = {
             ContentType.TIKTOK: {
                 "max_duration": 60,
@@ -367,6 +369,104 @@ class SocialMediaAutomation:
         # Simple logic: return first available time
         # In production, this would use analytics to determine optimal times
         return posting_times[0]
+    
+    def get_content_performance_analytics(self, days: int = 30) -> Dict:
+        """Analyze content performance over specified period"""
+        cutoff_date = datetime.datetime.now() - datetime.timedelta(days=days)
+        
+        published_content = [c for c in self.pipeline.content_items.values() 
+                           if c.status == ContentStatus.PUBLISHED and
+                           datetime.datetime.fromisoformat(c.updated_at) >= cutoff_date]
+        
+        if not published_content:
+            return {"period_days": days, "total_content": 0, "analytics": {}}
+        
+        platform_analytics = {}
+        for content_type in ContentType:
+            type_content = [c for c in published_content if c.content_type == content_type]
+            if type_content:
+                engagements = [c.performance_metrics.get('engagement', 0) for c in type_content]
+                views = [c.performance_metrics.get('views', 0) for c in type_content]
+                
+                platform_analytics[content_type.value] = {
+                    "content_count": len(type_content),
+                    "total_engagement": sum(engagements),
+                    "avg_engagement": statistics.mean(engagements),
+                    "total_views": sum(views),
+                    "avg_views": statistics.mean(views),
+                    "engagement_rate": (sum(engagements) / sum(views) * 100) if sum(views) > 0 else 0
+                }
+        
+        character_analytics = {}
+        for character in ["Mac", "Mary"]:
+            char_content = [c for c in published_content if c.character == character]
+            if char_content:
+                engagements = [c.performance_metrics.get('engagement', 0) for c in char_content]
+                character_analytics[character] = {
+                    "content_count": len(char_content),
+                    "total_engagement": sum(engagements),
+                    "avg_engagement": statistics.mean(engagements)
+                }
+        
+        return {
+            "period_days": days,
+            "total_content": len(published_content),
+            "platform_analytics": platform_analytics,
+            "character_analytics": character_analytics
+        }
+    
+    def get_automation_triggers(self) -> List[Dict]:
+        """Generate automation triggers based on content pipeline data"""
+        triggers = []
+        
+        # Low content volume alert
+        published = self.pipeline.get_content_by_status(ContentStatus.PUBLISHED)
+        if len(published) < 5:
+            triggers.append({
+                "type": "low_content_volume",
+                "severity": "warning",
+                "message": f"Only {len(published)} published content items - need more content",
+                "action": "Increase content production schedule"
+            })
+        
+        # Pending content alert
+        pending = self.pipeline.get_content_by_status(ContentStatus.READY)
+        if len(pending) > 5:
+            triggers.append({
+                "type": "content_backlog",
+                "severity": "info",
+                "message": f"{len(pending)} content items ready for scheduling",
+                "action": "Review and schedule pending content"
+            })
+        
+        # Performance alerts by platform
+        analytics = self.get_content_performance_analytics(30)
+        for platform, data in analytics.get("platform_analytics", {}).items():
+            if data["engagement_rate"] < 5:  # Less than 5% engagement rate
+                triggers.append({
+                    "type": "low_engagement_alert",
+                    "severity": "warning",
+                    "message": f"{platform.upper()} engagement rate {data['engagement_rate']:.1f}% is below target",
+                    "action": f"Review {platform} content strategy and optimization"
+                })
+        
+        # Character balance alert
+        char_analytics = analytics.get("character_analytics", {})
+        if char_analytics:
+            mac_count = char_analytics.get("Mac", {}).get("content_count", 0)
+            mary_count = char_analytics.get("Mary", {}).get("content_count", 0)
+            total = mac_count + mary_count
+            if total > 0:
+                mac_ratio = mac_count / total
+                if mac_ratio > 0.7 or mac_ratio < 0.3:
+                    triggers.append({
+                        "type": "character_balance_alert",
+                        "severity": "info",
+                        "message": f"Character imbalance: Mac {mac_ratio*100:.0f}%, Mary {(1-mac_ratio)*100:.0f}%",
+                        "action": "Balance content between Mac and Mary characters"
+                    })
+        
+        return triggers
 
 
 def main():
@@ -418,7 +518,22 @@ def main():
     # Generate performance report
     print(pipeline.generate_performance_report())
     
+    # Generate enhanced analytics
+    print("\nCONTENT PERFORMANCE ANALYTICS:")
+    analytics = social_automation.get_content_performance_analytics(30)
+    print(json.dumps(analytics, indent=2))
+    
+    # Generate automation triggers
+    print("\nAUTOMATION TRIGGERS:")
+    triggers = social_automation.get_automation_triggers()
+    for trigger in triggers:
+        severity_icon = "⚠️" if trigger['severity'] == 'warning' else "ℹ️"
+        print(f"{severity_icon} {trigger['type'].replace('_', ' ').title()}")
+        print(f"  {trigger['message']}")
+        print(f"  Action: {trigger['action']}")
+    
     # Test social media optimization
+    print("\nSOCIAL MEDIA OPTIMIZATION:")
     for content_id in content_ids:
         optimization = social_automation.optimize_content_for_platform(content_id)
         print(f"\nOptimization for {content_id}:")

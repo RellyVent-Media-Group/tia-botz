@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holdings Depot - Oracle/TIAPMAATZU</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Holdings Depot</h1>
+            <p class="subtitle">TZI.HLD.DEP.GNOSIS | Oracle/TIAPMAATZU</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Documentation</h3>
+                <p class="stat-number">5</p>
+                <p class="stat-label">Documents</p>
+            </div>
+            <div class="stat-card">
+                <h3>Automation</h3>
+                <p class="stat-number">4</p>
+                <p class="stat-label">Scripts</p>
+            </div>
+            <div class="stat-card">
+                <h3>Integrations</h3>
+                <p class="stat-number">3</p>
+                <p class="stat-label">Partner Depots</p>
+            </div>
+            <div class="stat-card">
+                <h3>Reports</h3>
+                <p class="stat-number">2</p>
+                <p class="stat-label">Generated</p>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <input type="text" id="searchInput" placeholder="Search documentation..." onkeyup="filterDocs()">
+        </div>
+
+        <div class="section">
+            <h2>Core Documentation</h2>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <h3>Operations Manual</h3>
+                    <p class="doc-type">Core Operations</p>
+                    <p class="doc-description">Comprehensive operational procedures for the Holdings Depot, including portfolio management, resource allocation, and risk monitoring.</p>
+                    <a href="docs.html?file=operations-manual.md" class="btn">View Document</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Automation Guides</h2>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <h3>Automation Setup Guide</h3>
+                    <p class="doc-type">Implementation</p>
+                    <p class="doc-description">Detailed instructions for setting up and configuring automation scripts for portfolio rebalancing, resource allocation, and risk monitoring.</p>
+                    <a href="docs.html?file=guides/automation-setup-guide.md" class="btn">View Document</a>
+                </div>
+                <div class="doc-card">
+                    <h3>Partner Depot Integration Guide</h3>
+                    <p class="doc-type">Integration</p>
+                    <p class="doc-description">Integration procedures for Consort Depot, CashingHouse Depot, and Scribe Depot including API endpoints and workflows.</p>
+                    <a href="docs.html?file=guides/partner-depot-integration-guide.md" class="btn">View Document</a>
+                </div>
+                <div class="doc-card">
+                    <h3>Deployment Checklist</h3>
+                    <p class="doc-type">Operations</p>
+                    <p class="doc-description">Comprehensive step-by-step checklist for deploying the automation system to live production with safety procedures.</p>
+                    <a href="docs.html?file=guides/deployment-checklist.md" class="btn">View Document</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Reports</h2>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <h3>Executive Summary Report</h3>
+                    <p class="doc-type">Strategic Overview</p>
+                    <p class="doc-description">Comprehensive executive summary covering operational status, automation capabilities, and strategic recommendations.</p>
+                    <a href="docs.html?file=reports/executive-summary-report.md" class="btn">View Document</a>
+                </div>
+                <div class="doc-card">
+                    <h3>Performance Metrics Report</h3>
+                    <p class="doc-type">Analytics</p>
+                    <p class="doc-description">Detailed performance metrics for all automation systems with trend analysis and benchmark comparisons.</p>
+                    <a href="docs.html?file=reports/performance-metrics-report.md" class="btn">View Document</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Automation Scripts</h2>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <h3>Portfolio Rebalancing</h3>
+                    <p class="doc-type">Python Script</p>
+                    <p class="doc-description">Automated portfolio rebalancing based on target allocations and current market conditions.</p>
+                    <a href="automation/portfolio_rebalancing.py" class="btn" target="_blank">View Script</a>
+                </div>
+                <div class="doc-card">
+                    <h3>Resource Allocation</h3>
+                    <p class="doc-type">Python Script</p>
+                    <p class="doc-description">Automated capital distribution across depots based on priorities and budget rules.</p>
+                    <a href="automation/resource_allocation.py" class="btn" target="_blank">View Script</a>
+                </div>
+                <div class="doc-card">
+                    <h3>Risk Monitoring</h3>
+                    <p class="doc-type">Python Script</p>
+                    <p class="doc-description">Automated risk assessment, monitoring, and alert generation for portfolio assets.</p>
+                    <a href="automation/risk_monitoring.py" class="btn" target="_blank">View Script</a>
+                </div>
+                <div class="doc-card">
+                    <h3>Integration Tests</h3>
+                    <p class="doc-type">Python Script</p>
+                    <p class="doc-description">Comprehensive API integration testing for all partner depots and core services.</p>
+                    <a href="automation/test_integrations.py" class="btn" target="_blank">View Script</a>
+                </div>
+                <div class="doc-card">
+                    <h3>Health Check</h3>
+                    <p class="doc-type">Python Script</p>
+                    <p class="doc-description">System health monitoring with automatic alerting for critical issues.</p>
+                    <a href="automation/health_check.py" class="btn" target="_blank">View Script</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Quick Links</h2>
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <h3>Automation Directory</h3>
+                    <p class="doc-type">Directory</p>
+                    <p class="doc-description">Access the complete automation directory with scripts, configurations, and data files.</p>
+                    <a href="automation/" class="btn" target="_blank">Open Directory</a>
+                </div>
+                <div class="doc-card">
+                    <h3>Deployment Summary</h3>
+                    <p class="doc-type">Documentation</p>
+                    <p class="doc-description">Summary of the automation system deployment and setup procedures.</p>
+                    <a href="docs.html?file=DEPLOYMENT_SUMMARY.md" class="btn">View Document</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Holdings Depot (TZI.HLD.DEP.GNOSIS) | Oracle/TIAPMAATZU</p>
+            <p>Last Updated: 2026-09-22</p>
+        </footer>
+    </div>
+
+    <script>
+        function filterDocs() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const cards = document.getElementsByClassName('doc-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                const h3 = cards[i].getElementsByTagName('h3')[0];
+                const p = cards[i].getElementsByTagName('p')[2];
+                if (h3 || p) {
+                    const textValue = (h3.textContent || h3.innerText) + " " + (p.textContent || p.innerText);
+                    if (textValue.toLowerCase().indexOf(filter) > -1) {
+                        cards[i].style.display = "";
+                    } else {
+                        cards[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

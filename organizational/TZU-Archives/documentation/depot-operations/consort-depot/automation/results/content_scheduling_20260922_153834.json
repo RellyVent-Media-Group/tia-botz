@@ -1,0 +1,45 @@
+{
+  "total_content": 4,
+  "scheduled": 4,
+  "failed": 0,
+  "by_platform": {
+    "tiktok": 1,
+    "instagram": 1,
+    "youtube": 1,
+    "x": 1
+  },
+  "scheduling_details": [
+    {
+      "content_id": "CNT001",
+      "status": "scheduled",
+      "platform": "tiktok",
+      "scheduled_time": "2026-09-22T09:00:00Z",
+      "scheduled_at": "2026-09-22T15:38:34.438839",
+      "dry_run": true
+    },
+    {
+      "content_id": "CNT002",
+      "status": "scheduled",
+      "platform": "instagram",
+      "scheduled_time": "2026-09-22T10:00:00Z",
+      "scheduled_at": "2026-09-22T15:38:34.438937",
+      "dry_run": true
+    },
+    {
+      "content_id": "CNT003",
+      "status": "scheduled",
+      "platform": "youtube",
+      "scheduled_time": "2026-09-22T14:00:00Z",
+      "scheduled_at": "2026-09-22T15:38:34.439020",
+      "dry_run": true
+    },
+    {
+      "content_id": "CNT004",
+      "status": "scheduled",
+      "platform": "x",
+      "scheduled_time": "2026-09-22T16:00:00Z",
+      "scheduled_at": "2026-09-22T15:38:34.439096",
+      "dry_run": true
+    }
+  ]
+}

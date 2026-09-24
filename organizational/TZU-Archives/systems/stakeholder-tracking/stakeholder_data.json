@@ -1,0 +1,79 @@
+{
+  "TZI.TR.CON": {
+    "depot_id": "TZI.TR.CON",
+    "depot_name": "Consort Depot",
+    "stakeholders": {
+      "SH001": {
+        "id": "SH001",
+        "name": "Alex Johnson",
+        "role": "Media Partner",
+        "contact_info": "alex@example.com",
+        "sentiment_score": 0.8,
+        "influence_level": "high",
+        "last_interaction": "2026-09-20T22:24:44.598592",
+        "notes": "Key partner for Consort Depot media operations"
+      }
+    },
+    "last_updated": "2026-09-20T22:24:44.598611",
+    "sentiment_trend": "stable",
+    "overall_sentiment": 0.8,
+    "positive_count": 1,
+    "negative_count": 0,
+    "neutral_count": 0
+  },
+  "TZI.SCR.DEP.BODY": {
+    "depot_id": "TZI.SCR.DEP.BODY",
+    "depot_name": "Scribe Depot",
+    "stakeholders": {
+      "SH003": {
+        "id": "SH003",
+        "name": "James Wilson",
+        "role": "Legal Counsel",
+        "contact_info": "james@example.com",
+        "sentiment_score": -0.9,
+        "influence_level": "high",
+        "last_interaction": "2026-09-20T22:24:44.598601",
+        "notes": "Expressed concerns about recent contract terms"
+      }
+    },
+    "last_updated": "2026-09-20T22:24:44.599671",
+    "sentiment_trend": "stable",
+    "overall_sentiment": -0.9,
+    "positive_count": 0,
+    "negative_count": 1,
+    "neutral_count": 0
+  },
+  "TZI.CSH.DEP.SOUL": {
+    "depot_id": "TZI.CSH.DEP.SOUL",
+    "depot_name": "CashingHouse Depot",
+    "stakeholders": {},
+    "last_updated": "2026-09-20T22:24:44.598583",
+    "sentiment_trend": "stable",
+    "overall_sentiment": 0.0,
+    "positive_count": 0,
+    "negative_count": 0,
+    "neutral_count": 0
+  },
+  "TZI.HLD.DEP.GNOSIS": {
+    "depot_id": "TZI.HLD.DEP.GNOSIS",
+    "depot_name": "Holdings Depot",
+    "stakeholders": {
+      "SH002": {
+        "id": "SH002",
+        "name": "Maria Garcia",
+        "role": "Investment Advisor",
+        "contact_info": "maria@example.com",
+        "sentiment_score": 0.7,
+        "influence_level": "medium",
+        "last_interaction": "2026-09-20T22:24:44.598597",
+        "notes": "Provides financial guidance for Holdings Depot"
+      }
+    },
+    "last_updated": "2026-09-20T22:24:44.599205",
+    "sentiment_trend": "stable",
+    "overall_sentiment": 0.7,
+    "positive_count": 1,
+    "negative_count": 0,
+    "neutral_count": 0
+  }
+}

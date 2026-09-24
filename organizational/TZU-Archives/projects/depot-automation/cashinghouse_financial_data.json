@@ -1,0 +1,103 @@
+{
+  "revenue_sources": {
+    "GUM_MAIN": {
+      "platform": "gumroad",
+      "source_id": "GUM_MAIN",
+      "source_name": "Gumroad Main Store",
+      "total_revenue": 294.0,
+      "transaction_count": 3,
+      "average_transaction": 98.0,
+      "last_transaction": "2026-09-22T11:42:13.937655",
+      "commission_rate": 0.1,
+      "net_revenue": 244.75
+    },
+    "FIV_AI_SERVICES": {
+      "platform": "fiverr",
+      "source_id": "FIV_AI_SERVICES",
+      "source_name": "Fiverr AI Services",
+      "total_revenue": 0.0,
+      "transaction_count": 0,
+      "average_transaction": 0.0,
+      "last_transaction": "",
+      "commission_rate": 0.2,
+      "net_revenue": 0.0
+    },
+    "CRK_CONTENT": {
+      "platform": "crakrevenue",
+      "source_id": "CRK_CONTENT",
+      "source_name": "CrakRevenue Content",
+      "total_revenue": 0.0,
+      "transaction_count": 0,
+      "average_transaction": 0.0,
+      "last_transaction": "",
+      "commission_rate": 0.15,
+      "net_revenue": 0.0
+    },
+    "ADM_MONETIZATION": {
+      "platform": "admob",
+      "source_id": "ADM_MONETIZATION",
+      "source_name": "AdMob Monetization",
+      "total_revenue": 0.0,
+      "transaction_count": 0,
+      "average_transaction": 0.0,
+      "last_transaction": "",
+      "commission_rate": 0.3,
+      "net_revenue": 0.0
+    },
+    "LNK_AFFILIATES": {
+      "platform": "linktree",
+      "source_id": "LNK_AFFILIATES",
+      "source_name": "Linktree Affiliates",
+      "total_revenue": 0.0,
+      "transaction_count": 0,
+      "average_transaction": 0.0,
+      "last_transaction": "",
+      "commission_rate": 0.05,
+      "net_revenue": 0.0
+    }
+  },
+  "transactions": {
+    "gumroad_20260922_114213_936013": {
+      "transaction_id": "gumroad_20260922_114213_936013",
+      "platform": "gumroad",
+      "amount": 47.0,
+      "commission": 4.7,
+      "net_amount": 42.3,
+      "status": "completed",
+      "customer_id": "CUST001",
+      "product_id": "PROD001",
+      "transaction_date": "2026-09-22T11:42:13.936061",
+      "metadata": {
+        "product": "Mac & Mary Prompt Pack"
+      }
+    },
+    "fiverr_20260922_114213_936830": {
+      "transaction_id": "fiverr_20260922_114213_936830",
+      "platform": "fiverr",
+      "amount": 150.0,
+      "commission": 30.0,
+      "net_amount": 120.0,
+      "status": "completed",
+      "customer_id": "CUST002",
+      "product_id": "PROD002",
+      "transaction_date": "2026-09-22T11:42:13.936853",
+      "metadata": {
+        "service": "AI Scriptwriter Pro"
+      }
+    },
+    "crakrevenue_20260922_114213_937634": {
+      "transaction_id": "crakrevenue_20260922_114213_937634",
+      "platform": "crakrevenue",
+      "amount": 97.0,
+      "commission": 14.549999999999999,
+      "net_amount": 82.45,
+      "status": "completed",
+      "customer_id": "CUST003",
+      "product_id": "PROD003",
+      "transaction_date": "2026-09-22T11:42:13.937655",
+      "metadata": {
+        "content": "Character Prompts"
+      }
+    }
+  }
+}

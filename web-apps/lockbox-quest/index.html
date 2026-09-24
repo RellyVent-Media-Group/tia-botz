@@ -1,0 +1,1285 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lockbox Quest · RellyVent Media Group</title>
+    <style>
+        /* ── Gilded Mirrors Design System ── */
+        :root {
+            --bg: #0a0d10;
+            --panel: #12171d;
+            --panel-2: #181f27;
+            --paper: #f4efe4;
+            --muted: #aeb4b7;
+            --line: rgba(244, 239, 228, 0.12);
+            --gold: #f0b35a;
+            --gold-dim: rgba(240, 179, 90, 0.2);
+            --brass: #b98b45;
+            --teal: #8acbd2;
+            --teal-dim: rgba(138, 203, 210, 0.15);
+            --red: #c84c48;
+            --green: #75b982;
+            --purple: #8b5cf6;
+            --shadow: rgba(0, 0, 0, 0.4);
+            --radius: 10px;
+            --font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--paper);
+            min-height: 100vh;
+            background-image:
+                linear-gradient(90deg, rgba(240, 179, 90, 0.025) 1px, transparent 1px),
+                linear-gradient(rgba(240, 179, 90, 0.02) 1px, transparent 1px),
+                radial-gradient(circle at 20% 0%, rgba(240, 179, 90, 0.10), transparent 35%),
+                radial-gradient(circle at 85% 10%, rgba(138, 203, 210, 0.08), transparent 25%);
+            background-size: 44px 44px, 44px 44px, auto, auto;
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dim);
+            border-radius: 4px;
+        }
+
+        /* ── Layout ── */
+        .app {
+            display: grid;
+            grid-template-columns: 220px 1fr 320px;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 1024px) {
+            .app {
+                grid-template-columns: 80px 1fr 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+            }
+        }
+
+        .rail {
+            background: rgba(10, 13, 16, 0.92);
+            backdrop-filter: blur(14px);
+            border-right: 1px solid var(--line);
+            padding: 16px 12px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .rail {
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 16px;
+        }
+
+        .brand-mark {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(240, 179, 90, 0.4);
+            border-radius: 8px;
+            color: var(--gold);
+            background: var(--gold-dim);
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        .brand h1 {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: var(--gold);
+            line-height: 1.2;
+        }
+
+        .brand span {
+            font-size: 10px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 4px;
+        }
+
+        .nav-item:hover {
+            background: var(--gold-dim);
+            color: var(--gold);
+        }
+
+        .nav-item.active {
+            background: var(--gold-dim);
+            color: var(--gold);
+            border: 1px solid rgba(240, 179, 90, 0.3);
+        }
+
+        .nav-icon {
+            font-size: 16px;
+        }
+
+        .main {
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .main {
+                padding: 16px;
+            }
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-subtitle {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        /* ── XP & Level Bar ── */
+        .xp-bar {
+            background: var(--panel-2);
+            border-radius: 20px;
+            height: 24px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--line);
+        }
+
+        .xp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--brass));
+            border-radius: 20px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+        }
+
+        .xp-text {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--paper);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* ── Stats Grid ── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        /* ── Quest Cards ── */
+        .quest-card {
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quest-card:hover {
+            border-color: var(--gold-dim);
+            transform: translateY(-2px);
+        }
+
+        .quest-card.completed {
+            border-color: var(--green);
+            opacity: 0.7;
+        }
+
+        .quest-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .quest-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--paper);
+        }
+
+        .quest-xp {
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .quest-desc {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .quest-progress {
+            background: var(--bg);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .quest-progress-fill {
+            height: 100%;
+            background: var(--teal);
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+
+        /* ── Badge Grid ── */
+        .badge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+        }
+
+        .badge {
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .badge:hover {
+            border-color: var(--gold);
+            transform: scale(1.05);
+        }
+
+        .badge.locked {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .badge-icon {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+
+        .badge-name {
+            font-size: 10px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        /* ── Inspector Panel ── */
+        .inspector {
+            background: rgba(10, 13, 16, 0.92);
+            backdrop-filter: blur(14px);
+            border-left: 1px solid var(--line);
+            padding: 16px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .inspector {
+                height: auto;
+                position: relative;
+                border-left: none;
+                border-top: 1px solid var(--line);
+            }
+        }
+
+        .inspector-section {
+            margin-bottom: 20px;
+        }
+
+        .inspector-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        /* ── AGENT Card ── */
+        .agent-card {
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .agent-card:hover {
+            border-color: var(--teal);
+        }
+
+        .agent-card.active {
+            border-color: var(--gold);
+            background: var(--gold-dim);
+        }
+
+        .agent-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .agent-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--panel);
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+            border: 1px solid var(--line);
+        }
+
+        .agent-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--paper);
+        }
+
+        .agent-role {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .agent-message {
+            font-size: 12px;
+            color: var(--teal);
+            font-style: italic;
+            padding: 8px;
+            background: var(--bg);
+            border-radius: 6px;
+            border-left: 2px solid var(--teal);
+        }
+
+        /* ── Mail Item Cards ── */
+        .mail-item {
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mail-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--gold-dim);
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+        }
+
+        .mail-details {
+            flex: 1;
+        }
+
+        .mail-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--paper);
+        }
+
+        .mail-amount {
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .mail-status {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .mail-action {
+            padding: 8px 16px;
+            background: var(--teal-dim);
+            border: 1px solid var(--teal);
+            border-radius: 6px;
+            color: var(--teal);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mail-action:hover {
+            background: var(--teal);
+            color: var(--bg);
+        }
+
+        /* ── Streak Display ── */
+        .streak-display {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+        }
+
+        .streak-fire {
+            font-size: 24px;
+        }
+
+        .streak-count {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .streak-label {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        /* ── Button ── */
+        .btn {
+            padding: 10px 20px;
+            background: var(--gold-dim);
+            border: 1px solid var(--gold);
+            border-radius: 6px;
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--bg);
+        }
+
+        .btn-teal {
+            background: var(--teal-dim);
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+
+        .btn-teal:hover {
+            background: var(--teal);
+            color: var(--bg);
+        }
+
+        /* ── Notification ── */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--panel);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            padding: 16px 20px;
+            color: var(--paper);
+            font-size: 13px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* ── Tab Content ── */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ── Rewards List ── */
+        .reward-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .reward-info {
+            flex: 1;
+        }
+
+        .reward-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--paper);
+        }
+
+        .reward-desc {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .reward-cost {
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .reward-claim {
+            padding: 6px 12px;
+            background: var(--green);
+            border: none;
+            border-radius: 4px;
+            color: var(--bg);
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .reward-claim:disabled {
+            background: var(--panel);
+            color: var(--muted);
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- Navigation Rail -->
+        <nav class="rail">
+            <div class="brand">
+                <div class="brand-mark">📬</div>
+                <div>
+                    <h1>Lockbox Quest</h1>
+                    <span>RellyVent Media Group</span>
+                </div>
+            </div>
+
+            <div class="nav-item active" data-tab="dashboard" onclick="switchTab('dashboard')">
+                <span class="nav-icon">🎮</span>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item" data-tab="quests" onclick="switchTab('quests')">
+                <span class="nav-icon">⚔️</span>
+                <span>Quests</span>
+            </div>
+            <div class="nav-item" data-tab="mailbox" onclick="switchTab('mailbox')">
+                <span class="nav-icon">📥</span>
+                <span>Mailbox</span>
+            </div>
+            <div class="nav-item" data-tab="badges" onclick="switchTab('badges')">
+                <span class="nav-icon">🏆</span>
+                <span>Badges</span>
+            </div>
+            <div class="nav-item" data-tab="rewards" onclick="switchTab('rewards')">
+                <span class="nav-icon">🎁</span>
+                <span>Rewards</span>
+            </div>
+            <div class="nav-item" data-tab="settings" onclick="switchTab('settings')">
+                <span class="nav-icon">⚙️</span>
+                <span>Settings</span>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Dashboard Tab -->
+            <div id="tab-dashboard" class="tab-content active">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <div class="panel-title">🎯 Level Progress</div>
+                            <div class="panel-subtitle">Every payment is a power-up</div>
+                        </div>
+                        <div class="streak-display">
+                            <span class="streak-fire">🔥</span>
+                            <span class="streak-count" id="streakCount">4</span>
+                            <span class="streak-label">week streak</span>
+                        </div>
+                    </div>
+
+                    <div class="xp-bar" style="margin-bottom: 20px;">
+                        <div class="xp-fill" id="xpFill" style="width: 65%;">
+                            <span class="xp-text" id="xpText">650 / 1000 XP</span>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalXP">1,250</div>
+                            <div class="stat-label">Total XP</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="level">12</div>
+                            <div class="stat-label">Level</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="processedItems">28</div>
+                            <div class="stat-label">Items Processed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="taxVault">$840</div>
+                            <div class="stat-label">Tax Vault</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">📬 New Quest Items</div>
+                    </div>
+                    <div id="newMailItems">
+                        <div class="mail-item">
+                            <div class="mail-icon">✉️</div>
+                            <div class="mail-details">
+                                <div class="mail-title">Client Payment - Design Services</div>
+                                <div class="mail-amount">$500.00</div>
+                                <div class="mail-status">New quest item • +25 XP bonus for 24h deposit</div>
+                            </div>
+                            <button class="mail-action" onclick="processMail(this, 500, 25)">Process</button>
+                        </div>
+                        <div class="mail-item">
+                            <div class="mail-icon">✉️</div>
+                            <div class="mail-details">
+                                <div class="mail-title">Freelance Payment - Consulting</div>
+                                <div class="mail-amount">$350.00</div>
+                                <div class="mail-status">New quest item • +25 XP bonus for 24h deposit</div>
+                            </div>
+                            <button class="mail-action" onclick="processMail(this, 350, 25)">Process</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">⚔️ Active Quests</div>
+                    </div>
+                    <div id="activeQuests">
+                        <div class="quest-card">
+                            <div class="quest-header">
+                                <div class="quest-title">Process 3 Payments This Week</div>
+                                <div class="quest-xp">+50 XP</div>
+                            </div>
+                            <div class="quest-desc">Deposit 3 payments from your lockbox this week</div>
+                            <div class="quest-progress">
+                                <div class="quest-progress-fill" style="width: 66%;"></div>
+                            </div>
+                            <div style="font-size: 11px; color: var(--muted); margin-top: 6px;">2/3 completed</div>
+                        </div>
+                        <div class="quest-card">
+                            <div class="quest-header">
+                                <div class="quest-title">Tax Vault Builder</div>
+                                <div class="quest-xp">+100 XP</div>
+                            </div>
+                            <div class="quest-desc">Move 20% of each deposit to tax savings</div>
+                            <div class="quest-progress">
+                                <div class="quest-progress-fill" style="width: 60%;"></div>
+                            </div>
+                            <div style="font-size: 11px; color: var(--muted); margin-top: 6px;">$840 / $1,400 goal</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quests Tab -->
+            <div id="tab-quests" class="tab-content">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">⚔️ All Quests</div>
+                    </div>
+                    <div id="allQuests">
+                        <div class="quest-card">
+                            <div class="quest-header">
+                                <div class="quest-title">Weekly Processing Challenge</div>
+                                <div class="quest-xp">+50 XP</div>
+                            </div>
+                            <div class="quest-desc">Process 3 payments this week</div>
+                            <div class="quest-progress">
+                                <div class="quest-progress-fill" style="width: 66%;"></div>
+                            </div>
+                        </div>
+                        <div class="quest-card">
+                            <div class="quest-header">
+                                <div class="quest-title">Tax Vault Builder</div>
+                                <div class="quest-xp">+100 XP</div>
+                            </div>
+                            <div class="quest-desc">Save $1,000 in tax vault</div>
+                            <div class="quest-progress">
+                                <div class="quest-progress-fill" style="width: 84%;"></div>
+                            </div>
+                        </div>
+                        <div class="quest-card">
+                            <div class="quest-header">
+                                <div class="quest-title">Donation Champion</div>
+                                <div class="quest-xp">+75 XP</div>
+                            </div>
+                            <div class="quest-desc">Donate 1% of lockbox receipts to humanitarian project</div>
+                            <div class="quest-progress">
+                                <div class="quest-progress-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                        <div class="quest-card completed">
+                            <div class="quest-header">
+                                <div class="quest-title">First $1k via Lockbox</div>
+                                <div class="quest-xp">+200 XP ✓</div>
+                            </div>
+                            <div class="quest-desc">Process your first $1,000 through Lockbox Quest</div>
+                            <div class="quest-progress">
+                                <div class="quest-progress-fill" style="width: 100%; background: var(--green);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mailbox Tab -->
+            <div id="tab-mailbox" class="tab-content">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">📥 Digital Mailbox</div>
+                        <button class="btn btn-teal" onclick="simulateNewMail()">Simulate New Mail</button>
+                    </div>
+                    <div class="panel-subtitle" style="margin-bottom: 16px;">Each mail item appears as a quest card. Swipe to process, deposit, or defer.</div>
+                    <div id="mailboxItems">
+                        <div class="mail-item">
+                            <div class="mail-icon">✉️</div>
+                            <div class="mail-details">
+                                <div class="mail-title">Royalty Payment - Q4</div>
+                                <div class="mail-amount">$750.00</div>
+                                <div class="mail-status">Pending processing</div>
+                            </div>
+                            <button class="mail-action" onclick="processMail(this, 750, 25)">Process</button>
+                        </div>
+                        <div class="mail-item">
+                            <div class="mail-icon">✉️</div>
+                            <div class="mail-details">
+                                <div class="mail-title">Affiliate Commission</div>
+                                <div class="mail-amount">$125.00</div>
+                                <div class="mail-status">Pending processing</div>
+                            </div>
+                            <button class="mail-action" onclick="processMail(this, 125, 25)">Process</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges Tab -->
+            <div id="tab-badges" class="tab-content">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">🏆 Achievement Badges</div>
+                    </div>
+                    <div class="badge-grid">
+                        <div class="badge">
+                            <div class="badge-icon">🎯</div>
+                            <div class="badge-name">First Deposit</div>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon">💰</div>
+                            <div class="badge-name">$1k Milestone</div>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon">🔥</div>
+                            <div class="badge-name">4-Week Streak</div>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon">💵</div>
+                            <div class="badge-name">Tax Vault Bronze</div>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon">🎁</div>
+                            <div class="badge-name">Giver</div>
+                        </div>
+                        <div class="badge locked">
+                            <div class="badge-icon">🏆</div>
+                            <div class="badge-name">Tax Vault Gold</div>
+                        </div>
+                        <div class="badge locked">
+                            <div class="badge-icon">⚡</div>
+                            <div class="badge-name">12-Week Streak</div>
+                        </div>
+                        <div class="badge locked">
+                            <div class="badge-icon">🚀</div>
+                            <div class="badge-name">Vault Master</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rewards Tab -->
+            <div id="tab-rewards" class="tab-content">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">🎁 Rewards Catalog</div>
+                    </div>
+                    <div class="panel-subtitle" style="margin-bottom: 16px;">Redeem your XP for real financial rewards</div>
+                    <div id="rewardsList">
+                        <div class="reward-item">
+                            <div class="reward-info">
+                                <div class="reward-name">Fee-Free Transfer</div>
+                                <div class="reward-desc">Next transfer fee waived</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="reward-cost">500 XP</div>
+                                <button class="reward-claim" onclick="claimReward(this, 500)">Claim</button>
+                            </div>
+                        </div>
+                        <div class="reward-item">
+                            <div class="reward-info">
+                                <div class="reward-name">Boosted APY (1 month)</div>
+                                <div class="reward-desc">+0.5% APY on savings</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="reward-cost">1,000 XP</div>
+                                <button class="reward-claim" onclick="claimReward(this, 1000)">Claim</button>
+                            </div>
+                        </div>
+                        <div class="reward-item">
+                            <div class="reward-info">
+                                <div class="reward-name">Charity Match</div>
+                                <div class="reward-desc">100% match on next donation up to $50</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="reward-cost">750 XP</div>
+                                <button class="reward-claim" onclick="claimReward(this, 750)">Claim</button>
+                            </div>
+                        </div>
+                        <div class="reward-item">
+                            <div class="reward-info">
+                                <div class="reward-name">Custom Card Design</div>
+                                <div class="reward-desc">Personalize your lockbox card</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="reward-cost">2,000 XP</div>
+                                <button class="reward-claim" disabled>Locked</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="tab-settings" class="tab-content">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">⚙️ Settings</div>
+                    </div>
+                    <div class="panel-subtitle" style="margin-bottom: 16px;">Customize your Lockbox Quest experience</div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span style="font-size: 13px; color: var(--paper);">Enable Gamification</span>
+                        </label>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" style="width: 18px; height: 18px;">
+                            <span style="font-size: 13px; color: var(--paper);">Opt-in to Leaderboards</span>
+                        </label>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span style="font-size: 13px; color: var(--paper);">Push Notifications</span>
+                        </label>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="font-size: 12px; color: var(--muted); display: block; margin-bottom: 8px;">Tax Vault Percentage</label>
+                        <select style="width: 100%; padding: 10px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; color: var(--paper); font-size: 13px;">
+                            <option value="15">15%</option>
+                            <option value="20" selected>20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                        </select>
+                    </div>
+
+                    <button class="btn">Save Settings</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Inspector Panel -->
+        <aside class="inspector">
+            <div class="inspector-section">
+                <div class="inspector-title">🤖 AGENT Quest Guide</div>
+                <div id="agentCards">
+                    <div class="agent-card active" onclick="selectAgent('mary')">
+                        <div class="agent-header">
+                            <div class="agent-avatar">💻</div>
+                            <div>
+                                <div class="agent-name">Mary Magnumbytes</div>
+                                <div class="agent-role">Digital Storyteller</div>
+                            </div>
+                        </div>
+                        <div class="agent-message">
+                            "Great work on that $500 deposit! Your tax vault is building nicely. Keep the momentum going!"
+                        </div>
+                    </div>
+                    <div class="agent-card" onclick="selectAgent('mac')">
+                        <div class="agent-header">
+                            <div class="agent-avatar">🧙</div>
+                            <div>
+                                <div class="agent-name">Mac Nazarene</div>
+                                <div class="agent-role">Community Bridge Builder</div>
+                            </div>
+                        </div>
+                        <div class="agent-message">
+                            "Your 4-week streak is impressive! Consistency builds trust and financial health. You're on the right path."
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inspector-section">
+                <div class="inspector-title">📊 Recent Activity</div>
+                <div style="font-size: 12px; color: var(--muted);">
+                    <div style="padding: 8px 0; border-bottom: 1px solid var(--line);">
+                        <div style="color: var(--paper);">Processed $500 payment</div>
+                        <div style="font-size: 11px; margin-top: 2px;">+25 XP • 2 hours ago</div>
+                    </div>
+                    <div style="padding: 8px 0; border-bottom: 1px solid var(--line);">
+                        <div style="color: var(--paper);">Moved $100 to tax vault</div>
+                        <div style="font-size: 11px; margin-top: 2px;">+50 XP • 2 hours ago</div>
+                    </div>
+                    <div style="padding: 8px 0; border-bottom: 1px solid var(--line);">
+                        <div style="color: var(--paper);">Completed "First $1k" quest</div>
+                        <div style="font-size: 11px; margin-top: 2px;">+200 XP • Yesterday</div>
+                    </div>
+                    <div style="padding: 8px 0;">
+                        <div style="color: var(--paper);">Donated $15 to charity</div>
+                        <div style="font-size: 11px; margin-top: 2px;">+30 XP • 2 days ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inspector-section">
+                <div class="inspector-title">🎯 Level Rewards</div>
+                <div style="font-size: 12px; color: var(--muted);">
+                    <div style="padding: 8px 0; border-bottom: 1px solid var(--line);">
+                        <div style="color: var(--gold);">Level 13 (350 XP)</div>
+                        <div style="font-size: 11px; margin-top: 2px;">Unlock: Fee-free month</div>
+                    </div>
+                    <div style="padding: 8px 0; border-bottom: 1px solid var(--line);">
+                        <div style="color: var(--muted);">Level 15 (1,000 XP)</div>
+                        <div style="font-size: 11px; margin-top: 2px;">Unlock: +1% APY boost</div>
+                    </div>
+                    <div style="padding: 8px 0;">
+                        <div style="color: var(--muted);">Level 20 (5,000 XP)</div>
+                        <div style="font-size: 11px; margin-top: 2px;">Unlock: Vault Master title</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // ─── STATE ───
+        let state = {
+            xp: 650,
+            xpToNextLevel: 1000,
+            level: 12,
+            totalXP: 1250,
+            streak: 4,
+            processedItems: 28,
+            taxVault: 840,
+            activeAgent: 'mary'
+        };
+
+        // ─── AGENT MESSAGES ───
+        const agentMessages = {
+            mary: {
+                default: "Great work on that deposit! Your tax vault is building nicely. Keep the momentum going!",
+                deposit: "Excellent! Processing payments efficiently is key to business growth. +25 XP for the 24h bonus!",
+                taxVault: "Smart move! Building your tax vault now saves headaches later. +50 XP for financial wisdom!",
+                streak: "Your consistency is impressive! Keep the streak alive and watch your business level up."
+            },
+            mac: {
+                default: "Your 4-week streak is impressive! Consistency builds trust and financial health. You're on the right path.",
+                deposit: "Every payment processed is a step toward business stability. Well done!",
+                taxVault: "Community bridge builders know the value of preparation. Your tax vault is solid.",
+                streak: "Streaks like this show real commitment. You're building something lasting."
+            }
+        };
+
+        // ─── TAB SWITCHING ───
+        function switchTab(tabName) {
+            // Update nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.tab === tabName) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+        }
+
+        // ─── PROCESS MAIL ───
+        function processMail(button, amount, xpBonus) {
+            const mailItem = button.closest('.mail-item');
+            
+            // Update state
+            state.xp += 10 + xpBonus;
+            state.totalXP += 10 + xpBonus;
+            state.processedItems += 1;
+            
+            // Update tax vault (20%)
+            const taxAmount = amount * 0.2;
+            state.taxVault += taxAmount;
+            
+            // Update UI
+            updateUI();
+            
+            // Remove mail item with animation
+            mailItem.style.opacity = '0';
+            mailItem.style.transform = 'translateX(100px)';
+            setTimeout(() => {
+                mailItem.remove();
+            }, 300);
+            
+            // Show notification
+            showNotification(`+${10 + xpBonus} XP • $${taxAmount.toFixed(0)} to tax vault`);
+            
+            // Update AGENT message
+            updateAgentMessage('deposit');
+        }
+
+        // ─── SIMULATE NEW MAIL ───
+        function simulateNewMail() {
+            const amounts = [200, 350, 500, 750, 1000];
+            const senders = ['Client', 'Affiliate', 'Royalty', 'Commission', 'Consulting'];
+            const randomAmount = amounts[Math.floor(Math.random() * amounts.length)];
+            const randomSender = senders[Math.floor(Math.random() * senders.length)];
+            
+            const mailboxItems = document.getElementById('mailboxItems');
+            const newMail = document.createElement('div');
+            newMail.className = 'mail-item';
+            newMail.innerHTML = `
+                <div class="mail-icon">✉️</div>
+                <div class="mail-details">
+                    <div class="mail-title">${randomSender} Payment</div>
+                    <div class="mail-amount">$${randomAmount.toFixed(2)}</div>
+                    <div class="mail-status">New quest item • +25 XP bonus for 24h deposit</div>
+                </div>
+                <button class="mail-action" onclick="processMail(this, ${randomAmount}, 25)">Process</button>
+            `;
+            mailboxItems.insertBefore(newMail, mailboxItems.firstChild);
+            
+            showNotification('New quest item arrived!');
+        }
+
+        // ─── CLAIM REWARD ───
+        function claimReward(button, cost) {
+            if (state.totalXP >= cost) {
+                state.totalXP -= cost;
+                button.disabled = true;
+                button.textContent = 'Claimed';
+                updateUI();
+                showNotification('Reward claimed successfully!');
+            } else {
+                showNotification('Not enough XP to claim this reward');
+            }
+        }
+
+        // ─── SELECT AGENT ───
+        function selectAgent(agentId) {
+            state.activeAgent = agentId;
+            
+            // Update agent cards
+            document.querySelectorAll('.agent-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Update message
+            updateAgentMessage('default');
+        }
+
+        // ─── UPDATE AGENT MESSAGE ───
+        function updateAgentMessage(type) {
+            const messages = agentMessages[state.activeAgent];
+            const message = messages[type] || messages.default;
+            
+            const activeCard = document.querySelector('.agent-card.active .agent-message');
+            if (activeCard) {
+                activeCard.textContent = `"${message}"`;
+            }
+        }
+
+        // ─── UPDATE UI ───
+        function updateUI() {
+            // Update XP bar
+            const xpPercentage = (state.xp / state.xpToNextLevel) * 100;
+            document.getElementById('xpFill').style.width = `${xpPercentage}%`;
+            document.getElementById('xpText').textContent = `${state.xp} / ${state.xpToNextLevel} XP`;
+            
+            // Update stats
+            document.getElementById('totalXP').textContent = state.totalXP.toLocaleString();
+            document.getElementById('level').textContent = state.level;
+            document.getElementById('processedItems').textContent = state.processedItems;
+            document.getElementById('taxVault').textContent = `$${state.taxVault.toLocaleString()}`;
+            document.getElementById('streakCount').textContent = state.streak;
+            
+            // Check for level up
+            if (state.xp >= state.xpToNextLevel) {
+                levelUp();
+            }
+        }
+
+        // ─── LEVEL UP ───
+        function levelUp() {
+            state.level += 1;
+            state.xp = state.xp - state.xpToNextLevel;
+            state.xpToNextLevel = Math.floor(state.xpToNextLevel * 1.5);
+            
+            showNotification(`🎉 Level Up! You are now Level ${state.level}!`);
+            updateUI();
+        }
+
+        // ─── SHOW NOTIFICATION ───
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // ─── INIT ───
+        document.addEventListener('DOMContentLoaded', () => {
+            updateUI();
+        });
+    </script>
+</body>
+</html>

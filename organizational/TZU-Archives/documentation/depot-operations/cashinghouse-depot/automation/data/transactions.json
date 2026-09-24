@@ -1,0 +1,37 @@
+[
+  {
+    "id": "TXN001",
+    "user_id": "USR001",
+    "amount": 49.99,
+    "country": "US",
+    "timestamp": "2026-09-22T10:00:00Z"
+  },
+  {
+    "id": "TXN002",
+    "user_id": "USR001",
+    "amount": 125.00,
+    "country": "US",
+    "timestamp": "2026-09-22T10:15:00Z"
+  },
+  {
+    "id": "TXN003",
+    "user_id": "USR002",
+    "amount": 8500.00,
+    "country": "US",
+    "timestamp": "2026-09-22T11:00:00Z"
+  },
+  {
+    "id": "TXN004",
+    "user_id": "USR003",
+    "amount": 250.00,
+    "country": "XX",
+    "timestamp": "2026-09-22T12:00:00Z"
+  },
+  {
+    "id": "TXN005",
+    "user_id": "USR001",
+    "amount": 75.00,
+    "country": "US",
+    "timestamp": "2026-09-22T12:30:00Z"
+  }
+]

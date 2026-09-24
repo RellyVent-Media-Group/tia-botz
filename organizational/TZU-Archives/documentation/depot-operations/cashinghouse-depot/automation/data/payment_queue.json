@@ -1,0 +1,30 @@
+[
+  {
+    "id": "PAY001",
+    "amount": 49.99,
+    "currency": "USD",
+    "gateway": "stripe",
+    "status": "pending"
+  },
+  {
+    "id": "PAY002",
+    "amount": 125.00,
+    "currency": "USD",
+    "gateway": "paypal",
+    "status": "pending"
+  },
+  {
+    "id": "PAY003",
+    "amount": 299.99,
+    "currency": "USD",
+    "gateway": "stripe",
+    "status": "pending"
+  },
+  {
+    "id": "PAY004",
+    "amount": 15.00,
+    "currency": "USD",
+    "gateway": "braintree",
+    "status": "pending"
+  }
+]

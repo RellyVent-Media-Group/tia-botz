@@ -1,0 +1,26 @@
+{
+  "dry_run": true,
+  "payment_gateways": [
+    "stripe",
+    "paypal",
+    "braintree"
+  ],
+  "retry_attempts": 3,
+  "retry_delay_seconds": 60,
+  "min_payment_amount": 1.00,
+  "max_payment_amount": 100000.00,
+  "routing_rules": {
+    "default_gateway": "stripe",
+    "fallback_gateways": ["paypal", "braintree"],
+    "gateway_fees": {
+      "stripe": 0.029,
+      "paypal": 0.034,
+      "braintree": 0.029
+    }
+  },
+  "refund_settings": {
+    "auto_approve_below": 50.00,
+    "manual_review_above": 500.00,
+    "refund_window_days": 30
+  }
+}

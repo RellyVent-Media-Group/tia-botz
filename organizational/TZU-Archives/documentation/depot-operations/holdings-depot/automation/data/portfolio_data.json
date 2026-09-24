@@ -1,0 +1,34 @@
+{
+  "assets": [
+    {
+      "symbol": "AAPL",
+      "current_value": 50000,
+      "target_allocation": 25,
+      "asset_class": "equity"
+    },
+    {
+      "symbol": "GOOGL",
+      "current_value": 30000,
+      "target_allocation": 20,
+      "asset_class": "equity"
+    },
+    {
+      "symbol": "MSFT",
+      "current_value": 40000,
+      "target_allocation": 25,
+      "asset_class": "equity"
+    },
+    {
+      "symbol": "BND",
+      "current_value": 20000,
+      "target_allocation": 15,
+      "asset_class": "fixed_income"
+    },
+    {
+      "symbol": "GLD",
+      "current_value": 10000,
+      "target_allocation": 15,
+      "asset_class": "commodities"
+    }
+  ]
+}

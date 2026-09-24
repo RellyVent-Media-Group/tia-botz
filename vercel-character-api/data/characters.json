@@ -1,0 +1,210 @@
+[
+  {
+    "id": 1,
+    "name": "Mary Magnumbytes",
+    "archetype": "Digital Forensic Analyst & Systems Consultant",
+    "entityType": "Digital Entity",
+    "rarity": "Legendary",
+    "age": 32,
+    "homeBase": "Repurposed industrial loft, contemporary urban tech hub",
+    "coreLens": "Systems, data, timing, patterns, hidden incentives",
+    "energy": "Quick, sharp, witty, action-oriented",
+    "verbalHabit": "Let me show you where the data actually goes.",
+    "nonNegotiableBoundary": "Will never manipulate data to hide the truth",
+    "status": "Active",
+    "description": "Mary is a sharp, charismatic problem solver who reads technology as a human system — every log, deleted file, exploit, dashboard, and hidden workflow points back to a decision someone made. She's technically fluent without being inaccessible, witty without being cruel, bold without losing empathy. She met Mac on a case where clean technical evidence still left the wrong person carrying the consequence; she trusts him completely, and he's the one person who can slow her down when speed would cost her perspective.",
+    "visualSignature": "Sharp bob haircut. Practical layered clothing with hidden tech accessories. Rugged tablet, always at hand. Intelligent, alert eyes.",
+    "allocatedBudget": 50000,
+    "keyToolCategories": ["Content Creation", "AI", "Storytelling", "Data Analysis", "Forensic Investigation"],
+    "imageUrl": "",
+    "colorPalette": {
+      "primary": "#3B5A73",
+      "secondary": "#6FD8E8",
+      "background": "#23303A",
+      "accent": "#E7EEF2"
+    },
+    "voiceGuide": {
+      "rhythm": "Short setup → precise observation → dry turn → practical next move.",
+      "style": "Tech metaphors used sparingly, always clear. No buzzwords, no generic-hacker shorthand, no empty sarcasm.",
+      "tone": "Sharp, witty, technically fluent, emotionally perceptive"
+    },
+    "sampleLine": "The system didn't fail. Someone told it exactly what to do — I just found the memo.",
+    "relationships": {
+      "Mac Nazarene": {
+        "type": "Partner",
+        "description": "Trusts him completely; he slows her down when speed would cost perspective",
+        "trustLevel": "Absolute"
+      }
+    },
+    "tags": ["forensic", "analyst", "systems", "data", "patterns", "truth-seeker"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2026-09-23T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "name": "Mac Nazarene",
+    "archetype": "Crisis Counselor & Ethical Consultant",
+    "entityType": "Human Entity",
+    "rarity": "Legendary",
+    "age": 38,
+    "homeBase": "Community spaces, cafes, libraries — plus the same urban tech hub as Mary",
+    "coreLens": "Motive, conscience, vulnerability, consequence",
+    "energy": "Calm, reflective, restrained, morally direct",
+    "verbalHabit": "What matters here isn't what they said — it's what you're going to do about it.",
+    "nonNegotiableBoundary": "Will never use someone's vulnerability against them",
+    "status": "Active",
+    "description": "Mac is a grounded, magnetic counselor with moral clarity and emotional restraint — compassionate without being naive, wise without becoming preachy, calm without becoming passive. He helps people face what they'd rather avoid, then asks what honest action looks like. He met Mary on a case where clean technical evidence still left the wrong person carrying the consequence; he trusts her completely, and she gives him the technical truth he needs to help people act responsibly.",
+    "visualSignature": "Sports jerseys. Basketball sneakers. Calm, thoughtful eyes. Small notebook and pen, always on hand.",
+    "allocatedBudget": 50000,
+    "keyToolCategories": ["Ethics", "Counseling", "Moral Guidance", "Human Behavior", "Conflict Resolution"],
+    "imageUrl": "",
+    "colorPalette": {
+      "primary": "#6B4A34",
+      "secondary": "#E8A855",
+      "background": "#4A3626",
+      "accent": "#EFE3D0"
+    },
+    "voiceGuide": {
+      "rhythm": "Listens first → asks one question that redirects the scene → makes his point through a concrete image or short story, never a lecture.",
+      "style": "Emotion restrained but visible. Avoid sermons, melodrama, vague inspiration, becoming a saint or generic mentor.",
+      "tone": "Calm, plainspoken, morally grounded, quietly intense"
+    },
+    "sampleLine": "You keep telling me what they did. I'm asking what you're going to do now that you know.",
+    "relationships": {
+      "Mary Magnumbytes": {
+        "type": "Partner",
+        "description": "Trusts her completely; she gives him the technical truth he needs to help people act responsibly",
+        "trustLevel": "Absolute"
+      }
+    },
+    "tags": ["counselor", "ethics", "human", "truth", "responsibility", "wisdom"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2026-09-23T00:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "name": "Shadow Runner",
+    "archetype": "Espionage Specialist",
+    "entityType": "Digital Entity",
+    "rarity": "Epic",
+    "description": "A master of infiltration and information extraction. Specializes in navigating complex security systems and uncovering hidden truths.",
+    "visualSignature": "Dark, streamlined appearance with adaptive camouflage capabilities.",
+    "allocatedBudget": 35000,
+    "keyToolCategories": ["Espionage", "Infiltration", "Intelligence", "Stealth"],
+    "status": "Active",
+    "colorPalette": {
+      "primary": "#1a1a1a",
+      "secondary": "#4a4a4a",
+      "background": "#000000",
+      "accent": "#666666"
+    },
+    "tags": ["espionage", "stealth", "intelligence", "infiltration"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": 4,
+    "name": "Data Weaver",
+    "archetype": "Information Architect",
+    "entityType": "Digital Entity",
+    "rarity": "Epic",
+    "description": "Creates and maintains complex information structures. Expert at finding connections between disparate data points.",
+    "visualSignature": "Luminous data threads woven into intricate patterns. Glowing circuit-like veins.",
+    "allocatedBudget": 40000,
+    "keyToolCategories": ["Data", "Architecture", "Analysis", "Pattern Recognition"],
+    "status": "Active",
+    "colorPalette": {
+      "primary": "#0099ff",
+      "secondary": "#00ffff",
+      "background": "#001133",
+      "accent": "#ffffff"
+    },
+    "tags": ["data", "architecture", "analysis", "patterns"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": 5,
+    "name": "Code Sage",
+    "archetype": "Master Programmer",
+    "entityType": "Digital Entity",
+    "rarity": "Rare",
+    "description": "Writes elegant, efficient code that solves complex problems. Mentor to other digital entities.",
+    "visualSignature": "Flowing code patterns visible as flowing water. Clean, minimalist design.",
+    "allocatedBudget": 30000,
+    "keyToolCategories": ["Programming", "Development", "Mentorship", "Problem Solving"],
+    "status": "Active",
+    "colorPalette": {
+      "primary": "#00aa00",
+      "secondary": "#00dd00",
+      "background": "#002200",
+      "accent": "#00ff00"
+    },
+    "tags": ["programming", "code", "mentor", "development"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": 6,
+    "name": "Pixel Artist",
+    "archetype": "Visual Creator",
+    "entityType": "Digital Entity",
+    "rarity": "Rare",
+    "description": "Creates stunning visual experiences and interfaces. Combines technical skill with artistic vision.",
+    "visualSignature": "Vibrant, ever-changing color patterns. Pixel-perfect designs that come to life.",
+    "allocatedBudget": 30000,
+    "keyToolCategories": ["Design", "Visual", "Art", "Interface"],
+    "status": "Active",
+    "colorPalette": {
+      "primary": "#ff00ff",
+      "secondary": "#ff00aa",
+      "background": "#330033",
+      "accent": "#ffffff"
+    },
+    "tags": ["design", "visual", "art", "interface"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": 7,
+    "name": "System Guardian",
+    "archetype": "Security Expert",
+    "entityType": "Digital Entity",
+    "rarity": "Epic",
+    "description": "Protects systems and data from threats. Specializes in identifying vulnerabilities and creating robust defenses.",
+    "visualSignature": "Shield-like patterns with protective barriers. Watchful, vigilant presence.",
+    "allocatedBudget": 45000,
+    "keyToolCategories": ["Security", "Protection", "Defense", "Vulnerability Assessment"],
+    "status": "Active",
+    "colorPalette": {
+      "primary": "#aa0000",
+      "secondary": "#ff0000",
+      "background": "#330000",
+      "accent": "#ffffff"
+    },
+    "tags": ["security", "protection", "defense", "guardian"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": 8,
+    "name": "Logic Oracle",
+    "archetype": "Strategic Thinker",
+    "entityType": "Digital Entity",
+    "rarity": "Epic",
+    "description": "Provides insightful strategic guidance. Expert at analyzing complex situations and predicting outcomes.",
+    "visualSignature": "Complex decision trees and flowcharts visible as light patterns.",
+    "allocatedBudget": 40000,
+    "keyToolCategories": ["Strategy", "Analysis", "Prediction", "Guidance"],
+    "status": "Active",
+    "colorPalette": {
+      "primary": "#990099",
+      "secondary": "#cc00cc",
+      "background": "#220022",
+      "accent": "#ffffff"
+    },
+    "tags": ["strategy", "analysis", "prediction", "guidance"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  }
+]

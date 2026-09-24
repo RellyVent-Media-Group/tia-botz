@@ -1,0 +1,21 @@
+{
+  "rebalance_threshold": 5.0,
+  "min_trade_size": 1000.0,
+  "max_position_size": 100000.0,
+  "max_daily_trades": 50,
+  "risk_limit": 0.02,
+  "allowed_asset_classes": [
+    "equity",
+    "fixed_income",
+    "real_estate",
+    "commodities",
+    "alternative"
+  ],
+  "excluded_sectors": [],
+  "rebalance_schedule": {
+    "frequency": "weekly",
+    "day_of_week": "friday",
+    "time": "16:00",
+    "timezone": "UTC"
+  }
+}

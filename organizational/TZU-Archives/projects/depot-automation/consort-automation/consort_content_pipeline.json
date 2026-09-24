@@ -1,0 +1,404 @@
+{
+  "tiktok_20260920_222024": {
+    "content_id": "tiktok_20260920_222024",
+    "content_type": "tiktok",
+    "title": "Mac's Wisdom Wednesday",
+    "description": "Weekly wisdom from Mac Nazarene",
+    "character": "Mac",
+    "prompt": "Create a 30-second TikTok where Mac shares a practical wisdom about building trust in business",
+    "status": "published",
+    "scheduled_date": "2024-09-05",
+    "platform_specifics": {
+      "sound": "trending_audio_1",
+      "hashtags": [
+        "#wisdom",
+        "#business",
+        "#trust"
+      ]
+    },
+    "performance_metrics": {
+      "engagement": 1500,
+      "views": 10000,
+      "likes": 800,
+      "shares": 200,
+      "comments": 50
+    },
+    "created_at": "2026-09-20T22:20:24.945184",
+    "updated_at": "2026-09-20T22:20:24.947824"
+  },
+  "instagram_20260920_222024": {
+    "content_id": "instagram_20260920_222024",
+    "content_type": "instagram",
+    "title": "Mary's Tech Thursday",
+    "description": "Mary explains a tech concept",
+    "character": "Mary",
+    "prompt": "Create an Instagram Reel where Mary explains AI automation in a funny, relatable way",
+    "status": "published",
+    "scheduled_date": "2024-09-06",
+    "platform_specifics": {
+      "filter": "vibrant",
+      "hashtags": [
+        "#tech",
+        "#AI",
+        "#automation"
+      ]
+    },
+    "performance_metrics": {
+      "engagement": 1500,
+      "views": 10000,
+      "likes": 800,
+      "shares": 200,
+      "comments": 50
+    },
+    "created_at": "2026-09-20T22:20:24.945673",
+    "updated_at": "2026-09-20T22:20:24.949163"
+  },
+  "tiktok_20260920_222028": {
+    "content_id": "tiktok_20260920_222028",
+    "content_type": "tiktok",
+    "title": "Mac's Wisdom Wednesday",
+    "description": "Weekly wisdom from Mac Nazarene",
+    "character": "Mac",
+    "prompt": "Create a 30-second TikTok where Mac shares a practical wisdom about building trust in business",
+    "status": "published",
+    "scheduled_date": "2024-09-05",
+    "platform_specifics": {
+      "sound": "trending_audio_1",
+      "hashtags": [
+        "#wisdom",
+        "#business",
+        "#trust"
+      ]
+    },
+    "performance_metrics": {
+      "engagement": 1500,
+      "views": 10000,
+      "likes": 800,
+      "shares": 200,
+      "comments": 50
+    },
+    "created_at": "2026-09-20T22:20:28.595660",
+    "updated_at": "2026-09-20T22:20:28.598043"
+  },
+  "instagram_20260920_222028": {
+    "content_id": "instagram_20260920_222028",
+    "content_type": "instagram",
+    "title": "Mary's Tech Thursday",
+    "description": "Mary explains a tech concept",
+    "character": "Mary",
+    "prompt": "Create an Instagram Reel where Mary explains AI automation in a funny, relatable way",
+    "status": "published",
+    "scheduled_date": "2024-09-06",
+    "platform_specifics": {
+      "filter": "vibrant",
+      "hashtags": [
+        "#tech",
+        "#AI",
+        "#automation"
+      ]
+    },
+    "performance_metrics": {
+      "engagement": 1500,
+      "views": 10000,
+      "likes": 800,
+      "shares": 200,
+      "comments": 50
+    },
+    "created_at": "2026-09-20T22:20:28.596347",
+    "updated_at": "2026-09-20T22:20:28.599551"
+  },
+  "tiktok_20260922_112915": {
+    "content_id": "tiktok_20260922_112915",
+    "content_type": "tiktok",
+    "title": "Mac's Wisdom Wednesday",
+    "description": "Weekly wisdom from Mac Nazarene",
+    "character": "Mac",
+    "prompt": "Create a 30-second TikTok where Mac shares a practical wisdom about building trust in business",
+    "status": "published",
+    "scheduled_date": "2024-09-05",
+    "platform_specifics": {
+      "sound": "trending_audio_1",
+      "hashtags": [
+        "#wisdom",
+        "#business",
+        "#trust"
+      ]
+    },
+    "performance_metrics": {
+      "engagement": 1500,
+      "views": 10000,
+      "likes": 800,
+      "shares": 200,
+      "comments": 50
+    },
+    "created_at": "2026-09-22T11:29:15.907371",
+    "updated_at": "2026-09-22T11:29:15.909817"
+  },
+  "instagram_20260922_112915": {
+    "content_id": "instagram_20260922_112915",
+    "content_type": "instagram",
+    "title": "Mary's Tech Thursday",
+    "description": "Mary explains a tech concept",
+    "character": "Mary",
+    "prompt": "Create an Instagram Reel where Mary explains AI automation in a funny, relatable way",
+    "status": "published",
+    "scheduled_date": "2024-09-06",
+    "platform_specifics": {
+      "filter": "vibrant",
+      "hashtags": [
+        "#tech",
+        "#AI",
+        "#automation"
+      ]
+    },
+    "performance_metrics": {
+      "engagement": 1500,
+      "views": 10000,
+      "likes": 800,
+      "shares": 200,
+      "comments": 50
+    },
+    "created_at": "2026-09-22T11:29:15.907975",
+    "updated_at": "2026-09-22T11:29:15.911610"
+  },
+  "tiktok_20260922_113049": {
+    "content_id": "tiktok_20260922_113049",
+    "content_type": "tiktok",
+    "title": "Mac's Wisdom Wednesday",
+    "description": "Weekly wisdom from Mac Nazarene",
+    "character": "Mac",
+    "prompt": "Create a 30-second TikTok where Mac shares a practical wisdom about building trust in business",
+    "status": "published",
+    "scheduled_date": "2024-09-05",
+    "platform_specifics": {
+      "sound": "trending_audio_1",
+      "hashtags": [
+        "#wisdom",
+        "#business",
+        "#trust"
+      ]
+    },
+    "performance_metrics": {
+      "engagement": 1500,
+      "views": 10000,
+      "likes": 800,
+      "shares": 200,
+      "comments": 50
+    },
+    "created_at": "2026-09-22T11:30:49.107233",
+    "updated_at": "2026-09-22T11:30:49.109977"
+  },
+  "instagram_20260922_113049": {
+    "content_id": "instagram_20260922_113049",
+    "content_type": "instagram",
+    "title": "Mary's Tech Thursday",
+    "description": "Mary explains a tech concept",
+    "character": "Mary",
+    "prompt": "Create an Instagram Reel where Mary explains AI automation in a funny, relatable way",
+    "status": "published",
+    "scheduled_date": "2024-09-06",
+    "platform_specifics": {
+      "filter": "vibrant",
+      "hashtags": [
+        "#tech",
+        "#AI",
+        "#automation"
+      ]
+    },
+    "performance_metrics": {
+      "engagement": 1500,
+      "views": 10000,
+      "likes": 800,
+      "shares": 200,
+      "comments": 50
+    },
+    "created_at": "2026-09-22T11:30:49.107923",
+    "updated_at": "2026-09-22T11:30:49.112087"
+  },
+  "tiktok_20260922_113119": {
+    "content_id": "tiktok_20260922_113119",
+    "content_type": "tiktok",
+    "title": "Revenue Insight: Product Launch",
+    "description": "Content based on gumroad performance: $882.00",
+    "character": "Mac",
+    "prompt": "Create tiktok content about: Product Launch. Reference revenue performance of $882.00",
+    "status": "planned",
+    "scheduled_date": "2026-09-25",
+    "platform_specifics": {
+      "revenue_context": {
+        "platform": "gumroad",
+        "total_revenue": 882.0,
+        "total_net_revenue": 734.25,
+        "total_transactions": 9,
+        "average_transaction": 98.0,
+        "commission_rate": 0.1
+      },
+      "performance_data": {
+        "platform": "gumroad",
+        "total_revenue": 882.0,
+        "total_net_revenue": 734.25,
+        "total_transactions": 9,
+        "average_transaction": 98.0,
+        "commission_rate": 0.1
+      }
+    },
+    "performance_metrics": {},
+    "created_at": "2026-09-22T11:31:19.398314",
+    "updated_at": "2026-09-22T11:31:19.398317"
+  },
+  "instagram_20260922_113119": {
+    "content_id": "instagram_20260922_113119",
+    "content_type": "instagram",
+    "title": "Revenue Insight: Customer Success",
+    "description": "Content based on gumroad performance: $882.00",
+    "character": "Mary",
+    "prompt": "Create instagram content about: Customer Success. Reference revenue performance of $882.00",
+    "status": "planned",
+    "scheduled_date": "2026-09-24",
+    "platform_specifics": {
+      "revenue_context": {
+        "platform": "gumroad",
+        "total_revenue": 882.0,
+        "total_net_revenue": 734.25,
+        "total_transactions": 9,
+        "average_transaction": 98.0,
+        "commission_rate": 0.1
+      },
+      "performance_data": {
+        "platform": "gumroad",
+        "total_revenue": 882.0,
+        "total_net_revenue": 734.25,
+        "total_transactions": 9,
+        "average_transaction": 98.0,
+        "commission_rate": 0.1
+      }
+    },
+    "performance_metrics": {},
+    "created_at": "2026-09-22T11:31:19.397597",
+    "updated_at": "2026-09-22T11:31:19.397601"
+  },
+  "tiktok_20260922_114216": {
+    "content_id": "tiktok_20260922_114216",
+    "content_type": "tiktok",
+    "title": "Revenue Insight: Product Launch",
+    "description": "Content based on gumroad performance: $882.00",
+    "character": "Mac",
+    "prompt": "Create tiktok content about: Product Launch. Reference revenue performance of $882.00",
+    "status": "planned",
+    "scheduled_date": "2026-09-25",
+    "platform_specifics": {
+      "revenue_context": {
+        "platform": "gumroad",
+        "total_revenue": 882.0,
+        "total_net_revenue": 734.25,
+        "total_transactions": 9,
+        "average_transaction": 98.0,
+        "commission_rate": 0.1
+      },
+      "performance_data": {
+        "platform": "gumroad",
+        "total_revenue": 882.0,
+        "total_net_revenue": 734.25,
+        "total_transactions": 9,
+        "average_transaction": 98.0,
+        "commission_rate": 0.1
+      }
+    },
+    "performance_metrics": {},
+    "created_at": "2026-09-22T11:42:16.660687",
+    "updated_at": "2026-09-22T11:42:16.660691"
+  },
+  "instagram_20260922_114216": {
+    "content_id": "instagram_20260922_114216",
+    "content_type": "instagram",
+    "title": "Revenue Insight: Customer Success",
+    "description": "Content based on gumroad performance: $882.00",
+    "character": "Mary",
+    "prompt": "Create instagram content about: Customer Success. Reference revenue performance of $882.00",
+    "status": "planned",
+    "scheduled_date": "2026-09-24",
+    "platform_specifics": {
+      "revenue_context": {
+        "platform": "gumroad",
+        "total_revenue": 882.0,
+        "total_net_revenue": 734.25,
+        "total_transactions": 9,
+        "average_transaction": 98.0,
+        "commission_rate": 0.1
+      },
+      "performance_data": {
+        "platform": "gumroad",
+        "total_revenue": 882.0,
+        "total_net_revenue": 734.25,
+        "total_transactions": 9,
+        "average_transaction": 98.0,
+        "commission_rate": 0.1
+      }
+    },
+    "performance_metrics": {},
+    "created_at": "2026-09-22T11:42:16.659764",
+    "updated_at": "2026-09-22T11:42:16.659770"
+  },
+  "tiktok_20260922_132406": {
+    "content_id": "tiktok_20260922_132406",
+    "content_type": "tiktok",
+    "title": "Revenue Insight: Product Launch",
+    "description": "Content based on gumroad performance: $882.00",
+    "character": "Mac",
+    "prompt": "Create tiktok content about: Product Launch. Reference revenue performance of $882.00",
+    "status": "planned",
+    "scheduled_date": "2026-09-25",
+    "platform_specifics": {
+      "revenue_context": {
+        "platform": "gumroad",
+        "total_revenue": 882.0,
+        "total_net_revenue": 734.25,
+        "total_transactions": 9,
+        "average_transaction": 98.0,
+        "commission_rate": 0.1
+      },
+      "performance_data": {
+        "platform": "gumroad",
+        "total_revenue": 882.0,
+        "total_net_revenue": 734.25,
+        "total_transactions": 9,
+        "average_transaction": 98.0,
+        "commission_rate": 0.1
+      }
+    },
+    "performance_metrics": {},
+    "created_at": "2026-09-22T13:24:06.003678",
+    "updated_at": "2026-09-22T13:24:06.003682"
+  },
+  "instagram_20260922_132406": {
+    "content_id": "instagram_20260922_132406",
+    "content_type": "instagram",
+    "title": "Revenue Insight: Customer Success",
+    "description": "Content based on gumroad performance: $882.00",
+    "character": "Mary",
+    "prompt": "Create instagram content about: Customer Success. Reference revenue performance of $882.00",
+    "status": "planned",
+    "scheduled_date": "2026-09-24",
+    "platform_specifics": {
+      "revenue_context": {
+        "platform": "gumroad",
+        "total_revenue": 882.0,
+        "total_net_revenue": 734.25,
+        "total_transactions": 9,
+        "average_transaction": 98.0,
+        "commission_rate": 0.1
+      },
+      "performance_data": {
+        "platform": "gumroad",
+        "total_revenue": 882.0,
+        "total_net_revenue": 734.25,
+        "total_transactions": 9,
+        "average_transaction": 98.0,
+        "commission_rate": 0.1
+      }
+    },
+    "performance_metrics": {},
+    "created_at": "2026-09-22T13:24:06.002638",
+    "updated_at": "2026-09-22T13:24:06.002643"
+  }
+}

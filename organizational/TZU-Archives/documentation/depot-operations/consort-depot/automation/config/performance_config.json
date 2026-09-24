@@ -1,0 +1,14 @@
+{
+  "dry_run": true,
+  "platforms": ["tiktok", "instagram", "youtube", "x"],
+  "metrics": ["views", "likes", "shares", "comments", "followers"],
+  "benchmark_engagement_rate": 0.05,
+  "rating_thresholds": {
+    "excellent": 0.075,
+    "good": 0.05,
+    "average": 0.025
+  },
+  "comparison_period_days": 7,
+  "generate_insights": true,
+  "alert_on_below_average": true
+}

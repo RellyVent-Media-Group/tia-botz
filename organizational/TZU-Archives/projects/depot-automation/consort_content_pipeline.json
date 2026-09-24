@@ -1,0 +1,56 @@
+{
+  "tiktok_20260922_114214": {
+    "content_id": "tiktok_20260922_114214",
+    "content_type": "tiktok",
+    "title": "Mac's Wisdom Wednesday",
+    "description": "Weekly wisdom from Mac Nazarene",
+    "character": "Mac",
+    "prompt": "Create a 30-second TikTok where Mac shares a practical wisdom about building trust in business",
+    "status": "published",
+    "scheduled_date": "2024-09-05",
+    "platform_specifics": {
+      "sound": "trending_audio_1",
+      "hashtags": [
+        "#wisdom",
+        "#business",
+        "#trust"
+      ]
+    },
+    "performance_metrics": {
+      "engagement": 1500,
+      "views": 10000,
+      "likes": 800,
+      "shares": 200,
+      "comments": 50
+    },
+    "created_at": "2026-09-22T11:42:14.050676",
+    "updated_at": "2026-09-22T11:42:14.053492"
+  },
+  "instagram_20260922_114214": {
+    "content_id": "instagram_20260922_114214",
+    "content_type": "instagram",
+    "title": "Mary's Tech Thursday",
+    "description": "Mary explains a tech concept",
+    "character": "Mary",
+    "prompt": "Create an Instagram Reel where Mary explains AI automation in a funny, relatable way",
+    "status": "published",
+    "scheduled_date": "2024-09-06",
+    "platform_specifics": {
+      "filter": "vibrant",
+      "hashtags": [
+        "#tech",
+        "#AI",
+        "#automation"
+      ]
+    },
+    "performance_metrics": {
+      "engagement": 1500,
+      "views": 10000,
+      "likes": 800,
+      "shares": 200,
+      "comments": 50
+    },
+    "created_at": "2026-09-22T11:42:14.051182",
+    "updated_at": "2026-09-22T11:42:14.054914"
+  }
+}

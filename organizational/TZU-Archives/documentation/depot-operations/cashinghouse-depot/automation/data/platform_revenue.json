@@ -1,0 +1,27 @@
+{
+  "gumroad": {
+    "revenue": 5000.00,
+    "transactions": 120,
+    "date": "2026-09-22"
+  },
+  "fiverr": {
+    "revenue": 3500.00,
+    "transactions": 45,
+    "date": "2026-09-22"
+  },
+  "crakrevenue": {
+    "revenue": 2800.00,
+    "transactions": 890,
+    "date": "2026-09-22"
+  },
+  "admob": {
+    "revenue": 1200.00,
+    "transactions": 50000,
+    "date": "2026-09-22"
+  },
+  "linktree": {
+    "revenue": 450.00,
+    "transactions": 230,
+    "date": "2026-09-22"
+  }
+}

@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  depot-automation:
+    build: .
+    container_name: tiapmaatzu-depot-automation
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+      - DATA_DIR=/app/data
+    ports:
+      - "8000:8000"
+    networks:
+      - depot-network
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add a database service for persistent storage
+  # postgres:
+  #   image: postgres:13
+  #   container_name: depot-postgres
+  #   restart: unless-stopped
+  #   environment:
+  #     - POSTGRES_DB=depot_automation
+  #     - POSTGRES_USER=depot_user
+  #     - POSTGRES_PASSWORD=depot_password
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - depot-network
+
+  # Optional: Add Redis for caching and task queues
+  # redis:
+  #   image: redis:6-alpine
+  #   container_name: depot-redis
+  #   restart: unless-stopped
+  #   networks:
+  #     - depot-network
+
+networks:
+  depot-network:
+    driver: bridge
+
+# volumes:
+#   postgres_data:

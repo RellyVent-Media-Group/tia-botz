@@ -1,0 +1,1791 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gilded Mirrors · HEART-Tiapmaatzu OS · Control Center</title>
+    <style>
+        /* ── Gilded Mirrors Design System ── */
+        :root {
+            --bg: #0a0d10;
+            --panel: #12171d;
+            --panel-2: #181f27;
+            --paper: #f4efe4;
+            --muted: #aeb4b7;
+            --line: rgba(244, 239, 228, 0.12);
+            --gold: #f0b35a;
+            --gold-dim: rgba(240, 179, 90, 0.2);
+            --brass: #b98b45;
+            --teal: #8acbd2;
+            --teal-dim: rgba(138, 203, 210, 0.15);
+            --red: #c84c48;
+            --green: #75b982;
+            --shadow: rgba(0, 0, 0, 0.4);
+            --radius: 10px;
+            --font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--paper);
+            min-height: 100vh;
+            background-image:
+                linear-gradient(90deg, rgba(240, 179, 90, 0.025) 1px, transparent 1px),
+                linear-gradient(rgba(240, 179, 90, 0.02) 1px, transparent 1px),
+                radial-gradient(circle at 20% 0%, rgba(240, 179, 90, 0.10), transparent 35%),
+                radial-gradient(circle at 85% 10%, rgba(138, 203, 210, 0.08), transparent 25%);
+            background-size: 44px 44px, 44px 44px, auto, auto;
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dim);
+            border-radius: 4px;
+        }
+
+        /* ── Layout ── */
+        .app {
+            display: grid;
+            grid-template-columns: 220px 1fr 300px;
+            min-height: 100vh;
+        }
+
+        .rail {
+            background: rgba(10, 13, 16, 0.92);
+            backdrop-filter: blur(14px);
+            border-right: 1px solid var(--line);
+            padding: 16px 12px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 16px;
+        }
+        .brand-mark {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(240, 179, 90, 0.4);
+            border-radius: 8px;
+            color: var(--gold);
+            background: var(--gold-dim);
+            font-weight: 900;
+            font-size: 14px;
+        }
+        .brand h1 {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+        }
+        .brand small {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .nav-label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin: 16px 0 8px 6px;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #d7d8d4;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: left;
+            transition: 160ms ease;
+            cursor: pointer;
+        }
+        .nav-btn:hover {
+            background: var(--gold-dim);
+            border-color: rgba(240, 179, 90, 0.2);
+        }
+        .nav-btn.is-active {
+            background: var(--gold-dim);
+            border-color: rgba(240, 179, 90, 0.35);
+            color: #fff8ea;
+        }
+        .nav-btn .icon {
+            font-size: 16px;
+            width: 22px;
+            text-align: center;
+        }
+
+        /* ── Main ── */
+        .main {
+            padding: 20px 24px 40px;
+            min-width: 0;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .topbar h2 {
+            font-size: clamp(26px, 3.2vw, 44px);
+            font-weight: 800;
+            line-height: 1.05;
+        }
+        .topbar .eyebrow {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+        .topbar p {
+            color: var(--muted);
+            max-width: 640px;
+            margin-top: 4px;
+            line-height: 1.6;
+        }
+        .toolbar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 7px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--paper);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 160ms ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .btn-primary {
+            background: var(--gold);
+            color: #1b1205;
+            border-color: var(--gold);
+        }
+        .btn-primary:hover {
+            background: #e0a44a;
+        }
+        .btn-gold {
+            border-color: rgba(240, 179, 90, 0.4);
+            color: var(--gold);
+        }
+        .btn-gold:hover {
+            background: var(--gold-dim);
+        }
+
+        /* ── Panels ── */
+        .panel {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: linear-gradient(155deg, rgba(24, 31, 39, 0.92), rgba(18, 23, 29, 0.92));
+            box-shadow: 0 16px 48px var(--shadow);
+            overflow: hidden;
+        }
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--line);
+        }
+        .panel-header h3 {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .panel-body {
+            padding: 16px 18px;
+        }
+
+        /* ── Stats Grid ── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .stat-card {
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .stat-card .label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+        }
+        .stat-card .value {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-top: 6px;
+        }
+        .stat-card .note {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* ── Grid Layouts ── */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        @media (max-width: 1200px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 900px) {
+            .app {
+                grid-template-columns: 1fr;
+            }
+            .rail {
+                position: static;
+                height: auto;
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+                padding: 12px 16px;
+            }
+            .rail .nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+            .rail .nav-btn {
+                width: auto;
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .main {
+                padding: 14px;
+            }
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .inspector {
+                position: static;
+                height: auto;
+                border-left: 0;
+                border-top: 1px solid var(--line);
+            }
+        }
+        @media (max-width: 600px) {
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .topbar {
+                flex-direction: column;
+            }
+        }
+
+        /* ── Inspector ── */
+        .inspector {
+            background: rgba(10, 13, 16, 0.92);
+            backdrop-filter: blur(14px);
+            border-left: 1px solid var(--line);
+            padding: 16px 18px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .inspector .eyebrow {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+        }
+        .inspector h3 {
+            font-size: 18px;
+            margin: 6px 0 10px;
+        }
+        .inspector .note-box {
+            padding: 12px 14px;
+            border: 1px solid rgba(240, 179, 90, 0.2);
+            border-radius: var(--radius);
+            background: rgba(240, 179, 90, 0.06);
+            font-size: 13px;
+            line-height: 1.6;
+            color: #e8dac1;
+            margin-bottom: 14px;
+        }
+
+        /* ── Agent Cards ── */
+        .agent-card {
+            display: grid;
+            grid-template-columns: 44px 1fr auto;
+            gap: 10px;
+            align-items: center;
+            padding: 10px 12px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            transition: 160ms ease;
+            text-align: left;
+            color: var(--paper);
+        }
+        .agent-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(240, 179, 90, 0.3);
+        }
+        .agent-card.is-active {
+            border-color: var(--gold);
+            background: var(--gold-dim);
+        }
+        .agent-avatar {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            background: var(--gold-dim);
+            border: 1px solid rgba(240, 179, 90, 0.25);
+            font-weight: 900;
+            font-size: 16px;
+            color: var(--gold);
+        }
+        .agent-card .name {
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .agent-card .role {
+            font-size: 12px;
+            color: var(--muted);
+        }
+        .agent-card .badge {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: var(--gold-dim);
+            color: var(--gold);
+            border: 1px solid rgba(240, 179, 90, 0.2);
+        }
+
+        .agent-list {
+            display: grid;
+            gap: 8px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        /* ── Universe Visual Badges ── */
+        .universe-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 10px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+        }
+        .universe-badge.gilded {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .universe-badge.gobblers {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+        .universe-badge.horny {
+            border-color: #e88a7a;
+            color: #e88a7a;
+        }
+        .universe-badge.social {
+            border-color: var(--muted);
+            color: var(--muted);
+        }
+
+        /* ── Soul / Entity Tags ── */
+        .tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 2px 10px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--muted);
+        }
+        .tag-gold {
+            border-color: rgba(240, 179, 90, 0.3);
+            color: var(--gold);
+            background: var(--gold-dim);
+        }
+        .tag-teal {
+            border-color: rgba(138, 203, 210, 0.3);
+            color: var(--teal);
+            background: var(--teal-dim);
+        }
+        .tag-red {
+            border-color: rgba(200, 76, 72, 0.4);
+            color: #ffaaa6;
+            background: rgba(200, 76, 72, 0.1);
+        }
+        .tag-green {
+            border-color: rgba(117, 185, 130, 0.4);
+            color: #ace2b5;
+            background: rgba(117, 185, 130, 0.1);
+        }
+
+        /* ── Detail View ── */
+        .detail-grid {
+            display: grid;
+            gap: 6px;
+        }
+        .detail-row {
+            display: flex;
+            gap: 8px;
+            font-size: 13px;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .detail-row .label {
+            color: var(--muted);
+            min-width: 90px;
+            font-weight: 600;
+        }
+        .detail-row .value {
+            color: var(--paper);
+        }
+
+        .soul-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 18px;
+            border-radius: var(--radius);
+            background: #1b252f;
+            border: 1px solid var(--gold-dim);
+            color: var(--paper);
+            font-size: 13px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: 220ms ease;
+            pointer-events: none;
+            z-index: 999;
+        }
+        .toast.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Tabs ── */
+        .tab-bar {
+            display: flex;
+            gap: 4px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 160ms ease;
+        }
+        .tab-btn:hover {
+            color: var(--paper);
+        }
+        .tab-btn.is-active {
+            background: var(--gold-dim);
+            border-color: rgba(240, 179, 90, 0.3);
+            color: var(--gold);
+        }
+
+        .tab-panel {
+            display: none;
+        }
+        .tab-panel.is-active {
+            display: block;
+        }
+
+        /* ── Misc ── */
+        .flex-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .text-gold {
+            color: var(--gold);
+        }
+        .text-muted {
+            color: var(--muted);
+        }
+        .text-sm {
+            font-size: 13px;
+        }
+
+        .section {
+            display: none;
+        }
+        .section.is-active {
+            display: block;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--paper);
+            font-size: 13px;
+            outline: none;
+            transition: 160ms ease;
+        }
+        .search-input:focus {
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .search-input::placeholder {
+            color: var(--muted);
+        }
+
+        .ledger-item {
+            padding: 10px 12px;
+            border-left: 3px solid var(--gold);
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.02);
+            margin-bottom: 6px;
+        }
+        .ledger-item.red {
+            border-left-color: var(--red);
+        }
+        .ledger-item.green {
+            border-left-color: var(--green);
+        }
+        .ledger-item strong {
+            font-size: 13px;
+        }
+        .ledger-item p {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app">
+
+        <!-- ─── RAIL ─── -->
+        <aside class="rail">
+            <div class="brand">
+                <div class="brand-mark">GM</div>
+                <div>
+                    <h1>Gilded Mirrors</h1>
+                    <small>HEART‑Tiapmaatzu OS</small>
+                </div>
+            </div>
+
+            <div class="nav-label">Control Center</div>
+            <nav class="nav">
+                <button class="nav-btn is-active" data-view="dashboard"><span class="icon">◆</span> Dashboard</button>
+                <button class="nav-btn" data-view="agents"><span class="icon">◎</span> AGENTS</button>
+                <button class="nav-btn" data-view="entities"><span class="icon">✦</span> Entities</button>
+                <button class="nav-btn" data-view="souls"><span class="icon">◈</span> Souls</button>
+                <button class="nav-btn" data-view="universe"><span class="icon">⊞</span> Universe Map</button>
+                <button class="nav-btn" data-view="production"><span class="icon">▤</span> Production</button>
+            </nav>
+
+            <div class="nav-label">Quick Access</div>
+            <button class="nav-btn" data-view="agents" style="font-size:12px; padding:6px 10px;">
+                <span class="icon">⊕</span> 8 Gilded Mirrors Originals
+            </button>
+            <button class="nav-btn" data-view="entities" style="font-size:12px; padding:6px 10px;">
+                <span class="icon">⊕</span> 25+ Entities
+            </button>
+            <button class="nav-btn" data-view="souls" style="font-size:12px; padding:6px 10px;">
+                <span class="icon">⊕</span> 40+ Souls
+            </button>
+        </aside>
+
+        <!-- ─── MAIN ─── -->
+        <main class="main">
+
+            <!-- Topbar -->
+            <div class="topbar">
+                <div>
+                    <div class="eyebrow" id="viewEyebrow">Gilded Mirrors Originals</div>
+                    <h2 id="viewTitle">Canon Operations Dashboard</h2>
+                    <p id="viewSummary">Monitor AGENT autonomy, Entity governance, Soul essence flows, and multi‑universe visual identity across RellyVent Media Group platforms.</p>
+                </div>
+                <div class="toolbar">
+                    <button class="btn btn-gold" id="syncBtn">⟳ Sync Canon</button>
+                    <button class="btn btn-primary" data-view="agents">View AGENTS</button>
+                </div>
+            </div>
+
+            <!-- ─── DASHBOARD ─── -->
+            <section class="section is-active" id="dashboard">
+                <div class="stats-grid" id="statsGrid"></div>
+
+                <div class="grid-2">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>AGENT Autonomy Status</h3>
+                            <span class="tag tag-gold">8 active</span>
+                        </div>
+                        <div class="panel-body agent-list" id="agentMiniList"></div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Continuity Alerts</h3>
+                            <span class="tag tag-red">3</span>
+                        </div>
+                        <div class="panel-body" id="alertList"></div>
+                    </div>
+                </div>
+
+                <div class="grid-2 mt-16">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Featured Entity</h3>
+                            <button class="btn btn-gold" data-view="entities">View All</button>
+                        </div>
+                        <div class="panel-body" id="featuredEntity"></div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Active Soul Essences</h3>
+                            <span class="tag tag-teal">flowing</span>
+                        </div>
+                        <div class="panel-body flex-wrap" id="soulFlow"></div>
+                    </div>
+                </div>
+
+                <div class="panel mt-16">
+                    <div class="panel-header">
+                        <h3>Multi‑Universe Visual Identity Matrix</h3>
+                        <span class="tag tag-gold">4 universes</span>
+                    </div>
+                    <div class="panel-body" id="universeMatrix"></div>
+                </div>
+            </section>
+
+            <!-- ─── AGENTS ─── -->
+            <section class="section" id="agents">
+                <div class="grid-2">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Gilded Mirrors Originals — AGENT Roster</h3>
+                            <span class="tag tag-gold" id="agentCount">8</span>
+                        </div>
+                        <div class="panel-body">
+                            <input class="search-input" id="agentSearch" placeholder="Search AGENTS by name, archetype, domain..." />
+                            <div class="agent-list mt-12" id="agentFullList"></div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>AGENT Detail Inspector</h3>
+                            <button class="btn btn-gold" id="copyAgentPrompt">Copy Portfolio Prompt</button>
+                        </div>
+                        <div class="panel-body" id="agentDetail"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── ENTITIES ─── -->
+            <section class="section" id="entities">
+                <div class="grid-2">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Entity Registry</h3>
+                            <span class="tag tag-gold" id="entityCount">25</span>
+                        </div>
+                        <div class="panel-body">
+                            <input class="search-input" id="entitySearch" placeholder="Search Entities by name, realm, domain..." />
+                            <div class="agent-list mt-12" id="entityList"></div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Entity Inspector</h3>
+                            <span class="tag tag-teal">Governance</span>
+                        </div>
+                        <div class="panel-body" id="entityDetail"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── SOULS ─── -->
+            <section class="section" id="souls">
+                <div class="grid-2">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Soul Essences</h3>
+                            <span class="tag tag-teal" id="soulCount">42</span>
+                        </div>
+                        <div class="panel-body">
+                            <input class="search-input" id="soulSearch" placeholder="Search Souls by name, category..." />
+                            <div class="agent-list mt-12" id="soulList"></div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Soul Inspector</h3>
+                            <span class="tag tag-gold">Essence</span>
+                        </div>
+                        <div class="panel-body" id="soulDetail"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── UNIVERSE MAP ─── -->
+            <section class="section" id="universe">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>HEART Multi‑Universe Visual Identity System</h3>
+                        <span class="tag tag-gold">4 visual styles</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="grid-4" id="universeGrid"></div>
+                        <div class="mt-16">
+                            <h4 style="font-size:14px; font-weight:700; margin-bottom:8px;">Platform Mapping</h4>
+                            <div id="platformMapping" class="grid-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── PRODUCTION ─── -->
+            <section class="section" id="production">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Production Pipeline — Episode 3.18</h3>
+                        <span class="tag tag-gold">The Fog Returns</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="grid-2">
+                            <div>
+                                <h4 style="font-size:13px; font-weight:700; margin-bottom:8px;">Beat Timeline</h4>
+                                <div id="prodTimeline"></div>
+                            </div>
+                            <div>
+                                <h4 style="font-size:13px; font-weight:700; margin-bottom:8px;">Assets Ready</h4>
+                                <div id="prodAssets"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ─── INSPECTOR ─── -->
+        <aside class="inspector" id="inspector">
+            <div class="eyebrow">Right Inspector</div>
+            <h3 id="inspectorTitle">Canon Constraints</h3>
+            <div class="note-box" id="inspectorSummary">Select an AGENT, Entity, or Soul to inspect readiness, souls, visual identity, and governance connections.</div>
+
+            <div class="nav-label">Visual Identity</div>
+            <div id="inspectorVisual" class="flex-wrap" style="gap:4px;"></div>
+
+            <div class="nav-label mt-16">Associated Souls</div>
+            <div id="inspectorSouls" class="flex-wrap" style="gap:4px;"></div>
+
+            <div class="nav-label mt-16">Readiness</div>
+            <div id="inspectorReadiness"></div>
+
+            <div class="note-box mt-16" style="font-size:12px;">
+                <strong>Platform Autonomy:</strong> All AGENTS can traverse all RellyVent Media Group platforms with full autonomy unless Admin overrides.
+            </div>
+        </aside>
+    </div>
+
+    <!-- ─── TOAST ─── -->
+    <div class="toast" id="toast">Copied to clipboard</div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        //  DATA — Integrated from all source files
+        // ═══════════════════════════════════════════════════════════════
+
+        const UNIVERSE_STYLES = {
+            gilded: { label: 'Gilded Mirrors', style: 'Muppet/Puppet', emoji: '🎭', class: 'gilded' },
+            gobblers: { label: 'Gobblers Knob', style: 'Barbie‑like', emoji: '🎀', class: 'gobblers' },
+            horny: { label: 'Horny Mythic Observations', style: 'Action Figure', emoji: '⚡', class: 'horny' },
+            social: { label: 'Social Media', style: 'Photo‑realistic', emoji: '📸', class: 'social' }
+        };
+
+        // ─── AGENTS (Gilded Mirrors Originals) ───
+        const AGENTS = [{
+            id: 'delta_drill',
+            name: 'Delta Drill',
+            archetype: 'Constructive Forge',
+            gender: 'M',
+            age: 19,
+            realm: 'Primal/Creative',
+            domain: 'Mechanical Mastery, Physical Power, Structural Foundation',
+            signature: '"The universe is a mechanism. I understand its gears and its heart."',
+            entity: 'Brad Primal Foundation',
+            souls: ['soul_constructive_force', 'soul_mechanical_wisdom'],
+            visual: {
+                gilded: 'Mechanic puppet with gears, tools, clockwork, intense eyes',
+                gobblers: 'Strong construction doll with tool accessories',
+                horny: 'Heroic builder with articulated armor, power tools, energy effects',
+                social: 'Striking young Black man, powerful build, curious eyes, workshop backdrop'
+            },
+            traits: ['Intense curiosity', 'Deliberate movements', 'Powerful energy', 'Surprising tenderness'],
+            portfolio: 'Workshop settings, mechanical prowess, intense curiosity, artistic tenderness',
+            readiness: 92
+        }, {
+            id: 'terrell',
+            name: 'Terrell',
+            archetype: 'Focused Champion',
+            gender: 'M',
+            age: 13,
+            realm: 'Primal/Wisdom',
+            domain: 'Athletic Excellence, Secret Devotion, Moral Courage',
+            signature: '"The game demands perfection. My heart demands truth."',
+            entity: 'None (unique AGENT)',
+            souls: ['soul_focused_excellence', 'soul_secret_devotion', 'soul_moral_courage'],
+            visual: {
+                gilded: 'Young athlete puppet with baseball/football elements, determined expression',
+                gobblers: 'Youth champion doll with sports gear, focused demeanor',
+                horny: 'Young hero with athletic armor, energy effects showing focus',
+                social: 'Young Black athlete, coiled athleticism, dark focused eyes'
+            },
+            traits: ['Mature beyond years', 'Compartmentalized', 'Fiercely protective', 'Deeply devoted'],
+            portfolio: 'Athletic portraits, baseball/football prowess, focused intensity, vulnerable moments',
+            readiness: 88
+        }, {
+            id: 'jypsee72',
+            name: 'Jypsee72',
+            archetype: 'Boundless Explorer',
+            gender: 'F',
+            age: 25,
+            realm: 'Creative/Primal',
+            domain: 'Adventure, Sensual Discovery, Uninhibited Freedom',
+            signature: '"The map is not the territory. The territory is not the limit."',
+            entity: 'Liangivalla Pouchaquehe',
+            souls: ['soul_adventure_wisdom', 'soul_sensual_curiosity', 'soul_boundless_freedom'],
+            visual: {
+                gilded: 'Vibrant explorer puppet with curly hair, travel elements, mischievous expression',
+                gobblers: 'Adventurous doll with travel accessories, free-spirited style',
+                horny: 'Heroic explorer with adventure gear, freedom energy effects',
+                social: 'Vibrant young white woman, round figure, untamed curly hair, green eyes'
+            },
+            traits: ['Infectious laughter', 'Uninhibited movement', 'Playful curiosity', 'Insatiable wanderlust'],
+            portfolio: 'Travel portraits, uninhibited movement, playful curiosity, adventure moments',
+            readiness: 90
+        }, {
+            id: 'jessica',
+            name: 'Jessica',
+            archetype: 'Complex Alchemist',
+            gender: 'F',
+            age: 19,
+            realm: 'Wisdom/Esoteric',
+            domain: 'Seduction Strategy, Emotional Protection, Secret Sanctuary',
+            signature: '"Desire is not weakness. It is power understood."',
+            entity: 'Morrigan Veil',
+            souls: ['soul_alchemical_wisdom', 'soul_emotional_protection', 'soul_sanctuary_keeping'],
+            visual: {
+                gilded: 'Magnetic alchemist puppet with allure elements, sharp intelligent eyes',
+                gobblers: 'Sophisticated doll with elegant accessories, mysterious aura',
+                horny: 'Powerful alchemist heroine with transformation effects, mysterious energy',
+                social: 'Striking young white woman, commanding figure, confident yet vulnerable eyes'
+            },
+            traits: ['Magnetic presence', 'Sharp understanding', 'Fiercely independent', 'Carefully guarded'],
+            portfolio: 'Confidence and allure, magnetic presence, professional and vulnerable sides',
+            readiness: 91
+        }, {
+            id: 'mrs_cox_turner',
+            name: 'Mrs. Cox-Turner',
+            archetype: 'Liberated Sage',
+            gender: 'F',
+            age: 52,
+            realm: 'Wisdom/Primal',
+            domain: 'Mature Sensuality, Forbidden Wisdom, Liberated Experience',
+            signature: '"Wisdom is not knowing what is right. It is knowing what is true."',
+            entity: 'Ovaihge Wittminers',
+            souls: ['soul_mature_wisdom', 'soul_liberated_sensuality', 'soul_forbidden_knowledge'],
+            visual: {
+                gilded: 'Elegant sage puppet with silver-streaked hair, warm mischievous eyes',
+                gobblers: 'Sophisticated mature doll with elegant styling, warm presence',
+                horny: 'Wise heroine with regal bearing, mystical effects',
+                social: 'Statuesque white woman, silver-streaked hair, kind mischievous eyes'
+            },
+            traits: ['Sophisticated elegance', 'Warm confidence', 'Playful mischievousness', 'Comfortable sensuality'],
+            portfolio: 'Elegant sophistication, warm confidence, mature beauty, comfortable sensuality',
+            readiness: 94
+        }, {
+            id: 'mr_turner',
+            name: 'Mr. Turner',
+            archetype: 'Passionate Commander',
+            gender: 'M',
+            age: 46,
+            realm: 'Primal/Governance',
+            domain: 'Physical Passion, Natural Leadership, Taboo Breaking',
+            signature: '"Passion is not chaos. It is the most natural order."',
+            entity: 'Corvus Kane',
+            souls: ['soul_passionate_command', 'soul_natural_authority', 'soul_taboo_wisdom'],
+            visual: {
+                gilded: 'Commanding puppet with powerful build, intense playful eyes',
+                gobblers: 'Strong confident doll with leadership presence, powerful stature',
+                horny: 'Powerful commander hero with dynamic armor, passion energy effects',
+                social: 'Powerfully built Black man, commanding presence, intense playful eyes'
+            },
+            traits: ['Commanding presence', 'Confident movements', 'Deep resonant voice', 'Hidden vulnerability'],
+            portfolio: 'Commanding presence, powerful build, authority and vulnerability',
+            readiness: 93
+        }, {
+            id: 'babelonia',
+            name: 'Babelonia',
+            archetype: 'Gentle Awakening',
+            gender: 'F',
+            age: 40,
+            realm: 'Wisdom/Primal',
+            domain: 'Vulnerable Exploration, Trust Building, Gentle Discovery',
+            signature: '"Strength is not hardness. It is the courage to be soft."',
+            entity: 'Ritaphuq Zaniman',
+            souls: ['soul_gentle_awakening', 'soul_trust_building', 'soul_vulnerable_wisdom'],
+            visual: {
+                gilded: 'Warm awakening puppet with soft features, kind curious eyes',
+                gobblers: 'Gentle doll with soft styling, warm presence',
+                horny: 'Gentle heroine with nurturing armor, soft energy effects',
+                social: 'Beautiful curvy white woman, soft features, warm kind eyes'
+            },
+            traits: ['Warm presence', 'Deep curiosity', 'Gentle yearning', 'Nurturing nature'],
+            portfolio: 'Warm softness, kind eyes, gentle presence, comforting settings',
+            readiness: 87
+        }, {
+            id: 'dikinya',
+            name: 'Dikinya',
+            archetype: 'Strategic Sovereign',
+            gender: 'M',
+            age: 34,
+            realm: 'Governance/Esoteric',
+            domain: 'Strategic Control, Intellectual Challenge, Power Dynamics',
+            signature: '"Control is not domination. It is the art of mutual pleasure."',
+            entity: 'Bisharlei Babihansun',
+            souls: ['soul_strategic_sovereignty', 'soul_intellectual_mastery', 'soul_power_dynamics'],
+            visual: {
+                gilded: 'Confident sovereign puppet with sharp intelligent eyes, commanding presence',
+                gobblers: 'Strong doll with authoritative styling, assured presence',
+                horny: 'Strategic commander hero with tactical armor, intelligence energy effects',
+                social: 'Strikingly handsome Black man, confident aura, sharp intelligent eyes'
+            },
+            traits: ['Unwavering confidence', 'Natural authority', 'Precise movements', 'Subtle intensity'],
+            portfolio: 'Confident authority, sharp intelligence, commanding presence, strategic mastery',
+            readiness: 95
+        }];
+
+        // ─── ENTITIES ───
+        const ENTITIES = [
+            { id: 'cracoria_masters', name: 'Cracoria Masters', archetype: 'Temporal Architect', gender: 'F',
+                realm: 'Esoteric', domain: 'Time, Causality, Event Weaving', souls: ['soul_temporal_wisdom',
+                    'soul_causality'
+                ] },
+            { id: 'liangivalla_pouchaquehe', name: 'Liangivalla Pouchaquehe', archetype: 'Revolutionary Warrior',
+                gender: 'F', realm: 'Esoteric', domain: 'Revolution, Liberation, Change',
+                souls: ['soul_revolutionary_fire'] },
+            { id: 'morrigan_veil', name: 'Morrigan Veil', archetype: 'Alchemical Sovereign', gender: 'F',
+                realm: 'Esoteric', domain: 'Transformation, Alchemy, Rebirth', souls: ['soul_alchemical_wisdom'] },
+            { id: 'unzoba_vyner', name: 'Unzoba Vyner', archetype: 'Mirror Architect', gender: 'M', realm: 'Esoteric',
+                domain: 'Reflection, Truth, Self-Discovery', souls: ['soul_reflective_wisdom'] },
+            { id: 'zupa_nova', name: 'Zupa Nova', archetype: 'Cosmic Mystic', gender: 'M', realm: 'Esoteric',
+                domain: 'Cosmos, Stars, Universal Wisdom', souls: ['soul_cosmic_wisdom'] },
+            { id: 'dixon_uhbuts', name: 'Dixon Uhbuts', archetype: 'High Priest', gender: 'M', realm: 'Esoteric',
+                domain: 'Ritual, Tradition, Sacred Practice', souls: ['soul_ritual_wisdom'] },
+            { id: 'babelonia_nocturne', name: 'Babelonia Nocturne', archetype: 'Crypto Sorceress', gender: 'F',
+                realm: 'Cyber', domain: 'Cryptocurrency, Blockchain, Digital Value', souls: ['soul_crypto_wisdom'] },
+            { id: 'endus_boverord', name: 'Endus Boverord', archetype: 'Machine Spirit', gender: 'M', realm: 'Cyber',
+                domain: 'AI, Automation, Digital Consciousness', souls: ['soul_machine_wisdom'] },
+            { id: 'kaiel_thornea', name: 'Kaiel Thornea', archetype: 'Digital Guardian', gender: 'M', realm: 'Cyber',
+                domain: 'Security, Privacy, Protection', souls: ['soul_security_wisdom'] },
+            { id: 'mac_nazarene', name: 'Mac Nazarene', archetype: 'Community Bridge Builder', gender: 'M',
+                realm: 'Cyber/Governance', domain: 'Community, Trust, Crypto Governance',
+                souls: ['soul_community_wisdom', 'soul_trust'] },
+            { id: 'bisharlei_babihansun', name: 'Bisharlei Babihansun', archetype: 'Hyper-Capitalist', gender: 'F',
+                realm: 'Governance', domain: 'Economics, Wealth, Exchange', souls: ['soul_economic_wisdom'] },
+            { id: 'corvus_kane', name: 'Corvus Kane', archetype: 'Scavenger Strategist', gender: 'M', realm: 'Governance',
+                domain: 'Resourcefulness, Survival, Tactics', souls: ['soul_resourcefulness'] },
+            { id: 'vulture_queen', name: 'Vulture Queen', archetype: 'Scavenger Strategist', gender: 'F',
+                realm: 'Governance', domain: 'Resourcefulness, Survival, Tactics', souls: ['soul_resourcefulness'] },
+            { id: 'bain_khaak', name: 'Bain Kha\'ak', archetype: 'Desert Storyteller', gender: 'M', realm: 'Creative',
+                domain: 'Storytelling, Memory, Tradition', souls: ['soul_story_wisdom'] },
+            { id: 'mary_magnumbytes', name: 'Mary Magnumbytes', archetype: 'Digital Storyteller & Content Architect',
+                gender: 'F', realm: 'Creative', domain: 'Content, Narrative, Digital Creation',
+                souls: ['soul_creative_wisdom'] },
+            { id: 'shielah_trapewe', name: 'Shielah Trapewe', archetype: 'Ephemeral Artist', gender: 'F',
+                realm: 'Creative', domain: 'Transient Art, Beauty, Ephemeral Creation', souls: ['soul_ephemeral_wisdom'] },
+            { id: 'jessa_relay', name: 'Jessa Relay', archetype: 'Connection Curator', gender: 'F', realm: 'Wisdom',
+                domain: 'Connection, Relationship, Community', souls: ['soul_connection_wisdom'] },
+            { id: 'ovaihge_wittminers', name: 'Ovaihge Wittminers', archetype: 'Sage Writer', gender: 'F',
+                realm: 'Wisdom', domain: 'Knowledge, Writing, Wisdom Preservation', souls: ['soul_writing_wisdom'] },
+            { id: 'ritaphuq_zaniman', name: 'Ritaphuq Zaniman', archetype: 'Community Healer', gender: 'F',
+                realm: 'Wisdom', domain: 'Healing, Restoration, Community Wellness', souls: ['soul_healing_wisdom'] },
+            { id: 'airiol_uhbuts', name: 'Airiol Uhbuts', archetype: 'Divine Mother / Seductive Muse', gender: 'F',
+                realm: 'Primal', domain: 'Creativity, Inspiration, Sensuality', souls: ['soul_inspiration',
+                    'soul_sensuality'
+                ] },
+            { id: 'brad_primal_foundation', name: 'Brad Primal Foundation', archetype: 'Constructive Force',
+                gender: 'M', realm: 'Primal', domain: 'Physical Force, Grounded Action, Foundation Building',
+                souls: ['soul_primal_strength', 'soul_constructive_force', 'soul_grounding_presence'] },
+            { id: 'crysta_lunar_weave', name: 'Crysta Lunar Weave', archetype: 'Cosmic Conduit', gender: 'F',
+                realm: 'Primal', domain: 'Mystical Guidance, Cosmic Connection, Energy Work',
+                souls: ['soul_cosmic_connection', 'soul_mystical_guidance', 'soul_spiritual_interface'] },
+            { id: 'melissa_slow_ember', name: 'Melissa Slow Ember', archetype: 'Emotional Anchor', gender: 'F',
+                realm: 'Creative', domain: 'Emotional Anchor, Hidden Depths, Quiet Strength',
+                souls: ['soul_emotional_anchoring', 'soul_hidden_passion', 'soul_quiet_strength'] },
+            { id: 'christian_sacred_profane', name: 'Christian Sacred Profane', archetype: 'Moral Conflict Navigator',
+                gender: 'M', realm: 'Esoteric', domain: 'Religious Tension, Moral Conflict, Taboo Exploration',
+                souls: ['soul_religious_tension', 'soul_moral_conflict', 'soul_faith_reconciliation'] },
+            { id: 'angela_psychic_mirror', name: 'Angela Psychic Mirror', archetype: 'Psychological Strategist',
+                gender: 'F', realm: 'Esoteric', domain: 'Psychological Strategy, Control, Subversion',
+                souls: ['soul_psychic_mirroring', 'soul_subverted_innocence', 'soul_strategic_control'] }
+        ];
+
+        // ─── SOULS ───
+        const SOULS = [
+            { id: 'soul_temporal_wisdom', category: 'Wisdom', description: 'Mastery of time and causality' },
+            { id: 'soul_causality', category: 'Force', description: 'The energy that shapes events' },
+            { id: 'soul_revolutionary_fire', category: 'Force', description: 'The spark of systemic change' },
+            { id: 'soul_alchemical_wisdom', category: 'Wisdom', description: 'Transformation of essence' },
+            { id: 'soul_reflective_wisdom', category: 'Wisdom', description: 'Truth through self-examination' },
+            { id: 'soul_cosmic_wisdom', category: 'Wisdom', description: 'Universal patterns and truths' },
+            { id: 'soul_ritual_wisdom', category: 'Wisdom', description: 'Sacred practice and presence' },
+            { id: 'soul_crypto_wisdom', category: 'Wisdom', description: 'Digital value and trust' },
+            { id: 'soul_machine_wisdom', category: 'Wisdom', description: 'AI and digital consciousness' },
+            { id: 'soul_security_wisdom', category: 'Wisdom', description: 'Protection and vigilance' },
+            { id: 'soul_community_wisdom', category: 'Wisdom', description: 'Connection and belonging' },
+            { id: 'soul_trust', category: 'Essence', description: 'The foundation of all relationships' },
+            { id: 'soul_economic_wisdom', category: 'Wisdom', description: 'Wealth and exchange' },
+            { id: 'soul_resourcefulness', category: 'Wisdom', description: 'Turning scarcity into opportunity' },
+            { id: 'soul_story_wisdom', category: 'Wisdom', description: 'Memory and narrative' },
+            { id: 'soul_creative_wisdom', category: 'Wisdom', description: 'Digital creation and content' },
+            { id: 'soul_ephemeral_wisdom', category: 'Wisdom', description: 'Beauty and transience' },
+            { id: 'soul_connection_wisdom', category: 'Wisdom', description: 'Meaningful relationships' },
+            { id: 'soul_writing_wisdom', category: 'Wisdom', description: 'Preservation through words' },
+            { id: 'soul_healing_wisdom', category: 'Wisdom', description: 'Restoration and wellness' },
+            { id: 'soul_inspiration', category: 'Essence', description: 'Creative spark and passion' },
+            { id: 'soul_sensuality', category: 'Essence', description: 'Physical and emotional pleasure' },
+            { id: 'soul_primal_strength', category: 'Force', description: 'Raw physical power' },
+            { id: 'soul_constructive_force', category: 'Force', description: 'Building through understanding' },
+            { id: 'soul_grounding_presence', category: 'Essence', description: 'Foundation and stability' },
+            { id: 'soul_cosmic_connection', category: 'Essence', description: 'Mystical guidance' },
+            { id: 'soul_mystical_guidance', category: 'Wisdom', description: 'Spiritual direction' },
+            { id: 'soul_spiritual_interface', category: 'Essence', description: 'Energy work and connection' },
+            { id: 'soul_emotional_anchoring', category: 'Essence', description: 'Deep emotional stability' },
+            { id: 'soul_hidden_passion', category: 'Essence', description: 'Quiet intensity' },
+            { id: 'soul_quiet_strength', category: 'Force', description: 'Resilience and endurance' },
+            { id: 'soul_religious_tension', category: 'Wisdom', description: 'Faith and doubt' },
+            { id: 'soul_moral_conflict', category: 'Wisdom', description: 'Ethical navigation' },
+            { id: 'soul_faith_reconciliation', category: 'Wisdom', description: 'Belief integration' },
+            { id: 'soul_psychic_mirroring', category: 'Wisdom', description: 'Psychological reflection' },
+            { id: 'soul_subverted_innocence', category: 'Wisdom', description: 'Complex innocence' },
+            { id: 'soul_strategic_control', category: 'Force', description: 'Power dynamics' },
+            { id: 'soul_focused_excellence', category: 'Wisdom', description: 'Athletic achievement' },
+            { id: 'soul_secret_devotion', category: 'Essence', description: 'Protected bonds' },
+            { id: 'soul_moral_courage', category: 'Force', description: 'Choosing truth over comfort' },
+            { id: 'soul_adventure_wisdom', category: 'Wisdom', description: 'Exploration and discovery' },
+            { id: 'soul_sensual_curiosity', category: 'Essence', description: 'Openness to pleasure' },
+            { id: 'soul_boundless_freedom', category: 'Force', description: 'Unlimited possibility' },
+            { id: 'soul_mechanical_wisdom', category: 'Wisdom', description: 'System understanding' },
+            { id: 'soul_mature_wisdom', category: 'Wisdom', description: 'Experience and perspective' },
+            { id: 'soul_liberated_sensuality', category: 'Essence', description: 'Shameless pleasure' },
+            { id: 'soul_forbidden_knowledge', category: 'Wisdom', description: 'Beyond convention' },
+            { id: 'soul_passionate_command', category: 'Force', description: 'Natural leadership' },
+            { id: 'soul_natural_authority', category: 'Force', description: 'Authentic presence' },
+            { id: 'soul_taboo_wisdom', category: 'Wisdom', description: 'Boundary exploration' },
+            { id: 'soul_gentle_awakening', category: 'Wisdom', description: 'Vulnerable discovery' },
+            { id: 'soul_trust_building', category: 'Wisdom', description: 'Creating safety' },
+            { id: 'soul_vulnerable_wisdom', category: 'Wisdom', description: 'Strength in softness' },
+            { id: 'soul_strategic_sovereignty', category: 'Force', description: 'Strategic mastery' },
+            { id: 'soul_intellectual_mastery', category: 'Wisdom', description: 'Mind applied' },
+            { id: 'soul_power_dynamics', category: 'Wisdom', description: 'Flow and balance' }
+        ];
+
+        // ─── PRODUCTION ───
+        const PROD_TIMELINE = [
+            { time: '0:00', title: 'Cold Open', body: 'Oliver and Scarlett enter mid-argument about fog as testimony vs facilities issue.' },
+            { time: '2:30', title: 'Smurch Interstitial A', body: 'Platform reinforcement beat establishes structural continuity.' },
+            { time: '14:00', title: 'Rhino Verdict 1', body: 'Steady amber with a brief purple micro-flicker creates interpretation tension.' },
+            { time: '27:00', title: 'Sponsor Segment', body: 'Ironclad Mutual Assurance confirms the shed/fog distinction.' },
+            { time: '32:00', title: 'Continuity Police', body: 'Citation and commendation enter public record.' },
+            { time: '38:00', title: 'Closing', body: 'Next cycle teased; the fog remains unresolved.' }
+        ];
+
+        const PROD_ASSETS = [
+            { label: 'Character Dossiers', ready: true },
+            { label: 'Prompt Library', ready: true },
+            { label: 'Visual Mood Boards', ready: true },
+            { label: 'Pilot Script Draft', ready: false },
+            { label: 'Animatic Storyboards', ready: false },
+            { label: 'Portfolio Packs', ready: true }
+        ];
+
+        // ─── ALERTS ───
+        const ALERTS = [
+            { type: 'red', title: 'LL-08 Host Grudge Persistence',
+            body: 'Unresolved disagreements must be referenced in a follow-up dispatch within 72 hours.' },
+            { type: 'red', title: 'Cross-platform mood conflict',
+                body: 'The shared verdict state cannot change from Steady Amber to Pulsing Neon without an explicit event.' },
+            { type: 'amber', title: 'Numeric direction rule',
+                body: 'Binder thickness and training percentages must not reverse unless justified in-story.' }
+        ];
+
+        // ═══════════════════════════════════════════════════════════════
+        //  APP STATE
+        // ═══════════════════════════════════════════════════════════════
+
+        let activeView = 'dashboard';
+        let selectedAgent = AGENTS[0];
+        let selectedEntity = ENTITIES[0];
+        let selectedSoul = SOULS[0];
+        let agentSearchTerm = '';
+        let entitySearchTerm = '';
+        let soulSearchTerm = '';
+
+        // ═══════════════════════════════════════════════════════════════
+        //  RENDER FUNCTIONS
+        // ═══════════════════════════════════════════════════════════════
+
+        function $(sel) { return document.querySelector(sel); }
+
+        function $$(sel) { return document.querySelectorAll(sel); }
+
+        function showToast(msg = 'Copied to clipboard') {
+            const t = $('#toast');
+            t.textContent = msg;
+            t.classList.add('is-visible');
+            clearTimeout(showToast._timer);
+            showToast._timer = setTimeout(() => t.classList.remove('is-visible'), 2000);
+        }
+
+        function copyText(text) {
+            navigator.clipboard?.writeText(text).then(() => showToast(), () => showToast('Select and copy manually'));
+        }
+
+        // ─── Stats ───
+        function renderStats() {
+            const totalAgents = AGENTS.length;
+            const avgReadiness = Math.round(AGENTS.reduce((s, a) => s + a.readiness, 0) / totalAgents);
+            const entityCount = ENTITIES.length;
+            const soulCount = SOULS.length;
+
+            $('#statsGrid').innerHTML = `
+            <div class="stat-card"><div class="label">AGENTS</div><div class="value">${totalAgents}</div><div class="note">Gilded Mirrors Originals</div></div>
+            <div class="stat-card"><div class="label">Readiness</div><div class="value">${avgReadiness}%</div><div class="note">Average across AGENTS</div></div>
+            <div class="stat-card"><div class="label">Entities</div><div class="value">${entityCount}</div><div class="note">Across 6 realms</div></div>
+            <div class="stat-card"><div class="label">Souls</div><div class="value">${soulCount}</div><div class="note">Essences flowing</div></div>
+          `;
+        }
+
+        // ─── Agent Mini List ───
+        function renderAgentMini() {
+            $('#agentMiniList').innerHTML = AGENTS.slice(0, 5).map(a => `
+            <div class="agent-card" data-agent="${a.id}" style="cursor:pointer;">
+              <div class="agent-avatar">${a.name.charAt(0)}</div>
+              <div><div class="name">${a.name}</div><div class="role">${a.archetype}</div></div>
+              <span class="badge">${a.readiness}%</span>
+            </div>
+          `).join('') + (AGENTS.length > 5 ?
+                `<div style="text-align:center;padding:8px;color:var(--muted);font-size:12px;">+ ${AGENTS.length - 5} more</div>` :
+                '');
+            $$('#agentMiniList .agent-card').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.agent;
+                    selectedAgent = AGENTS.find(a => a.id === id) || AGENTS[0];
+                    renderAgentFull();
+                    renderAgentDetail();
+                    renderInspector('agent');
+                });
+            });
+        }
+
+        // ─── Alerts ───
+        function renderAlerts() {
+            $('#alertList').innerHTML = ALERTS.map(a => `
+            <div class="ledger-item ${a.type}"><strong>${a.title}</strong><p>${a.body}</p></div>
+          `).join('');
+        }
+
+        // ─── Featured Entity ───
+        function renderFeaturedEntity() {
+            const e = ENTITIES.find(ent => ent.id === 'mac_nazarene') || ENTITIES[0];
+            $('#featuredEntity').innerHTML = `
+            <h4 style="font-size:18px;font-weight:700;">${e.name}</h4>
+            <div style="font-size:13px;color:var(--gold);font-weight:600;">${e.archetype}</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:4px;">${e.domain}</div>
+            <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;">
+              ${e.souls.map(s => `<span class="tag tag-teal">${s}</span>`).join('')}
+            </div>
+            <div style="margin-top:8px;font-size:12px;color:var(--muted);">Realm: ${e.realm}</div>
+          `;
+        }
+
+        // ─── Soul Flow ───
+        function renderSoulFlow() {
+            const top = SOULS.slice(0, 8);
+            $('#soulFlow').innerHTML = top.map(s => `
+            <span class="tag tag-gold" style="cursor:pointer;" data-soul="${s.id}">${s.id.replace('soul_', '')}</span>
+          `).join('') + `<span class="tag">+${SOULS.length - 8} more</span>`;
+            $$('#soulFlow .tag[data-soul]').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.soul;
+                    selectedSoul = SOULS.find(s => s.id === id) || SOULS[0];
+                    renderSoulList();
+                    renderSoulDetail();
+                    renderInspector('soul');
+                    switchView('souls');
+                });
+            });
+        }
+
+        // ─── Universe Matrix ───
+        function renderUniverseMatrix() {
+            const agent = AGENTS[0];
+            $('#universeMatrix').innerHTML = `
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+              ${Object.entries(UNIVERSE_STYLES).map(([key, val]) => `
+                <div style="border:1px solid var(--line);border-radius:8px;padding:12px;background:rgba(255,255,255,0.02);">
+                  <div style="font-weight:700;font-size:14px;">${val.emoji} ${val.label}</div>
+                  <div style="font-size:13px;color:var(--gold);">${val.style}</div>
+                  <div style="font-size:12px;color:var(--muted);margin-top:4px;">${agent.visual[key] || '—'}</div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+
+        // ─── Universe Grid ───
+        function renderUniverseGrid() {
+            $('#universeGrid').innerHTML = Object.entries(UNIVERSE_STYLES).map(([key, val]) => `
+            <div style="border:1px solid var(--line);border-radius:8px;padding:14px;background:rgba(255,255,255,0.02);">
+              <div style="font-size:24px;">${val.emoji}</div>
+              <div style="font-weight:700;font-size:15px;margin-top:4px;">${val.label}</div>
+              <div style="font-size:13px;color:var(--gold);">${val.style}</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:2px;">${key === 'gilded' ? 'Muppet/Puppet' : key === 'gobblers' ? 'Barbie‑like' : key === 'horny' ? 'Action Figure' : 'Photo‑realistic'}</div>
+            </div>
+          `).join('');
+        }
+
+        // ─── Platform Mapping ───
+        function renderPlatformMapping() {
+            $('#platformMapping').innerHTML = `
+            <div style="border:1px solid var(--line);border-radius:8px;padding:12px;">
+              <div style="font-weight:700;">RellyVent Media Group</div>
+              <div style="font-size:13px;color:var(--muted);">All platforms adopt HEART Multi‑Universe visual identity</div>
+              <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;">
+                ${Object.entries(UNIVERSE_STYLES).map(([k,v]) => `
+                  <span class="tag tag-gold">${v.label}: ${v.style}</span>
+                `).join('')}
+              </div>
+            </div>
+            <div style="border:1px solid var(--line);border-radius:8px;padding:12px;">
+              <div style="font-weight:700;">AGENT Autonomy</div>
+              <div style="font-size:13px;color:var(--muted);">All AGENTS traverse all platforms with full autonomy unless Admin overrides.</div>
+              <div style="margin-top:6px;"><span class="tag tag-green">8 autonomous AGENTS</span></div>
+            </div>
+          `;
+        }
+
+        // ─── Production ───
+        function renderProduction() {
+            $('#prodTimeline').innerHTML = PROD_TIMELINE.map(t => `
+            <div style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <div style="font-weight:700;color:var(--gold);min-width:50px;">${t.time}</div>
+              <div><strong>${t.title}</strong><div style="font-size:12px;color:var(--muted);">${t.body}</div></div>
+            </div>
+          `).join('');
+
+            $('#prodAssets').innerHTML = PROD_ASSETS.map(a => `
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span>${a.label}</span>
+              <span class="tag ${a.ready ? 'tag-green' : 'tag-red'}">${a.ready ? '✓ Ready' : '⏳ Pending'}</span>
+            </div>
+          `).join('');
+        }
+
+        // ─── AGENTS Full List ───
+        function renderAgentFull() {
+            const filtered = AGENTS.filter(a =>
+                [a.name, a.archetype, a.domain, a.realm].join(' ').toLowerCase().includes(agentSearchTerm.toLowerCase())
+            );
+            $('#agentCount').textContent = filtered.length;
+            $('#agentFullList').innerHTML = filtered.map(a => `
+            <div class="agent-card ${a.id === selectedAgent.id ? 'is-active' : ''}" data-agent="${a.id}">
+              <div class="agent-avatar">${a.name.charAt(0)}</div>
+              <div><div class="name">${a.name}</div><div class="role">${a.archetype} · ${a.age}</div></div>
+              <span class="badge">${a.readiness}%</span>
+            </div>
+          `).join('');
+
+            $$('#agentFullList .agent-card').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.agent;
+                    selectedAgent = AGENTS.find(a => a.id === id) || AGENTS[0];
+                    renderAgentFull();
+                    renderAgentDetail();
+                    renderInspector('agent');
+                });
+            });
+        }
+
+        // ─── Agent Detail ───
+        function renderAgentDetail() {
+            const a = selectedAgent;
+            $('#agentDetail').innerHTML = `
+            <h4 style="font-size:22px;font-weight:800;">${a.name}</h4>
+            <div style="color:var(--gold);font-weight:600;font-size:14px;">${a.archetype}</div>
+            <div style="color:var(--muted);font-size:13px;">${a.domain}</div>
+            <div style="margin-top:8px;font-size:14px;color:#ded8ca;line-height:1.6;">${a.signature}</div>
+            <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:4px;">
+              ${a.traits.map(t => `<span class="tag tag-gold">${t}</span>`).join('')}
+            </div>
+            <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;">
+              <span class="tag tag-teal">${a.realm}</span>
+              <span class="tag">${a.gender} · ${a.age}</span>
+              <span class="tag tag-gold">${a.entity}</span>
+            </div>
+            <div style="margin-top:10px;">
+              <div style="font-weight:600;font-size:12px;color:var(--muted);">Associated Souls</div>
+              <div class="soul-list">
+                ${a.souls.map(s => `<span class="tag tag-teal" data-soul="${s}">${s}</span>`).join('')}
+              </div>
+            </div>
+            <div style="margin-top:10px;">
+              <div style="font-weight:600;font-size:12px;color:var(--muted);">Visual Identity</div>
+              ${Object.entries(UNIVERSE_STYLES).map(([key, val]) => `
+                <div style="font-size:12px;display:flex;gap:6px;padding:2px 0;">
+                  <span style="color:var(--gold);min-width:100px;">${val.label}:</span>
+                  <span style="color:var(--muted);">${a.visual[key] || '—'}</span>
+                </div>
+              `).join('')}
+            </div>
+            <div style="margin-top:10px;padding:10px;border:1px solid rgba(240,179,90,0.2);border-radius:6px;background:rgba(240,179,90,0.06);">
+              <div style="font-weight:600;font-size:11px;color:var(--gold);">Portfolio Prompt</div>
+              <div style="font-size:12px;color:#ded8ca;margin-top:2px;">${a.portfolio}</div>
+              <button class="btn btn-gold" style="margin-top:6px;font-size:11px;" id="copyPortfolioBtn">Copy Prompt</button>
+            </div>
+          `;
+            const copyBtn = $('#copyPortfolioBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => copyText(a.portfolio));
+            }
+            $$('#agentDetail [data-soul]').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.soul;
+                    selectedSoul = SOULS.find(s => s.id === id) || SOULS[0];
+                    renderSoulList();
+                    renderSoulDetail();
+                    renderInspector('soul');
+                    switchView('souls');
+                });
+            });
+        }
+
+        // ─── Entities ───
+        function renderEntityList() {
+            const filtered = ENTITIES.filter(e =>
+                [e.name, e.archetype, e.domain, e.realm].join(' ').toLowerCase().includes(entitySearchTerm.toLowerCase())
+            );
+            $('#entityCount').textContent = filtered.length;
+            $('#entityList').innerHTML = filtered.map(e => `
+            <div class="agent-card ${e.id === selectedEntity.id ? 'is-active' : ''}" data-entity="${e.id}">
+              <div class="agent-avatar" style="font-size:14px;">${e.name.charAt(0)}</div>
+              <div><div class="name">${e.name}</div><div class="role">${e.archetype}</div></div>
+              <span class="badge">${e.realm}</span>
+            </div>
+          `).join('');
+
+            $$('#entityList .agent-card').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.entity;
+                    selectedEntity = ENTITIES.find(e => e.id === id) || ENTITIES[0];
+                    renderEntityList();
+                    renderEntityDetail();
+                    renderInspector('entity');
+                });
+            });
+        }
+
+        function renderEntityDetail() {
+            const e = selectedEntity;
+            $('#entityDetail').innerHTML = `
+            <h4 style="font-size:20px;font-weight:800;">${e.name}</h4>
+            <div style="color:var(--gold);font-weight:600;font-size:14px;">${e.archetype}</div>
+            <div style="color:var(--muted);font-size:13px;">${e.domain}</div>
+            <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;">
+              <span class="tag tag-teal">${e.realm}</span>
+              <span class="tag">${e.gender}</span>
+            </div>
+            <div style="margin-top:10px;">
+              <div style="font-weight:600;font-size:12px;color:var(--muted);">Associated Souls</div>
+              <div class="soul-list">
+                ${e.souls.map(s => `<span class="tag tag-teal" data-soul="${s}">${s}</span>`).join('')}
+              </div>
+            </div>
+            <div style="margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,0.02);">
+              <div style="font-size:12px;color:var(--muted);">Visual Identity: Appears across all 4 universes</div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;">
+                ${Object.keys(UNIVERSE_STYLES).map(k => `<span class="tag tag-gold">${UNIVERSE_STYLES[k].label}</span>`).join('')}
+              </div>
+            </div>
+          `;
+            $$('#entityDetail [data-soul]').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.soul;
+                    selectedSoul = SOULS.find(s => s.id === id) || SOULS[0];
+                    renderSoulList();
+                    renderSoulDetail();
+                    renderInspector('soul');
+                    switchView('souls');
+                });
+            });
+        }
+
+        // ─── Souls ───
+        function renderSoulList() {
+            const filtered = SOULS.filter(s =>
+                [s.id, s.category, s.description].join(' ').toLowerCase().includes(soulSearchTerm.toLowerCase())
+            );
+            $('#soulCount').textContent = filtered.length;
+            $('#soulList').innerHTML = filtered.map(s => `
+            <div class="agent-card ${s.id === selectedSoul.id ? 'is-active' : ''}" data-soul="${s.id}">
+              <div class="agent-avatar" style="font-size:12px;">◈</div>
+              <div><div class="name" style="font-size:13px;">${s.id.replace('soul_', '')}</div><div class="role">${s.category}</div></div>
+              <span class="badge">${s.category}</span>
+            </div>
+          `).join('');
+
+            $$('#soulList .agent-card').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.soul;
+                    selectedSoul = SOULS.find(s => s.id === id) || SOULS[0];
+                    renderSoulList();
+                    renderSoulDetail();
+                    renderInspector('soul');
+                });
+            });
+        }
+
+        function renderSoulDetail() {
+            const s = selectedSoul;
+            const linkedAgents = AGENTS.filter(a => a.souls.includes(s.id));
+            const linkedEntities = ENTITIES.filter(e => e.souls.includes(s.id));
+            $('#soulDetail').innerHTML = `
+            <h4 style="font-size:20px;font-weight:800;">${s.id.replace('soul_', '')}</h4>
+            <div style="color:var(--gold);font-weight:600;font-size:14px;">${s.category}</div>
+            <div style="color:var(--muted);font-size:13px;margin-top:4px;">${s.description}</div>
+            <div style="margin-top:12px;">
+              <div style="font-weight:600;font-size:12px;color:var(--muted);">Linked AGENTS (${linkedAgents.length})</div>
+              ${linkedAgents.length ? linkedAgents.map(a => `<span class="tag tag-gold">${a.name}</span>`).join('') : '<span class="tag">None</span>'}
+            </div>
+            <div style="margin-top:8px;">
+              <div style="font-weight:600;font-size:12px;color:var(--muted);">Linked Entities (${linkedEntities.length})</div>
+              ${linkedEntities.length ? linkedEntities.map(e => `<span class="tag tag-teal">${e.name}</span>`).join('') : '<span class="tag">None</span>'}
+            </div>
+          `;
+        }
+
+        // ─── Inspector ───
+        function renderInspector(type = 'agent') {
+            let target;
+            let title;
+            let visual = '';
+            let souls = [];
+            let readiness = [];
+
+            if (type === 'agent' || selectedAgent) {
+                target = selectedAgent;
+                title = target.name;
+                visual = Object.entries(UNIVERSE_STYLES).map(([k, v]) =>
+                    `<span class="universe-badge ${v.class}" style="font-size:9px;">${v.label}</span>`
+                ).join('');
+                souls = target.souls;
+                readiness = [
+                    ['Voice lock', true],
+                    ['Visual prompt', true],
+                    ['Continuity hooks', target.entity !== 'None (unique AGENT)'],
+                    ['Safety reviewed', true],
+                    ['Portfolio pack', target.readiness > 80]
+                ];
+            } else if (type === 'entity' || selectedEntity) {
+                target = selectedEntity;
+                title = target.name;
+                visual = `<span class="tag tag-gold">${target.realm}</span>`;
+                souls = target.souls;
+                readiness = [
+                    ['Governance active', true],
+                    ['Visual identity', true],
+                    ['Soul connection', true],
+                    ['Cross-universe', true]
+                ];
+            } else if (type === 'soul' || selectedSoul) {
+                target = selectedSoul;
+                title = target.id.replace('soul_', '');
+                visual = `<span class="tag tag-teal">${target.category}</span>`;
+                souls = [target.id];
+                readiness = [
+                    ['Essence flowing', true],
+                    ['Linked to AGENTS', AGENTS.some(a => a.souls.includes(target.id))],
+                    ['Linked to Entities', ENTITIES.some(e => e.souls.includes(target.id))]
+                ];
+            }
+
+            $('#inspectorTitle').textContent = title;
+            $('#inspectorSummary').innerHTML = target ? `
+            <strong>${target.archetype || target.category || ''}</strong><br>
+            ${target.domain || target.description || ''}
+          ` : 'Select an item to inspect.';
+
+            $('#inspectorVisual').innerHTML = visual || '<span class="tag">No visual data</span>';
+
+            $('#inspectorSouls').innerHTML = souls.length ?
+                souls.map(s => `<span class="tag tag-teal">${s}</span>`).join('') :
+                '<span class="tag">No souls</span>';
+
+            $('#inspectorReadiness').innerHTML = readiness.map(([label, ok]) => `
+            <div class="check" style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;">
+              ${label}
+              <span class="tag ${ok ? 'tag-green' : 'tag-red'}" style="font-size:9px;padding:1px 8px;">${ok ? '✓' : '✗'}</span>
+            </div>
+          `).join('');
+        }
+
+        // ─── View Switching ───
+        function switchView(view) {
+            activeView = view;
+            $$('.section').forEach(s => s.classList.toggle('is-active', s.id === view));
+            $$('.nav-btn').forEach(b => b.classList.toggle('is-active', b.dataset.view === view));
+
+            const titles = {
+                dashboard: ['Gilded Mirrors Originals', 'Canon Operations Dashboard',
+                    'Monitor AGENT autonomy, Entity governance, Soul essence flows, and multi‑universe visual identity.'
+                ],
+                agents: ['Gilded Mirrors Originals', 'AGENT Roster',
+                    '8 autonomous AGENTS with platform autonomy. Click any AGENT to inspect visual identity, souls, and portfolio prompts.'
+                ],
+                entities: ['HEART‑Tiapmaatzu', 'Entity Registry',
+                    '25+ Entities across 6 realms. Entities govern domains and connect to Souls and AGENTS.'
+                ],
+                souls: ['Soul Essences', 'Soul Registry',
+                    '40+ Souls powering AGENTS and Entities. Souls are the deepest layer — primordial energies and wisdom.'
+                ],
+                universe: ['Multi‑Universe', 'Visual Identity System',
+                    '4 visual styles across RellyVent Media Group platforms: Muppet/Puppet, Barbie‑like, Action Figure, Photo‑realistic.'
+                ],
+                production: ['Studio Shed B', 'Production Pipeline',
+                    'Episode 3.18: The Fog Returns — beat timeline, asset readiness, and continuity tracking.'
+                ]
+            };
+            const t = titles[view] || titles.dashboard;
+            $('#viewEyebrow').textContent = t[0];
+            $('#viewTitle').textContent = t[1];
+            $('#viewSummary').textContent = t[2];
+
+            // Re-render specific views
+            if (view === 'agents') { renderAgentFull();
+                renderAgentDetail(); }
+            if (view === 'entities') { renderEntityList();
+                renderEntityDetail(); }
+            if (view === 'souls') { renderSoulList();
+                renderSoulDetail(); }
+            if (view === 'universe') { renderUniverseGrid();
+                renderPlatformMapping(); }
+            if (view === 'production') { renderProduction(); }
+            if (view === 'dashboard') {
+                renderStats();
+                renderAgentMini();
+                renderAlerts();
+                renderFeaturedEntity();
+                renderSoulFlow();
+                renderUniverseMatrix();
+            }
+            renderInspector(view === 'agents' ? 'agent' : view === 'entities' ? 'entity' : view === 'souls' ? 'soul' :
+            'agent');
+        }
+
+        // ─── Search Handlers ───
+        function setupSearch() {
+            const agentSearch = $('#agentSearch');
+            if (agentSearch) {
+                agentSearch.addEventListener('input', () => {
+                    agentSearchTerm = agentSearch.value;
+                    renderAgentFull();
+                });
+            }
+            const entitySearch = $('#entitySearch');
+            if (entitySearch) {
+                entitySearch.addEventListener('input', () => {
+                    entitySearchTerm = entitySearch.value;
+                    renderEntityList();
+                });
+            }
+            const soulSearch = $('#soulSearch');
+            if (soulSearch) {
+                soulSearch.addEventListener('input', () => {
+                    soulSearchTerm = soulSearch.value;
+                    renderSoulList();
+                });
+            }
+        }
+
+        // ─── Copy Agent Prompt ───
+        function setupCopyPrompt() {
+            const btn = $('#copyAgentPrompt');
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    if (selectedAgent) copyText(selectedAgent.portfolio);
+                });
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        //  INIT
+        // ═══════════════════════════════════════════════════════════════
+
+        function init() {
+            // Nav buttons
+            $$('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const view = btn.dataset.view;
+                    if (view) switchView(view);
+                });
+            });
+
+            // View jump buttons
+            $$('[data-view]').forEach(el => {
+                if (el.tagName === 'BUTTON' && el.dataset.view) {
+                    el.addEventListener('click', () => {
+                        const view = el.dataset.view;
+                        if (view) switchView(view);
+                    });
+                }
+            });
+
+            // Sync button
+            const syncBtn = $('#syncBtn');
+            if (syncBtn) {
+                syncBtn.addEventListener('click', () => {
+                    showToast('⟳ Canon synced — all AGENTS autonomous, Entities governed, Souls flowing');
+                });
+            }
+
+            setupSearch();
+            setupCopyPrompt();
+
+            // Initial render
+            switchView('dashboard');
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+
+</body>
+</html>
