@@ -1,7 +1,7 @@
 import { Client, GatewayIntentBits, SlashCommandBuilder, REST, Routes, EmbedBuilder } from 'discord.js';
 import dotenv from 'dotenv';
-import CharacterAPIClient from '../../shared/character-api-client.js';
-import { initializeDatabase, getOrCreateUser, getOrCreateSession, updateSession, checkDailyLimit, logPrompt, logAnalytics, logEngagement, getUserStats } from '../../shared/database.js';
+import CharacterAPIClient from '../character-api-client.js';
+import { initializeDatabase, getOrCreateUser, getOrCreateSession, updateSession, checkDailyLimit, logPrompt, logAnalytics, logEngagement, getUserStats } from '../database.js';
 import http from 'http';
 
 dotenv.config();
@@ -21,7 +21,7 @@ const characterApiUrl = process.env.CHARACTER_API_URL || 'http://localhost:8001'
 const characterAPI = new CharacterAPIClient(characterApiUrl);
 
 // Initialize database - use /tmp for Railway/ephemeral storage, or local path for development
-const dbPath = process.env.DATABASE_PATH || (process.env.NODE_ENV === 'production' ? '/tmp/chiefpilot.db' : './bots/shared/chiefpilot.db');
+const dbPath = process.env.DATABASE_PATH || (process.env.NODE_ENV === 'production' ? '/tmp/chiefpilot.db' : './chiefpilot.db');
 initializeDatabase(dbPath);
 
 // Bot commands registry

@@ -23,7 +23,7 @@ import {
   logEngagement,
   getUserStats,
   linkUserAccounts
-} from '../../shared/database.js';
+} from '../database.js';
 
 import {
   generateEnhancedPrompt,
@@ -37,12 +37,12 @@ import {
   getAvailableServices,
   getAvailablePromptTypes,
   getAvailableStyles
-} from '../../shared/ai-generation.js';
+} from '../ai-generation.js';
 
 import {
   isAdmin,
   handleAdminCommand
-} from '../../shared/admin.js';
+} from '../admin.js';
 
 import {
   getContentCalendar,
@@ -55,12 +55,12 @@ import {
   getWorkspaceProjects,
   formatProjectsList,
   scheduleContent
-} from '../../shared/workspace.js';
+} from '../workspace.js';
 
-import IntegrationManager from '../../shared/integration-manager.js';
-import CharacterAPIClient from '../../shared/character-api-client.js';
+import IntegrationManager from '../integration-manager.js';
+import CharacterAPIClient from '../character-api-client.js';
 
-dotenv.config({ path: '../../.env' });
+dotenv.config();
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
 const characterDbPath = process.env.CHARACTER_DATABASE_PATH || '/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/characters-cleaned.json';
