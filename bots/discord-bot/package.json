@@ -1,0 +1,22 @@
+{
+  "name": "chiefpilot-discord-bot",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "ChiefPilot Discord bot for character database and AI generation",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node src/test.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.7",
+    "axios": "^1.7.9",
+    "better-sqlite3": "^11.8.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

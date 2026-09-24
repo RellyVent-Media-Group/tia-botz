@@ -13,6 +13,7 @@ import { join } from 'path';
 import pino from 'pino';
 import axios from 'axios';
 import qrcode from 'qrcode-terminal';
+import http from 'http';
 
 // Import shared modules
 import {
@@ -60,10 +61,16 @@ import {
   scheduleContent
 } from '../../shared/workspace.js';
 
+import CharacterAPIClient from '../../shared/character-api-client.js';
+
 dotenv.config({ path: '../../.env' });
 
-const characterDbPath = process.env.CHARACTER_DATABASE_PATH || '/Users/jypsee72/Desktop/Tiapma\'atzu-OS-Toolkit/core/character-database/Character Database';
+const characterDbPath = process.env.CHARACTER_DATABASE_PATH || '/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/characters-cleaned.json';
 const workspaceApiUrl = process.env.WORKSPACE_API_URL || 'http://localhost:8080';
+const characterApiUrl = process.env.CHARACTER_API_URL || 'http://localhost:8001';
+
+// Initialize character API client
+const characterAPI = new CharacterAPIClient(characterApiUrl);
 
 // Logger
 const logger = pino({ level: 'silent' });
@@ -173,6 +180,9 @@ async function processCommand(sock, remoteJid, message, msg) {
     await sock.sendMessage(remoteJid, { text: getProductsMessage() });
   } else if (command === '/workflow') {
     await sock.sendMessage(remoteJid, { text: getWorkflowMessage() });
+  } else if (command.startsWith('/api')) {
+    const args = command.split(' ').slice(1);
+    await handleApiCommand(sock, remoteJid, args, user.id);
   } else if (command.startsWith('/generate')) {
     const args = command.split(' ').slice(1);
     await handleGenerateCommand(sock, remoteJid, args, user);
@@ -270,16 +280,17 @@ async function handleRandomCommand(sock, remoteJid, user, dbSession) {
 async function handleBatchCommand(sock, remoteJid, user, dbSession) {
   // Check subscription for batch access
   if (user.subscription_tier === 'free') {
-    await sock.sendMessage(remoteJid, { text: '⚠️ Batch generation is a premium feature.\n\nType /subscribe to upgrade.' });
+    await sock.sendMessage(remoteJid, { text: '⚠️ *Batch generation is a premium feature*\n\nFree tier: 5 prompts per day\nPremium: Unlimited prompts + batch generation + AI image generation\n\nType /subscribe to upgrade and unlock batch generation.' });
     return;
   }
 
-  await sock.sendMessage(remoteJid, { text: '📦 Generating 5 random prompts for batch production...' });
+  await sock.sendMessage(remoteJid, { text: '📦 *Starting Batch Generation*\n\nGenerating 5 random prompts for batch production...\n\nThis may take a moment...' });
 
   try {
     const characters = await loadCharacterList();
-    const types = ['portrait', 'poster', 'avatar', 'story'];
+    const types = ['portrait', 'poster', 'avatar', 'story', 'concept'];
     let batchResponse = '✨ *Batch Generation Complete*\n\n';
+    batchResponse += `Generated 5 prompts at ${new Date().toLocaleTimeString()}\n\n`;
 
     for (let i = 0; i < 5; i++) {
       const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
@@ -298,6 +309,7 @@ async function handleBatchCommand(sock, remoteJid, user, dbSession) {
     });
     await logAnalytics(user.id, 'batch_generation', { count: 5 }, 'whatsapp');
 
+    batchResponse += `---\n💡 *Tip:* Use /generate with these prompts to create AI images.\nType /workflow for the 90-minute production guide.`;
     await sock.sendMessage(remoteJid, { text: batchResponse });
   } catch (error) {
     await sock.sendMessage(remoteJid, { text: `❌ Error: ${error.message}` });
@@ -388,6 +400,172 @@ async function handleSyncCommand(sock, remoteJid, userId, dbSession) {
   }
 }
 
+async function handleApiCommand(sock, remoteJid, args, userId) {
+  if (args.length === 0) {
+    await sock.sendMessage(remoteJid, { text: `
+🔌 *Character API Commands*
+
+/api search [query]
+  Search characters by name, archetype, or description
+  Example: /api search Mary
+
+/api random
+  Get a random character from the database
+
+/api creators
+  Get all content creator characters
+
+/api budget
+  Get budget summary
+
+/api budget archetype
+  Get budget breakdown by archetype
+
+/api filters [rarity] [archetype] [category]
+  Filter characters with multiple criteria
+  Example: /api filters Legendary content-creator
+
+/api performance
+  Get character performance analytics
+
+/api health
+  Check character API health status
+    `.trim() });
+    return;
+  }
+
+  const subCommand = args[0].toLowerCase();
+
+  try {
+    // Check API health first
+    const health = await characterAPI.healthCheck();
+    if (!health.healthy) {
+      await sock.sendMessage(remoteJid, { text: `❌ Character API is currently unavailable: ${health.error || 'Unknown error'}` });
+      return;
+    }
+
+    switch (subCommand) {
+      case 'search':
+        if (args.length < 2) {
+          await sock.sendMessage(remoteJid, { text: 'Usage: /api search [query]\nExample: /api search Mary' });
+          return;
+        }
+        const query = args.slice(1).join(' ');
+        const searchResults = await characterAPI.searchCharacters(query);
+        const formattedSearch = characterAPI.formatCharacterListForBot(searchResults);
+        if (formattedSearch.length === 0) {
+          await sock.sendMessage(remoteJid, { text: `❌ No characters found matching "${query}"` });
+        } else {
+          let response = `🔍 *Search Results for "${query}"*\n\n`;
+          formattedSearch.slice(0, 5).forEach((char, i) => {
+            response += `${i + 1}. *${char.name}*\n   ${char.archetype} | ${char.rarity}\n`;
+          });
+          if (formattedSearch.length > 5) {
+            response += `\n...and ${formattedSearch.length - 5} more`;
+          }
+          await sock.sendMessage(remoteJid, { text: response });
+        }
+        break;
+
+      case 'random':
+        const randomChar = await characterAPI.getRandomCharacter();
+        const formattedRandom = characterAPI.formatCharacterForBot(randomChar);
+        await sock.sendMessage(remoteJid, { text: `
+🎲 *Random Character*
+
+*${formattedRandom.name}*
+*Archetype:* ${formattedRandom.archetype}
+*Rarity:* ${formattedRandom.rarity}
+*Budget:* ${formattedRandom.budget}
+
+*Description:*
+${formattedRandom.description?.substring(0, 200)}...
+
+Use /character "${formattedRandom.name}" for full details
+        `.trim() });
+        break;
+
+      case 'creators':
+        const creators = await characterAPI.getContentCreators();
+        const formattedCreators = characterAPI.formatCharacterListForBot(creators);
+        let creatorResponse = `👥 *Content Creators*\n\n`;
+        formattedCreators.forEach((char, i) => {
+          creatorResponse += `${i + 1}. *${char.name}*\n   ${char.archetype} | ${char.budget}\n`;
+        });
+        await sock.sendMessage(remoteJid, { text: creatorResponse });
+        break;
+
+      case 'budget':
+        if (args[1] === 'archetype') {
+          const budgetByArchetype = await characterAPI.getBudgetByArchetype();
+          let budgetResponse = `💰 *Budget by Archetype*\n\n`;
+          Object.entries(budgetByArchetype).forEach(([archetype, budget]) => {
+            budgetResponse += `• ${archetype}: $${budget.toLocaleString()}\n`;
+          });
+          await sock.sendMessage(remoteJid, { text: budgetResponse });
+        } else {
+          const budgetSummary = await characterAPI.getBudgetSummary();
+          await sock.sendMessage(remoteJid, { text: `
+💰 *Budget Summary*
+
+*Total Allocated:* $${budgetSummary.total?.toLocaleString() || 'N/A'}
+*Total Spent:* $${budgetSummary.spent?.toLocaleString() || 'N/A'}
+*Remaining:* $${budgetSummary.remaining?.toLocaleString() || 'N/A'}
+*Characters Funded:* ${budgetSummary.count || 'N/A'}
+          `.trim() });
+        }
+        break;
+
+      case 'filters':
+        const filters = {};
+        let filterIndex = 1;
+        while (filterIndex < args.length) {
+          const filterType = args[filterIndex].toLowerCase();
+          if (['rarity', 'archetype', 'category'].includes(filterType) && args[filterIndex + 1]) {
+            filters[filterType] = args[filterIndex + 1];
+            filterIndex += 2;
+          } else {
+            filterIndex++;
+          }
+        }
+        const filteredChars = await characterAPI.getCharacters(filters);
+        const formattedFiltered = characterAPI.formatCharacterListForBot(filteredChars);
+        if (formattedFiltered.length === 0) {
+          await sock.sendMessage(remoteJid, { text: '❌ No characters found with these filters' });
+        } else {
+          let filterResponse = `🔎 *Filtered Characters*\n\n`;
+          formattedFiltered.forEach((char, i) => {
+            filterResponse += `${i + 1}. *${char.name}*\n   ${char.archetype} | ${char.rarity}\n`;
+          });
+          await sock.sendMessage(remoteJid, { text: filterResponse });
+        }
+        break;
+
+      case 'performance':
+        const performance = await characterAPI.getCharacterPerformance();
+        let perfResponse = `📊 *Character Performance Analytics*\n\n`;
+        Object.entries(performance).forEach(([metric, value]) => {
+          perfResponse += `• ${metric}: ${value}\n`;
+        });
+        await sock.sendMessage(remoteJid, { text: perfResponse });
+        break;
+
+      case 'health':
+        await sock.sendMessage(remoteJid, { text: `✅ Character API is healthy\n\n*Version:* ${health.version || 'Unknown'}\n*Timestamp:* ${new Date(health.timestamp).toLocaleString()}` });
+        break;
+
+      default:
+        await sock.sendMessage(remoteJid, { text: `❌ Unknown API command: ${subCommand}\nUse /api to see available commands` });
+    }
+
+    // Log analytics
+    await logAnalytics(userId, 'api_query', { command: subCommand, args: args.slice(1) }, 'whatsapp');
+
+  } catch (error) {
+    await sock.sendMessage(remoteJid, { text: `❌ API Error: ${error.message}\n\n💡 Tip: Use /api health to check if the character API is running` });
+  }
+}
+
 // Helper functions
 async function getWelcomeMessage(userId) {
   await logAnalytics(userId, 'start', { platform: 'whatsapp' }, 'whatsapp');
@@ -403,6 +581,7 @@ Your gateway to the Gilded Mirrors Universe character database and AI prompt sys
 • /batch - Generate 5 prompts (premium)
 • /generate - Generate AI images (NEW!)
 • /character - View character details
+• /api - Query character database via API (NEW!)
 • /products - View available products
 • /workflow - Get production workflow
 • /status - Check your status
@@ -447,6 +626,13 @@ async function getHelpMessage(userId) {
 /character [name]
   View character details
   Example: /character Mac Nazarene
+
+/api [query] [filter]
+  Query character database via API
+  Example: /api search Mary
+  Example: /api random
+  Example: /api creators
+  Example: /api budget
 
 *New AI Generation Commands:*
 
@@ -590,38 +776,60 @@ ChiefPilot WhatsApp Bot
 
 function getProductsMessage() {
   return `
-🛍️ *Available Products*
+🛍️ *ChiefPilot Product Suite*
 
-*Prompt Vault Basic* - $27
-• 25 cinematic prompts
+*📦 Prompt Vault Basic* - $27
+• 25 cinematic character prompts
 • Character consistency rules
-• Basic guides
-• Commercial license
+• Basic production guides
+• Commercial license included
+• PDF download
 
-*Prompt Vault Standard* - $47
+*📦 Prompt Vault Standard* - $47 ⭐ POPULAR
 • Everything in Basic
 • Notion integration templates
-• Production workflow guides
-• Priority support
+• 90-minute production workflow
+• Caption formulas & scripts
+• Priority email support
+• PDF + Notion templates
 
-*Prompt Vault Premium* - $97
+*📦 Prompt Vault Premium* - $97
 • Everything in Standard
-• Custom consultation (15-min)
-• Future prompt updates
+• 15-minute custom consultation
+• Future prompt updates (1 year)
 • White-label licensing option
+• Dedicated support channel
+• All formats included
 
-*Platform Integration Kit* - $197
-• Complete bot setup
-• Workspace integration
-• Custom development
-• Priority support
+*🚀 Platform Integration Kit* - $197
+• Complete bot setup (Telegram + WhatsApp)
+• Workspace integration configuration
+• Custom development for your stack
+• Priority support (24h response)
+• Training documentation
+• Deployment assistance
 
-*To purchase:*
-Visit gumroad.com/chiefpilot
-Or reply with your preferred product for details.
+*🎯 Multi-Platform Starter Kit* - $497
+• Everything in all packages
+• Bots for 10+ platforms
+• Complete marketing materials
+• Custom gig descriptions
+• Visual asset specifications
+• Script library
+• Full implementation guide
+
+*📥 How to Purchase:*
+1. Visit gumroad.com/chiefpilot
+2. Select your preferred package
+3. Instant download after purchase
+4. Email support for setup questions
+
+*💬 Need help deciding?*
+Reply with a product name for detailed info or "compare" to see side-by-side features.
 
 ---
-ChiefPilot Products
+ChiefPilot Product Suite
+gumroad.com/chiefpilot
   `.trim();
 }
 
@@ -629,36 +837,61 @@ function getWorkflowMessage() {
   return `
 ⏱️ *90-Minute Production Workflow*
 
+This workflow produces 4-6 consistent character videos in 90 minutes.
+
 *Step 1: Generate Images (0-20 min)*
-• Use character prompts from /prompt
-• Generate with Midjourney/Stable Diffusion
-• Maintain consistency rules
-• Create 2-3 variations per character
+• Use /prompt or /batch to get character prompts
+• Generate with Midjourney (v6), Stable Diffusion XL, or DALL-E 3
+• Maintain consistency: same aspect ratio, style, lighting
+• Create 2-3 variations per character (different angles/poses)
+• Download highest resolution available
 
 *Step 2: Animate with AI (20-50 min)*
-• Use Kling 2.0, Runway, or Pika
-• Apply character images to video generation
-• Create 2 variations per image = 4-6 videos
-• Follow technical specs from prompts
+• Use Kling 2.0, Runway Gen-3, or Pika Labs
+• Upload character images as reference
+• Set motion strength: medium (40-60%)
+• Create 2 variations per image = 4-6 videos total
+• Follow technical specs: 15-60 seconds, 1080p minimum
+• Export with consistent frame rate (24-30 fps)
 
 *Step 3: Export & Format (50-70 min)*
-• Export all video content
-• Trim to optimal lengths (15-60 sec)
-• Add watermarks if needed
-• Format for target platforms
+• Export all video content in MP4 format
+• Trim to optimal lengths: 15s (TikTok), 30s (Instagram), 60s (YouTube)
+• Add subtle watermarks if brand protection needed
+• Format for each platform's specs
+• Organize by platform in folders
 
 *Step 4: Write & Schedule (70-90 min)*
-• Use caption formula from guides
-• Include character hashtags
+• Use caption formula: Hook + Value + CTA
+• Include character-specific hashtags
+• Tag relevant accounts
 • Schedule for optimal posting times
-• Track performance in workspace
+• Track performance in workspace analytics
 
-*Goal: 4-6 consistent character videos in 90 minutes*
+*📋 Platform-Specific Tips:*
+• TikTok: 9:16 vertical, trending sounds, fast cuts
+• Instagram: 1:1 or 4:5, aesthetic feed, Stories + Reels
+• YouTube: 16:9 horizontal, longer descriptions, community tab
+• X/Twitter: 16:9 or 1:1, thread format, tag relevant accounts
 
-Type /products to get the complete prompt system.
+*🎯 Success Metrics:*
+• Views: 1K+ within 24 hours
+• Engagement: 5%+ engagement rate
+• Saves: 10+ saves per video
+• Shares: 5+ shares per video
+
+*💡 Pro Tips:*
+• Batch similar tasks together
+• Use templates for captions
+• Maintain character voice across platforms
+• Engage with comments within 1 hour
+• Post consistently (3-5x per week)
+
+Type /products to get the complete prompt system that makes this workflow possible.
 
 ---
 ChiefPilot Production Workflow
+For detailed guides, get Prompt Vault Standard or higher
   `.trim();
 }
 
@@ -666,15 +899,19 @@ function formatCharacterInfo(character) {
   return `
 👤 *${character.name}*
 
-*Title:* ${character.title || 'N/A'}
 *Archetype:* ${character.archetype || 'N/A'}
 *Rarity:* ${character.rarity || 'N/A'}
+*Status:* ${character.status || 'N/A'}
+*Entity Type:* ${character.entityType || 'N/A'}
+*Gender:* ${character.gender || 'N/A'}
 
-*Bio:*
-${character.bio || 'No bio available'}
+*Description:*
+${character.description || 'No description available'}
 
-*Persona:* ${character.personaTraits?.join(', ') || 'N/A'}
-*Shadow:* ${character.shadowTraits?.join(', ') || 'N/A'}
+*Key Tool Categories:*
+${character.keyToolCategory?.join(', ') || 'N/A'}
+
+*Allocated Budget:* ${character.allocatedBudget ? `$${character.allocatedBudget.toLocaleString()}` : 'N/A'}
 
 ---
 ChiefPilot Character Database
@@ -699,10 +936,9 @@ function trackEngagement(userId, message) {
 
 async function loadCharacterList() {
   try {
-    const files = readdirSync(characterDbPath);
-    return files
-      .filter(f => f.endsWith('.md'))
-      .map(f => f.replace('.md', '').split(' ').slice(0, -1).join(' '));
+    const content = readFileSync(characterDbPath, 'utf-8');
+    const data = JSON.parse(content);
+    return data.characters.map(c => c.name);
   } catch (error) {
     throw new Error('Failed to load character list');
   }
@@ -710,32 +946,16 @@ async function loadCharacterList() {
 
 async function loadCharacter(name) {
   try {
-    const files = readdirSync(characterDbPath);
-    const match = files.find(f => f.toLowerCase().includes(name.toLowerCase()));
+    const content = readFileSync(characterDbPath, 'utf-8');
+    const data = JSON.parse(content);
+    
+    // Find character by name (case-insensitive partial match)
+    const character = data.characters.find(c => 
+      c.name.toLowerCase().includes(name.toLowerCase()) ||
+      name.toLowerCase().includes(c.name.toLowerCase())
+    );
 
-    if (!match) return null;
-
-    const filePath = join(characterDbPath, match);
-    const content = readFileSync(filePath, 'utf-8');
-
-    const lines = content.split('\n');
-    const character = { name };
-
-    lines.forEach(line => {
-      if (line.startsWith('# ')) character.title = line.replace('# ', '');
-      if (line.includes('Archetype')) character.archetype = line.split(':')[1]?.trim();
-      if (line.includes('Rarity')) character.rarity = line.split(':')[1]?.trim();
-      if (line.includes('Element')) character.element = line.split(':')[1]?.trim();
-      if (line.includes('Bio')) character.bio = line.split(':')[1]?.trim();
-      if (line.includes('Persona')) {
-        const traits = line.split(':')[1]?.trim();
-        if (traits) character.personaTraits = traits.split(',').map(t => t.trim());
-      }
-      if (line.includes('Shadow')) {
-        const traits = line.split(':')[1]?.trim();
-        if (traits) character.shadowTraits = traits.split(',').map(t => t.trim());
-      }
-    });
+    if (!character) return null;
 
     return character;
   } catch (error) {
@@ -942,4 +1162,24 @@ async function getWorkspaceAnalyticsLocal() {
 // Start the bot
 startWhatsAppBot().catch((error) => {
   console.error('Failed to start WhatsApp bot:', error);
+});
+
+// Health check server for Railway deployment
+const PORT = process.env.PORT || 3000;
+const server = http.createServer((req, res) => {
+  if (req.url === '/health') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      whatsapp: 'connected'
+    }));
+  } else {
+    res.writeHead(404);
+    res.end('Not found');
+  }
+});
+
+server.listen(PORT, () => {
+  console.log(`Health check server listening on port ${PORT}`);
 });

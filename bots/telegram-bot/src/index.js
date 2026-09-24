@@ -9,6 +9,7 @@ import TelegramBot from 'node-telegram-bot-api';
 import dotenv from 'dotenv';
 import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join } from 'path';
+import http from 'http';
 
 // Import shared modules
 import {
@@ -57,11 +58,16 @@ import {
 } from '../../shared/workspace.js';
 
 import IntegrationManager from '../../shared/integration-manager.js';
+import CharacterAPIClient from '../../shared/character-api-client.js';
 
 dotenv.config({ path: '../../.env' });
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
-const characterDbPath = process.env.CHARACTER_DATABASE_PATH || '/Users/jypsee72/Desktop/Tiapma\'atzu-OS-Toolkit/core/character-database/Character Database';
+const characterDbPath = process.env.CHARACTER_DATABASE_PATH || '/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/characters-cleaned.json';
+const characterApiUrl = process.env.CHARACTER_API_URL || 'http://localhost:8001';
+
+// Initialize character API client
+const characterAPI = new CharacterAPIClient(characterApiUrl);
 
 // Create bot with polling (for development)
 const bot = new TelegramBot(token, { polling: true });
@@ -102,6 +108,7 @@ Your gateway to the Gilded Mirrors Universe character database and AI prompt sys
 /batch - Generate multiple prompts at once
 /generate - Generate AI images (NEW!)
 /character - View character details
+/api - Query character database via API (NEW!)
 /subscribe - Subscribe to premium features
 /status - Check your subscription status
 /analytics - View your usage analytics
@@ -150,6 +157,13 @@ bot.onText(/\/help/, async (msg) => {
 /character [name]
   View detailed character information
   Example: /character Mac Nazarene
+
+/api [query] [filter]
+  Query character database via API
+  Example: /api search Mary
+  Example: /api random
+  Example: /api creators
+  Example: /api budget
 
 *New AI Generation Commands:*
 
@@ -349,22 +363,19 @@ bot.onText(/\/character(.*)/, async (msg, match) => {
     const message = `
 👤 *${character.name}*
 
-*Title:* ${character.title || 'N/A'}
 *Archetype:* ${character.archetype || 'N/A'}
 *Rarity:* ${character.rarity || 'N/A'}
-*Element:* ${character.element || 'N/A'}
+*Status:* ${character.status || 'N/A'}
+*Entity Type:* ${character.entityType || 'N/A'}
+*Gender:* ${character.gender || 'N/A'}
 
-*Bio:*
-${character.bio || 'No bio available'}
+*Description:*
+${character.description || 'No description available'}
 
-*Persona Traits:*
-${character.personaTraits?.join(', ') || 'N/A'}
+*Key Tool Categories:*
+${character.keyToolCategory?.join(', ') || 'N/A'}
 
-*Shadow Traits:*
-${character.shadowTraits?.join(', ') || 'N/A'}
-
-*Preferred Platforms:*
-${character.preferredPlatforms?.join(', ') || 'N/A'}
+*Allocated Budget:* ${character.allocatedBudget ? `$${character.allocatedBudget.toLocaleString()}` : 'N/A'}
 
 ---
 ChiefPilot Character Database
@@ -373,6 +384,178 @@ ChiefPilot Character Database
     bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
   } catch (error) {
     bot.sendMessage(chatId, `❌ Error: ${error.message}`);
+  }
+});
+
+// API Command - Query character database via API
+bot.onText(/\/api(.*)/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  const userId = msg.from.id;
+  const args = match[1].trim().split(/\s+/).filter(a => a);
+
+  if (args.length === 0) {
+    bot.sendMessage(chatId, `
+🔌 *Character API Commands*
+
+/api search [query]
+  Search characters by name, archetype, or description
+  Example: /api search Mary
+
+/api random
+  Get a random character from the database
+
+/api creators
+  Get all content creator characters
+
+/api budget
+  Get budget summary
+
+/api budget archetype
+  Get budget breakdown by archetype
+
+/api filters [rarity] [archetype] [category]
+  Filter characters with multiple criteria
+  Example: /api filters Legendary content-creator
+
+/api performance
+  Get character performance analytics
+
+/api health
+  Check character API health status
+    `.trim());
+    return;
+  }
+
+  const subCommand = args[0].toLowerCase();
+
+  try {
+    // Check API health first
+    const health = await characterAPI.healthCheck();
+    if (!health.healthy) {
+      bot.sendMessage(chatId, `❌ Character API is currently unavailable: ${health.error || 'Unknown error'}`);
+      return;
+    }
+
+    switch (subCommand) {
+      case 'search':
+        if (args.length < 2) {
+          bot.sendMessage(chatId, 'Usage: /api search [query]\nExample: /api search Mary');
+          return;
+        }
+        const query = args.slice(1).join(' ');
+        const searchResults = await characterAPI.searchCharacters(query);
+        const formattedSearch = characterAPI.formatCharacterListForBot(searchResults);
+        if (formattedSearch.length === 0) {
+          bot.sendMessage(chatId, `❌ No characters found matching "${query}"`);
+        } else {
+          let response = `🔍 *Search Results for "${query}"*\n\n`;
+          formattedSearch.slice(0, 5).forEach((char, i) => {
+            response += `${i + 1}. *${char.name}*\n   ${char.archetype} | ${char.rarity}\n`;
+          });
+          if (formattedSearch.length > 5) {
+            response += `\n...and ${formattedSearch.length - 5} more`;
+          }
+          bot.sendMessage(chatId, response, { parse_mode: 'Markdown' });
+        }
+        break;
+
+      case 'random':
+        const randomChar = await characterAPI.getRandomCharacter();
+        const formattedRandom = characterAPI.formatCharacterForBot(randomChar);
+        bot.sendMessage(chatId, `
+🎲 *Random Character*
+
+*${formattedRandom.name}*
+*Archetype:* ${formattedRandom.archetype}
+*Rarity:* ${formattedRandom.rarity}
+*Budget:* ${formattedRandom.budget}
+
+*Description:*
+${formattedRandom.description?.substring(0, 200)}...
+
+Use /character "${formattedRandom.name}" for full details
+        `.trim(), { parse_mode: 'Markdown' });
+        break;
+
+      case 'creators':
+        const creators = await characterAPI.getContentCreators();
+        const formattedCreators = characterAPI.formatCharacterListForBot(creators);
+        let creatorResponse = `👥 *Content Creators*\n\n`;
+        formattedCreators.forEach((char, i) => {
+          creatorResponse += `${i + 1}. *${char.name}*\n   ${char.archetype} | ${char.budget}\n`;
+        });
+        bot.sendMessage(chatId, creatorResponse, { parse_mode: 'Markdown' });
+        break;
+
+      case 'budget':
+        if (args[1] === 'archetype') {
+          const budgetByArchetype = await characterAPI.getBudgetByArchetype();
+          let budgetResponse = `💰 *Budget by Archetype*\n\n`;
+          Object.entries(budgetByArchetype).forEach(([archetype, budget]) => {
+            budgetResponse += `• ${archetype}: $${budget.toLocaleString()}\n`;
+          });
+          bot.sendMessage(chatId, budgetResponse, { parse_mode: 'Markdown' });
+        } else {
+          const budgetSummary = await characterAPI.getBudgetSummary();
+          bot.sendMessage(chatId, `
+💰 *Budget Summary*
+
+*Total Allocated:* $${budgetSummary.total?.toLocaleString() || 'N/A'}
+*Total Spent:* $${budgetSummary.spent?.toLocaleString() || 'N/A'}
+*Remaining:* $${budgetSummary.remaining?.toLocaleString() || 'N/A'}
+*Characters Funded:* ${budgetSummary.count || 'N/A'}
+          `.trim(), { parse_mode: 'Markdown' });
+        }
+        break;
+
+      case 'filters':
+        const filters = {};
+        let filterIndex = 1;
+        while (filterIndex < args.length) {
+          const filterType = args[filterIndex].toLowerCase();
+          if (['rarity', 'archetype', 'category'].includes(filterType) && args[filterIndex + 1]) {
+            filters[filterType] = args[filterIndex + 1];
+            filterIndex += 2;
+          } else {
+            filterIndex++;
+          }
+        }
+        const filteredChars = await characterAPI.getCharacters(filters);
+        const formattedFiltered = characterAPI.formatCharacterListForBot(filteredChars);
+        if (formattedFiltered.length === 0) {
+          bot.sendMessage(chatId, '❌ No characters found with these filters');
+        } else {
+          let filterResponse = `🔎 *Filtered Characters*\n\n`;
+          formattedFiltered.forEach((char, i) => {
+            filterResponse += `${i + 1}. *${char.name}*\n   ${char.archetype} | ${char.rarity}\n`;
+          });
+          bot.sendMessage(chatId, filterResponse, { parse_mode: 'Markdown' });
+        }
+        break;
+
+      case 'performance':
+        const performance = await characterAPI.getCharacterPerformance();
+        let perfResponse = `📊 *Character Performance Analytics*\n\n`;
+        Object.entries(performance).forEach(([metric, value]) => {
+          perfResponse += `• ${metric}: ${value}\n`;
+        });
+        bot.sendMessage(chatId, perfResponse, { parse_mode: 'Markdown' });
+        break;
+
+      case 'health':
+        bot.sendMessage(chatId, `✅ Character API is healthy\n\n*Version:* ${health.version || 'Unknown'}\n*Timestamp:* ${new Date(health.timestamp).toLocaleString()}`, { parse_mode: 'Markdown' });
+        break;
+
+      default:
+        bot.sendMessage(chatId, `❌ Unknown API command: ${subCommand}\nUse /api to see available commands`);
+    }
+
+    // Log analytics
+    const user = await getOrCreateUser(userId);
+    await logAnalytics(user.id, 'api_query', { command: subCommand, args: args.slice(1) }, 'telegram');
+
+  } catch (error) {
+    bot.sendMessage(chatId, `❌ API Error: ${error.message}\n\n💡 Tip: Use /api health to check if the character API is running`);
   }
 });
 
@@ -787,10 +970,9 @@ bot.onText(/\/network/, async (msg) => {
 // Helper functions
 async function loadCharacterList() {
   try {
-    const files = readdirSync(characterDbPath);
-    return files
-      .filter(f => f.endsWith('.md'))
-      .map(f => f.replace('.md', '').split(' ').slice(0, -1).join(' ')); // Remove hash
+    const content = readFileSync(characterDbPath, 'utf-8');
+    const data = JSON.parse(content);
+    return data.characters.map(c => c.name);
   } catch (error) {
     throw new Error('Failed to load character list');
   }
@@ -798,25 +980,16 @@ async function loadCharacterList() {
 
 async function loadCharacter(name) {
   try {
-    const files = readdirSync(characterDbPath);
-    const match = files.find(f => f.toLowerCase().includes(name.toLowerCase()));
+    const content = readFileSync(characterDbPath, 'utf-8');
+    const data = JSON.parse(content);
+    
+    // Find character by name (case-insensitive partial match)
+    const character = data.characters.find(c => 
+      c.name.toLowerCase().includes(name.toLowerCase()) ||
+      name.toLowerCase().includes(c.name.toLowerCase())
+    );
 
-    if (!match) return null;
-
-    const filePath = join(characterDbPath, match);
-    const content = readFileSync(filePath, 'utf-8');
-
-    // Parse markdown to extract character data
-    const lines = content.split('\n');
-    const character = { name };
-
-    lines.forEach(line => {
-      if (line.startsWith('# ')) character.title = line.replace('# ', '');
-      if (line.startsWith('**Archetype:**')) character.archetype = line.split(':')[1]?.trim();
-      if (line.startsWith('**Rarity:**')) character.rarity = line.split(':')[1]?.trim();
-      if (line.startsWith('**Element:**')) character.element = line.split(':')[1]?.trim();
-      if (line.startsWith('**Bio:**')) character.bio = line.split(':')[1]?.trim();
-    });
+    if (!character) return null;
 
     return character;
   } catch (error) {
@@ -865,3 +1038,23 @@ bot.on('polling_error', (error) => {
 
 console.log('🤖 ChiefPilot Telegram Bot started...');
 console.log('📡 Listening for commands...');
+
+// Health check server for Railway deployment
+const PORT = process.env.PORT || 3000;
+const server = http.createServer((req, res) => {
+  if (req.url === '/health') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      telegram: 'connected'
+    }));
+  } else {
+    res.writeHead(404);
+    res.end('Not found');
+  }
+});
+
+server.listen(PORT, () => {
+  console.log(`Health check server listening on port ${PORT}`);
+});
