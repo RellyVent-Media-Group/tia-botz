@@ -7,4 +7,4 @@ echo "Starting Character API server..."
 echo "DISCORD_WEBHOOK: ${DISCORD_WEBHOOK}"
 echo "Listening on port 8000"
 
-exec python -m http.server 8000 --directory /app
+exec python server.py 8000

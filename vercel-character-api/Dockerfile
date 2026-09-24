@@ -47,5 +47,5 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 
 # Start the Character API server
 # Note: For Vercel deployment, use `vercel` command
-# For local testing, we'll start the Python HTTP server
-CMD ["python", "-m", "http.server", "8000"]
+# For local testing, we'll start our custom server
+CMD ["python", "server.py", "8000"]
