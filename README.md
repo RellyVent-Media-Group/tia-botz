@@ -1,11 +1,11 @@
-# Tiapma'atzu OS Toolkit
+# Tiapmaatzu OS Toolkit
 
 A unified project consolidating the ChiefPilot/Gilded Mirrors Universe ecosystem, including bot systems, automation tools, character databases, and organizational workflows.
 
 ## Project Structure
 
 ```
-Tiapma'atzu-OS-Toolkit/
+Tiapmaatzu-OS-Toolkit/
 ├── core/                          # Core systems
 │   ├── character-database/        # Unified character database
 │   ├── integration-hub/          # Central API and webhook system
@@ -60,7 +60,7 @@ Tiapma'atzu-OS-Toolkit/
 
 1. **Clone or navigate to the project:**
    ```bash
-   cd /Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit
+   cd /Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit
    ```
 
 2. **Install dependencies for each system:**
@@ -214,8 +214,8 @@ All systems now use standardized paths for shared resources:
 Update your `.env` files to use these paths:
 
 ```env
-CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/core/character-database/Character Database
-VISUAL_ASSETS_PATH=/Users/jypsee72/Desktop/Tiapma'atzu-OS-Toolkit/content/visual-assets
+CHARACTER_DATABASE_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/core/character-database/Character Database
+VISUAL_ASSETS_PATH=/Users/jypsee72/Desktop/Tiapmaatzu-OS-Toolkit/content/visual-assets
 ```
 
 ### Environment Templates
@@ -269,3 +269,4 @@ This project is part of the ChiefPilot / Gilded Mirrors Universe ecosystem.
 ---
 
 **ChiefPilot v3 // Gilded Mirrors OS**
+# tia-botz
