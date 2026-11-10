@@ -1,0 +1,20 @@
+# ShellCheck configuration
+# Severity levels: error, warning, info, style
+
+# Set severity threshold
+severity=style
+
+# Exclude specific SC codes
+# SC2002: Useless cat
+# SC2006: Use $(...) instead of backticks
+# SC2016: Expression doesn't expand
+# SC2034: Variable appears unused
+# SC2068: Double quote array expansions
+# SC2086: Double quote to prevent globbing
+exclude=SC2002,SC2006,SC2016,SC2034,SC2068,SC2086
+
+# Enable all checks
+enable=all
+
+# Color output
+color=auto
